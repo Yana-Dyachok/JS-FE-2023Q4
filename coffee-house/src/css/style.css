@@ -23,4 +23,14 @@ a {
 a:focus,
 a:active {
   outline: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0%;
+  font-size: 0.9375rem;
+  overflow-x: hidden;
 }/*# sourceMappingURL=style.css.map */
