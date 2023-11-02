@@ -4,9 +4,7 @@
   margin: 0;
   border: 0;
 }
-
-*:before,
-*:after {
+*:before, *:after {
   box-sizing: border-box;
 }
 
@@ -19,9 +17,7 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
-a:focus,
-a:active {
+a:focus, a:active {
   outline: none;
 }
 
@@ -30,7 +26,26 @@ html {
 }
 
 body {
-  margin: 0%;
-  font-size: 0.9375rem;
+  margin: 0rem auto;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.25rem;
   overflow-x: hidden;
+}
+
+li {
+  list-style: none;
+}
+
+.indicators-block {
+  display: flex;
+  flex-direction: row;
+}
+
+.indicator {
+  width: 4rem;
+  height: 1rem;
+  background-color: aqua;
 }/*# sourceMappingURL=style.css.map */
