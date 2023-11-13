@@ -520,6 +520,12 @@ li {
   padding: 8.3rem 8rem 0rem 0rem;
 }
 
+.title-contact {
+  font-size: 1.5rem;
+  line-height: 1.875rem;
+  color: #e1d4c9;
+}
+
 .contacts-list {
   font-size: 1.5rem;
   line-height: 1.875rem;
