@@ -1,0 +1,1 @@
+console.log(" CrossCheck Criteria (100 points)\n Checking validation of pages: +16\n The layout matches the design +42\n CSS Requirements +10\n Interactivity +32")
