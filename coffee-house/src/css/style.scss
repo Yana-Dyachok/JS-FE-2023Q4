@@ -277,6 +277,10 @@
     line-height: 1.5rem;
     color: $dark;
     background-color: $lightext;
+
+    & > p {
+      padding-top: 1.25rem;
+    }
   
     &:hover {
       display: flex;
@@ -285,7 +289,7 @@
       background-position: right 4rem bottom 1.4rem;
   
       & > p {
-        margin: 1.35rem 0rem 0rem 4.2rem;
+        margin: 0.1rem 0rem 0rem 4.2rem;
         // transition: all 0.5s ease-out;
       }
     }
