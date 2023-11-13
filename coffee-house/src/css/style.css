@@ -201,6 +201,9 @@ li {
   transform: scale(1.05);
   filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
 }
+.btn-menu > p {
+  padding-top: 1.25rem;
+}
 .btn-menu:hover {
   display: flex;
   color: #665f55;
@@ -208,7 +211,7 @@ li {
   background-position: right 4rem bottom 1.4rem;
 }
 .btn-menu:hover > p {
-  margin: 1.35rem 0rem 0rem 4.2rem;
+  margin: 0.1rem 0rem 0rem 4.2rem;
 }
 
 .title-favourites {
@@ -515,6 +518,12 @@ li {
 .contacts {
   width: 50%;
   padding: 8.3rem 8rem 0rem 0rem;
+}
+
+.title-contact {
+  font-size: 1.5rem;
+  line-height: 1.875rem;
+  color: #e1d4c9;
 }
 
 .contacts-list {
