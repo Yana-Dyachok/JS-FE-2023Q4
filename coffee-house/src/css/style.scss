@@ -1,3 +1,4 @@
+@import url('https://fonts.cdnfonts.com/css/inter?styles=29141');
 /*Normalize*/
 
 * {
@@ -254,8 +255,9 @@ li {
 }
 
 .title-span {
-    line-height: 105%;
+    font-family: 'Inter', sans-serif;
     font-style: italic;
+    line-height: 105%;
     color: $accent;
 }
 
@@ -559,10 +561,12 @@ li {
     width: 50%;
     padding: 8.3rem 8rem 0rem 0rem;
 }
+
 .title-contact {
     @include textSize();
     color: $lightext;
 }
+
 .contacts-list {
     @include textSize();
     color: $lightext;
