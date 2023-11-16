@@ -300,6 +300,9 @@ li {
   background-color: #c1b6ad;
   cursor: pointer;
 }
+.indicator:hover {
+  background-color: #b0907a;
+}
 
 .active-indicator {
   background-color: #403f3d;

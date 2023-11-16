@@ -287,6 +287,7 @@ li {
 
         & > p {
             margin: 0.1rem 0rem 0rem 4.2rem;
+            //if you want get text animation
             // transition: all 0.5s ease-out;
         }
     }
@@ -367,6 +368,10 @@ li {
     border-radius: 6.25rem;
     background-color: $lightBorder;
     cursor: pointer;
+
+    &:hover {
+        background-color: $accent;
+    }
 }
 
 .active-indicator {
