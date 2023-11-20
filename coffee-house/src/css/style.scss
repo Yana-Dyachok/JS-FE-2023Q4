@@ -1198,6 +1198,7 @@ li {
 }
 
 .loading-btn {
+    display: none; //temporary----------------------------------------------------------
     margin: 0.1rem 22.5rem 6.25rem;
     @include roundButtons(3.62rem, 3.62rem);
     background: url(../assets/icons/refresh.png) center no-repeat;
@@ -1237,6 +1238,21 @@ li {
     .card-block:nth-child(2) {
         margin-bottom: 2.415rem;
     }
+    // temporary----------------------------------------
+    .menu-block {
+        & .card-block:nth-last-child(-n + 4) {
+            display: none;
+        }
+
+        & .card-block:nth-child(-n + 4) {
+            display: block;
+        }
+    }
+
+    .loading-btn {
+        display: block;
+    }
+    // temporary----------------------------------------
 }
 
 @media screen and (max-width: 700px) {

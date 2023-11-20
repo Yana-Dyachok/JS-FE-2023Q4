@@ -1141,6 +1141,7 @@ li {
 }
 
 .loading-btn {
+  display: none;
   margin: 0.1rem 22.5rem 6.25rem;
   width: 3.62rem;
   height: 3.62rem;
@@ -1183,6 +1184,15 @@ li {
   }
   .card-block:nth-child(2) {
     margin-bottom: 2.415rem;
+  }
+  .menu-block .card-block:nth-last-child(-n+4) {
+    display: none;
+  }
+  .menu-block .card-block:nth-child(-n+4) {
+    display: block;
+  }
+  .loading-btn {
+    display: block;
   }
 }
 @media screen and (max-width: 700px) {
