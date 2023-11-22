@@ -647,8 +647,10 @@ li {
         & > .circle {
             background-color: $lightext;
             transform: none;
+            
             &:hover {
                 filter: none;
+                cursor: default;
             }
         }
 

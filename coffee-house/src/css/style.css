@@ -627,6 +627,7 @@ li {
 }
 .tab-item.active-btn > .circle:hover {
   filter: none;
+  cursor: default;
 }
 
 .coffee {
