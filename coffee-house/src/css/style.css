@@ -191,7 +191,6 @@ li {
   text-align: center;
   border-radius: 6.25rem;
   border: none;
-  cursor: pointer;
   transition: all 0.4s ease-out;
   font-weight: 600;
   font-size: 1rem;
@@ -201,6 +200,7 @@ li {
 }
 .btn-menu:hover {
   transform: scale(1.05);
+  cursor: pointer;
   filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
 }
 .btn-menu > p {
@@ -261,13 +261,13 @@ li {
   text-align: center;
   border-radius: 6.25rem;
   border: none;
-  cursor: pointer;
   transition: all 0.4s ease-out;
   border: 0.0625rem solid #665f55;
   background-color: inherit;
 }
 .arrow-button:hover {
   transform: scale(1.05);
+  cursor: pointer;
   filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
 }
 
@@ -336,7 +336,6 @@ li {
   height: 36.875rem;
   border-radius: 1.25rem;
   overflow: hidden;
-  cursor: pointer;
   margin-bottom: 2.5rem;
 }
 
@@ -345,7 +344,6 @@ li {
   height: 26.875rem;
   border-radius: 1.25rem;
   overflow: hidden;
-  cursor: pointer;
   margin-bottom: 2.5rem;
 }
 
@@ -404,13 +402,13 @@ li {
   text-align: center;
   border-radius: 6.25rem;
   border: none;
-  cursor: pointer;
   transition: all 0.4s ease-out;
   border: 0.0625rem solid #665f55;
   text-align: center;
 }
 .download:hover {
   transform: scale(1.05);
+  cursor: pointer;
   filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
 }
 
@@ -457,13 +455,13 @@ li {
   text-align: center;
   border-radius: 6.25rem;
   border: none;
-  cursor: pointer;
   transition: all 0.4s ease-out;
   border: 0.0625rem solid #c1b6ad;
   background-color: inherit;
 }
 .icon-contacts:hover {
   transform: scale(1.05);
+  cursor: pointer;
   filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
 }
 
@@ -601,19 +599,35 @@ li {
   text-align: center;
   border-radius: 6.25rem;
   border: none;
-  cursor: pointer;
   transition: all 0.4s ease-out;
 }
 .tab-item > .circle:hover {
   transform: scale(1.05);
+  cursor: pointer;
   filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
 }
-.tab-item:hover, .tab-item.active-btn {
+.tab-item:hover {
   color: #e1d4c9;
   background-color: #665f55;
 }
-.tab-item:hover > .circle, .tab-item.active-btn > .circle {
+.tab-item:hover > .circle {
   background-color: #e1d4c9;
+}
+.tab-item.active-btn {
+  color: #e1d4c9;
+  background-color: #665f55;
+}
+.tab-item.active-btn:hover {
+  transform: none;
+  cursor: default;
+}
+.tab-item.active-btn > .circle {
+  background-color: #e1d4c9;
+  transform: none;
+}
+.tab-item.active-btn > .circle:hover {
+  filter: none;
+  cursor: default;
 }
 
 .coffee {
@@ -622,12 +636,12 @@ li {
   text-align: center;
   border-radius: 6.25rem;
   border: none;
-  cursor: pointer;
   transition: all 0.4s ease-out;
   border: 0.0625rem solid #c1b6ad;
 }
 .coffee:hover {
   transform: scale(1.05);
+  cursor: pointer;
   filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
 }
 .coffee > .circle {
@@ -644,12 +658,12 @@ li {
   text-align: center;
   border-radius: 6.25rem;
   border: none;
-  cursor: pointer;
   transition: all 0.4s ease-out;
   border: 0.0625rem solid #c1b6ad;
 }
 .tea:hover {
   transform: scale(1.05);
+  cursor: pointer;
   filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
 }
 .tea > .circle {
@@ -665,12 +679,12 @@ li {
   text-align: center;
   border-radius: 6.25rem;
   border: none;
-  cursor: pointer;
   transition: all 0.4s ease-out;
   border: 0.0625rem solid #c1b6ad;
 }
 .dessert:hover {
   transform: scale(1.05);
+  cursor: pointer;
   filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
 }
 .dessert > .circle {
@@ -697,8 +711,10 @@ li {
   cursor: pointer;
 }
 .card-block:hover {
-  transform: scale(1.01);
   box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem #403f3d;
+}
+.card-block:hover .card-img {
+  transform: scale(1);
 }
 
 .card-img-container {
@@ -747,12 +763,12 @@ li {
   text-align: center;
   border-radius: 6.25rem;
   border: none;
-  cursor: pointer;
   transition: all 0.4s ease-out;
   background: url(../assets/icons/refresh.png) center no-repeat;
   border: 0.0625rem solid #665f55;
 }
 .loading-btn:hover {
   transform: scale(1.05);
+  cursor: pointer;
   filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
 }/*# sourceMappingURL=style.css.map */
