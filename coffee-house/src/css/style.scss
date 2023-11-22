@@ -53,10 +53,11 @@ $darkBorder: #665f55;
     border: none;
     cursor: pointer;
     transition: all 0.4s ease-out;
-
-    &:hover {
-        transform: scale(1.05);
-        filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+    @media (hover: hover) {
+        &:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+        }
     }
 }
 
@@ -74,9 +75,10 @@ $darkBorder: #665f55;
     height: 100%;
     object-fit: cover;
     transform: scale(1.1);
-
-    &:hover {
-        transform: scale(1);
+    @media (hover: hover) {
+        &:hover {
+            transform: scale(1);
+        }
     }
 }
 
@@ -92,16 +94,19 @@ $darkBorder: #665f55;
         transition: all 0.4s ease-in;
         transform: translateX(-50%);
     }
-
-    &:hover::before {
-        width: 100%;
+    @media (hover: hover) {
+        &:hover::before {
+            width: 100%;
+        }
     }
 }
 
 %hover-cards {
-    &:hover {
-        color: $accent;
-        text-shadow: 0.0125rem 0.0125rem 0.0625rem $dark;
+    @media (hover: hover) {
+        &:hover {
+            color: $accent;
+            text-shadow: 0.0125rem 0.0125rem 0.0625rem $dark;
+        }
     }
 }
 
@@ -129,7 +134,6 @@ html {
     line-height: 1.5rem;
     color: $dark;
     background-color: $lightext;
-    overflow-x: hidden;
 
     &.active {
         overflow-y: hidden;
@@ -176,9 +180,10 @@ li {
 
 .header-logo-link {
     padding: 1.25rem 0rem 0rem 2.5rem;
-
-    &:hover:not(.menu-logo) {
-        transform: scale(1.1);
+    @media (hover: hover) {
+        &:hover:not(.menu-logo) {
+            transform: scale(1.1);
+        }
     }
 }
 
@@ -406,16 +411,18 @@ li {
     & > p {
         padding-top: 1.25rem;
     }
+    @media (hover: hover) {
+        &:hover {
+            display: flex;
+            color: $darkBorder;
+            background: url(../assets/icons/coffee-cup-btn.png) no-repeat
+                $accent;
+            background-position: right 4rem bottom 1.4rem;
 
-    &:hover {
-        display: flex;
-        color: $darkBorder;
-        background: url(../assets/icons/coffee-cup-btn.png) no-repeat $accent;
-        background-position: right 4rem bottom 1.4rem;
-
-        & > p {
-            margin: 0.1rem 0rem 0rem 4.2rem;
-            // transition: all 0.5s ease-out;
+            & > p {
+                margin: 0.1rem 0rem 0rem 4.2rem;
+                // transition: all 0.5s ease-out;
+            }
         }
     }
 }
@@ -557,19 +564,21 @@ li {
 
 .prev-btn {
     background: url(../assets/icons/arrow-left.png) center no-repeat;
-
-    &:hover {
-        background: url(../assets/icons/arrow-left-hover.png) center no-repeat
-            $darkBorder;
+    @media (hover: hover) {
+        &:hover {
+            background: url(../assets/icons/arrow-left-hover.png) center
+                no-repeat $darkBorder;
+        }
     }
 }
 
 .next-btn {
     background: url(../assets/icons/arrow-right.png) center no-repeat;
-
-    &:hover {
-        background: url(../assets/icons/arrow-right-hover..png) center no-repeat
-            $darkBorder;
+    @media (hover: hover) {
+        &:hover {
+            background: url(../assets/icons/arrow-right-hover..png) center
+                no-repeat $darkBorder;
+        }
     }
 }
 
@@ -587,9 +596,10 @@ li {
     border-radius: 6.25rem;
     background-color: $lightBorder;
     cursor: pointer;
-
-    &:hover {
-        background-color: $accent;
+    @media (hover: hover) {
+        &:hover {
+            background-color: $accent;
+        }
     }
 }
 
@@ -740,11 +750,12 @@ li {
 .apple-load {
     background: url(../assets/icons/apple-dark.png) no-repeat;
     background-position: left 1.45rem bottom 1rem;
-
-    &:hover {
-        color: $lightext;
-        background: url(../assets/icons/apple.png) no-repeat $darkBorder;
-        background-position: left 1.25rem bottom 0.9rem;
+    @media (hover: hover) {
+        &:hover {
+            color: $lightext;
+            background: url(../assets/icons/apple.png) no-repeat $darkBorder;
+            background-position: left 1.25rem bottom 0.9rem;
+        }
     }
 }
 
@@ -752,11 +763,13 @@ li {
     background: url(../assets/icons/google.png) no-repeat;
     background-position: left 1.45rem bottom 1rem;
     margin-left: 1.1rem;
-
-    &:hover {
-        color: $lightext;
-        background: url(../assets/icons/google-hover.png) no-repeat $darkBorder;
-        background-position: left 1.4rem bottom 0.9rem;
+    @media (hover: hover) {
+        &:hover {
+            color: $lightext;
+            background: url(../assets/icons/google-hover.png) no-repeat
+                $darkBorder;
+            background-position: left 1.4rem bottom 0.9rem;
+        }
     }
 }
 
@@ -784,29 +797,32 @@ li {
 
 .twiter {
     background: url(../assets/icons/twiter.png) center no-repeat;
-
-    &:hover {
-        background: url(../assets/icons/twiter-hover.png) center no-repeat
-            $lightext;
+    @media (hover: hover) {
+        &:hover {
+            background: url(../assets/icons/twiter-hover.png) center no-repeat
+                $lightext;
+        }
     }
 }
 
 .instagram {
     background: url(../assets/icons/instagram.png) center no-repeat;
-
-    &:hover {
-        background: url(../assets/icons/instagram-hover.png) center no-repeat
-            $lightext;
+    @media (hover: hover) {
+        &:hover {
+            background: url(../assets/icons/instagram-hover.png) center
+                no-repeat $lightext;
+        }
     }
 }
 
 .facebook {
     background: url(../assets/icons/facebook.png) center no-repeat;
-
-    &:hover {
-        color: $dark;
-        background: url(../assets/icons/facebook-hover.png) center no-repeat
-            $lightext;
+    @media (hover: hover) {
+        &:hover {
+            color: $dark;
+            background: url(../assets/icons/facebook-hover.png) center no-repeat
+                $lightext;
+        }
     }
 }
 
@@ -1084,14 +1100,15 @@ li {
     & > .circle {
         @include roundButtons(1.875rem, 1.875rem);
     }
+    @media (hover: hover) {
+        &:hover,
+        &.active-btn {
+            color: $lightext;
+            background-color: $darkBorder;
 
-    &:hover,
-    &.active-btn {
-        color: $lightext;
-        background-color: $darkBorder;
-
-        & > .circle {
-            background-color: $lightext;
+            & > .circle {
+                background-color: $lightext;
+            }
         }
     }
 }
@@ -1154,10 +1171,11 @@ li {
     border: 0.0625rem solid $lightBorder;
     border-radius: 2.5rem;
     cursor: pointer;
-
-    &:hover {
-        transform: scale(1.01);
-        box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem $dark;
+    @media (hover: hover) {
+        &:hover {
+            transform: scale(1.01);
+            box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem $dark;
+        }
     }
 }
 
@@ -1439,9 +1457,10 @@ li {
     text-align: center;
     border: 0.0625rem solid $darkBorder;
     background-color: inherit;
-
-    &:hover {
-        color: $lightext;
-        background-color: $darkBorder;
+    @media (hover: hover) {
+        &:hover {
+            color: $lightext;
+            background-color: $darkBorder;
+        }
     }
 }
