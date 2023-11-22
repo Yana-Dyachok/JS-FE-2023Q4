@@ -336,7 +336,6 @@ li {
   height: 36.875rem;
   border-radius: 1.25rem;
   overflow: hidden;
-  cursor: pointer;
   margin-bottom: 2.5rem;
 }
 
@@ -345,7 +344,6 @@ li {
   height: 26.875rem;
   border-radius: 1.25rem;
   overflow: hidden;
-  cursor: pointer;
   margin-bottom: 2.5rem;
 }
 
@@ -697,8 +695,10 @@ li {
   cursor: pointer;
 }
 .card-block:hover {
-  transform: scale(1.01);
   box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem #403f3d;
+}
+.card-block:hover .card-img {
+  transform: scale(1);
 }
 
 .card-img-container {
