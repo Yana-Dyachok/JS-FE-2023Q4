@@ -51,11 +51,11 @@ $darkBorder: #665f55;
     text-align: center;
     border-radius: 6.25rem;
     border: none;
-    cursor: pointer;
     transition: all 0.4s ease-out;
 
     &:hover {
         transform: scale(1.05);
+        cursor: pointer;
         filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
     }
 }
@@ -626,8 +626,7 @@ li {
         @include roundButtons(1.875rem, 1.875rem);
     }
 
-    &:hover,
-    &.active-btn {
+    &:hover {
         color: $lightext;
         background-color: $darkBorder;
 
@@ -635,6 +634,25 @@ li {
             background-color: $lightext;
         }
     }
+
+    &.active-btn {
+        color: $lightext;
+        background-color: $darkBorder;
+
+        &:hover {
+            transform: none;
+            cursor: default;
+          }
+
+        & > .circle {
+            background-color: $lightext;
+            transform: none;
+            &:hover {
+                filter: none;
+            }
+        }
+
+      }
 }
 
 .coffee {
