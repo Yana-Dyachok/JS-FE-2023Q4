@@ -251,6 +251,7 @@ li {
     font-size: 4.5rem;
     line-height: 4.725rem;
     text-align: left;
+    color: $lightext;
 }
 
 .title-span {
@@ -283,11 +284,12 @@ li {
         color: $darkBorder;
         background: url(../assets/icons/coffee-cup.png) no-repeat $accent;
         background-position: right 4rem bottom 1.4rem;
+        transition: none;
 
         & > p {
             margin: 0.1rem 0rem 0rem 4.2rem;
             //if you want get text animation
-            // transition: all 0.5s ease-out;
+            transition: all 0.5s ease-out;
         }
     }
 }
@@ -550,6 +552,7 @@ li {
 .title-footer {
     padding-bottom: 2.6rem;
     text-align: left;
+    color: $lightext;
 }
 
 .icons-contacts {
