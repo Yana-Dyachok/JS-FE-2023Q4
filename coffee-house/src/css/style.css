@@ -23,9 +23,11 @@ a:focus, a:active {
   outline: none;
 }
 
-.card-cost:hover, .card-description:hover, .card-name:hover {
-  color: #b0907a;
-  text-shadow: 0.0125rem 0.0125rem 0.0625rem #403f3d;
+@media (hover: hover) {
+  .card-cost:hover, .card-description:hover, .card-name:hover {
+    color: #b0907a;
+    text-shadow: 0.0125rem 0.0125rem 0.0625rem #403f3d;
+  }
 }
 
 .total-cost, .total-text {
@@ -94,8 +96,10 @@ li {
 .header-logo-link {
   padding: 1.25rem 0rem 0rem 2.5rem;
 }
-.header-logo-link:hover:not(.menu-logo) {
-  transform: scale(1.1);
+@media (hover: hover) {
+  .header-logo-link:hover:not(.menu-logo) {
+    transform: scale(1.1);
+  }
 }
 
 .menu-logo {
@@ -127,8 +131,10 @@ li {
   transition: all 0.4s ease-in;
   transform: translateX(-50%);
 }
-.nav-link:not(.menu-underline):hover::before {
-  width: 100%;
+@media (hover: hover) {
+  .nav-link:not(.menu-underline):hover::before {
+    width: 100%;
+  }
 }
 
 .menu-link {
@@ -177,11 +183,15 @@ li {
     border: 0.0625rem solid #665f55;
     margin: -0.56rem 0.37rem 0rem 0rem;
   }
+}
+@media screen and (max-width: 768px) and (hover: hover) {
   .burger:hover {
     transform: scale(1.05);
     cursor: pointer;
     filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
   }
+}
+@media screen and (max-width: 768px) {
   .burger::before {
     content: "";
     height: 4%;
@@ -335,24 +345,28 @@ li {
   color: #403f3d;
   background-color: #e1d4c9;
 }
-.btn-menu:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .btn-menu:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
 .btn-menu > p {
   padding-top: 1.25rem;
 }
-.btn-menu:hover {
-  display: flex;
-  color: #665f55;
-  background: url(../assets/icons/coffee-cup-btn.png) no-repeat #b0907a;
-  background-position: right 4rem bottom 1.4rem;
-  transition: none;
-}
-.btn-menu:hover > p {
-  margin: 0.1rem 0rem 0rem 4.2rem;
-  transition: all 0.5s ease-out;
+@media (hover: hover) {
+  .btn-menu:hover {
+    display: flex;
+    color: #665f55;
+    background: url(../assets/icons/coffee-cup-btn.png) no-repeat #b0907a;
+    background-position: right 4rem bottom 1.4rem;
+    transition: none;
+  }
+  .btn-menu:hover > p {
+    margin: 0.1rem 0rem 0rem 4.2rem;
+    transition: all 0.5s ease-out;
+  }
 }
 
 @media screen and (max-width: 1400px) {
@@ -526,24 +540,30 @@ li {
   border: 0.0625rem solid #665f55;
   background-color: inherit;
 }
-.arrow-button:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .arrow-button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
 
 .prev-btn {
   background: url(../assets/icons/arrow-left.png) center no-repeat;
 }
-.prev-btn:hover {
-  background: url(../assets/icons/arrow-left-hover.png) center no-repeat #665f55;
+@media (hover: hover) {
+  .prev-btn:hover {
+    background: url(../assets/icons/arrow-left-hover.png) center no-repeat #665f55;
+  }
 }
 
 .next-btn {
   background: url(../assets/icons/arrow-right.png) center no-repeat;
 }
-.next-btn:hover {
-  background: url(../assets/icons/arrow-right-hover..png) center no-repeat #665f55;
+@media (hover: hover) {
+  .next-btn:hover {
+    background: url(../assets/icons/arrow-right-hover..png) center no-repeat #665f55;
+  }
 }
 
 .indicators-block {
@@ -561,8 +581,10 @@ li {
   background-color: #c1b6ad;
   cursor: pointer;
 }
-.indicator:hover {
-  background-color: #b0907a;
+@media (hover: hover) {
+  .indicator:hover {
+    background-color: #b0907a;
+  }
 }
 
 .active-indicator {
@@ -677,8 +699,10 @@ li {
      object-fit: cover;
   transform: scale(1.1);
 }
-.img-about:hover {
-  transform: scale(1);
+@media (hover: hover) {
+  .img-about:hover {
+    transform: scale(1);
+  }
 }
 
 .img-about-small {
@@ -689,8 +713,10 @@ li {
      object-fit: cover;
   transform: scale(1.1);
 }
-.img-about-small:hover {
-  transform: scale(1);
+@media (hover: hover) {
+  .img-about-small:hover {
+    transform: scale(1);
+  }
 }
 
 @media screen and (max-width: 1350px) {
@@ -784,20 +810,24 @@ li {
   border: 0.0625rem solid #665f55;
   text-align: center;
 }
-.download:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .download:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
 
 .apple-load {
   background: url(../assets/icons/apple-dark.png) no-repeat;
   background-position: left 1.45rem bottom 1rem;
 }
-.apple-load:hover {
-  color: #e1d4c9;
-  background: url(../assets/icons/apple.png) no-repeat #665f55;
-  background-position: left 1.25rem bottom 0.9rem;
+@media (hover: hover) {
+  .apple-load:hover {
+    color: #e1d4c9;
+    background: url(../assets/icons/apple.png) no-repeat #665f55;
+    background-position: left 1.25rem bottom 0.9rem;
+  }
 }
 
 .google-load {
@@ -805,10 +835,12 @@ li {
   background-position: left 1.45rem bottom 1rem;
   margin-left: 1.1rem;
 }
-.google-load:hover {
-  color: #e1d4c9;
-  background: url(../assets/icons/google-hover.png) no-repeat #665f55;
-  background-position: left 1.4rem bottom 0.9rem;
+@media (hover: hover) {
+  .google-load:hover {
+    color: #e1d4c9;
+    background: url(../assets/icons/google-hover.png) no-repeat #665f55;
+    background-position: left 1.4rem bottom 0.9rem;
+  }
 }
 
 .first-apple-subtitle {
@@ -837,32 +869,40 @@ li {
   border: 0.0625rem solid #c1b6ad;
   background-color: inherit;
 }
-.icon-contacts:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .icon-contacts:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
 
 .twiter {
   background: url(../assets/icons/twiter.png) center no-repeat;
 }
-.twiter:hover {
-  background: url(../assets/icons/twiter-hover.png) center no-repeat #e1d4c9;
+@media (hover: hover) {
+  .twiter:hover {
+    background: url(../assets/icons/twiter-hover.png) center no-repeat #e1d4c9;
+  }
 }
 
 .instagram {
   background: url(../assets/icons/instagram.png) center no-repeat;
 }
-.instagram:hover {
-  background: url(../assets/icons/instagram-hover.png) center no-repeat #e1d4c9;
+@media (hover: hover) {
+  .instagram:hover {
+    background: url(../assets/icons/instagram-hover.png) center no-repeat #e1d4c9;
+  }
 }
 
 .facebook {
   background: url(../assets/icons/facebook.png) center no-repeat;
 }
-.facebook:hover {
-  color: #403f3d;
-  background: url(../assets/icons/facebook-hover.png) center no-repeat #e1d4c9;
+@media (hover: hover) {
+  .facebook:hover {
+    color: #403f3d;
+    background: url(../assets/icons/facebook-hover.png) center no-repeat #e1d4c9;
+  }
 }
 
 .img-app {
@@ -1041,8 +1081,10 @@ li {
   transition: all 0.4s ease-in;
   transform: translateX(-50%);
 }
-.contacts-link:hover::before {
-  width: 100%;
+@media (hover: hover) {
+  .contacts-link:hover::before {
+    width: 100%;
+  }
 }
 
 .logo-contacts {
@@ -1157,17 +1199,21 @@ li {
   border: none;
   transition: all 0.4s ease-out;
 }
-.tab-item > .circle:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .tab-item > .circle:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
-.tab-item:hover {
-  color: #e1d4c9;
-  background-color: #665f55;
-}
-.tab-item:hover > .circle {
-  background-color: #e1d4c9;
+@media (hover: hover) {
+  .tab-item:hover {
+    color: #e1d4c9;
+    background-color: #665f55;
+  }
+  .tab-item:hover > .circle {
+    background-color: #e1d4c9;
+  }
 }
 .tab-item.active-btn {
   color: #e1d4c9;
@@ -1181,9 +1227,11 @@ li {
   background-color: #e1d4c9;
   transform: none;
 }
-.tab-item.active-btn > .circle:hover {
-  filter: none;
-  cursor: default;
+@media (hover: hover) {
+  .tab-item.active-btn > .circle:hover {
+    filter: none;
+    cursor: default;
+  }
 }
 
 .coffee {
@@ -1195,10 +1243,12 @@ li {
   transition: all 0.4s ease-out;
   border: 0.0625rem solid #c1b6ad;
 }
-.coffee:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .coffee:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
 .coffee > .circle {
   background: url(../assets/icons/🫖coffee.png) center no-repeat #c1b6ad;
@@ -1217,10 +1267,12 @@ li {
   transition: all 0.4s ease-out;
   border: 0.0625rem solid #c1b6ad;
 }
-.tea:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .tea:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
 .tea > .circle {
   background: url(../assets/icons/🫖.png) center no-repeat #c1b6ad;
@@ -1238,10 +1290,12 @@ li {
   transition: all 0.4s ease-out;
   border: 0.0625rem solid #c1b6ad;
 }
-.dessert:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .dessert:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
 .dessert > .circle {
   background: url(../assets/icons/cake.png) center no-repeat #c1b6ad;
@@ -1267,11 +1321,13 @@ li {
   border-radius: 2.5rem;
   cursor: pointer;
 }
-.card-block:hover {
-  box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem #403f3d;
-}
-.card-block:hover .card-img {
-  transform: scale(1);
+@media (hover: hover) {
+  .card-block:hover {
+    box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem #403f3d;
+  }
+  .card-block:hover .card-img {
+    transform: scale(1);
+  }
 }
 
 .hidden {
@@ -1293,8 +1349,10 @@ li {
      object-fit: cover;
   transform: scale(1.1);
 }
-.card-img:hover {
-  transform: scale(1);
+@media (hover: hover) {
+  .card-img:hover {
+    transform: scale(1);
+  }
 }
 
 .card-block-text {
@@ -1329,10 +1387,12 @@ li {
   background: url(../assets/icons/refresh.png) center no-repeat;
   border: 0.0625rem solid #665f55;
 }
-.loading-btn:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .loading-btn:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
 
 @media screen and (max-width: 1320px) {
@@ -1463,8 +1523,10 @@ li {
      object-fit: cover;
   transform: scale(1.1);
 }
-.img-popup:hover {
-  transform: scale(1);
+@media (hover: hover) {
+  .img-popup:hover {
+    transform: scale(1);
+  }
 }
 
 .popup-description-block {
@@ -1498,10 +1560,12 @@ li {
   transition: all 0.4s ease-out;
   border: 0.0625rem solid #c1b6ad;
 }
-.size-block > .tab-item:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .size-block > .tab-item:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
 .size-block > .tab-item.active-btn {
   color: #e1d4c9;
@@ -1515,9 +1579,11 @@ li {
   background-color: #e1d4c9;
   transform: none;
 }
-.size-block > .tab-item.active-btn > .circle:hover {
-  filter: none;
-  cursor: default;
+@media (hover: hover) {
+  .size-block > .tab-item.active-btn > .circle:hover {
+    filter: none;
+    cursor: default;
+  }
 }
 
 .s-size {
@@ -1572,10 +1638,12 @@ li {
   transition: all 0.4s ease-out;
   border: 0.0625rem solid #c1b6ad;
 }
-.additives-block > .tab-item:not(.two-additives):hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .additives-block > .tab-item:not(.two-additives):hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
 .additives-block > .tab-item:not(.two-additives).active-btn {
   color: #e1d4c9;
@@ -1589,9 +1657,11 @@ li {
   background-color: #e1d4c9;
   transform: none;
 }
-.additives-block > .tab-item:not(.two-additives).active-btn > .circle:hover {
-  filter: none;
-  cursor: default;
+@media (hover: hover) {
+  .additives-block > .tab-item:not(.two-additives).active-btn > .circle:hover {
+    filter: none;
+    cursor: default;
+  }
 }
 
 .one-additives {
@@ -1614,10 +1684,12 @@ li {
   border: 0.0625rem solid #c1b6ad;
   margin-left: 0rem;
 }
-.two-additives:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .two-additives:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
 .two-additives.active-btn {
   color: #e1d4c9;
@@ -1631,9 +1703,11 @@ li {
   background-color: #e1d4c9;
   transform: none;
 }
-.two-additives.active-btn > .circle:hover {
-  filter: none;
-  cursor: default;
+@media (hover: hover) {
+  .two-additives.active-btn > .circle:hover {
+    filter: none;
+    cursor: default;
+  }
 }
 .two-additives > .circle {
   background: url(../assets/icons/two.png) center no-repeat #c1b6ad;
@@ -1682,14 +1756,18 @@ li {
   border: 0.0625rem solid #665f55;
   background-color: inherit;
 }
-.close-popup-btn:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-  filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+@media (hover: hover) {
+  .close-popup-btn:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    filter: drop-shadow(0.3125rem 0.3125rem 1.875rem #f8f2f2);
+  }
 }
-.close-popup-btn:hover {
-  color: #e1d4c9;
-  background-color: #665f55;
+@media (hover: hover) {
+  .close-popup-btn:hover {
+    color: #e1d4c9;
+    background-color: #665f55;
+  }
 }
 
 @media screen and (max-width: 820px) {
@@ -1732,6 +1810,8 @@ li {
     border: 0.0625rem solid #665f55;
     margin: 1.1rem 0rem 0.9rem;
   }
+}
+@media screen and (max-width: 820px) and (hover: hover) {
   .close-popup-btn:hover {
     transform: scale(1.05);
     cursor: pointer;
@@ -1790,6 +1870,8 @@ li {
     border: 0.0625rem solid #665f55;
     margin: 0rem;
   }
+}
+@media screen and (max-width: 710px) and (hover: hover) {
   .close-popup-btn:hover {
     transform: scale(1.05);
     cursor: pointer;
