@@ -212,9 +212,11 @@ li {
   color: #665f55;
   background: url(../assets/icons/coffee-cup.png) no-repeat #b0907a;
   background-position: right 4rem bottom 1.4rem;
+  transition: none;
 }
 .btn-menu:hover > p {
   margin: 0.1rem 0rem 0rem 4.2rem;
+  transition: all 0.5s ease-out;
 }
 
 .title-favourites {
