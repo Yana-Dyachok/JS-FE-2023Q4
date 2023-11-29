@@ -292,7 +292,7 @@ li {
     }
   
     &:hover {
-        background-color: $darkBorder;
+        background-color: $accent;
         & > p {
             padding-right: 0.2rem;
             transition: all 0.4s ease-in;
