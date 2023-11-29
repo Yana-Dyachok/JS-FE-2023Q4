@@ -267,29 +267,41 @@ li {
     padding: 2.55rem 2rem 2.5rem 0.025rem;
 }
 
+.btn-cup {
+    display: inline;   
+}
+
 .btn-menu {
     @include roundButtons(12.5rem, 4rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-weight: 600;
     font-size: 1rem;
     line-height: 1.5rem;
     color: $dark;
     background-color: $lightext;
 
-    & > p {
-        padding-top: 1.25rem;
+    & > span {
+        opacity: 0%;
+        padding-left: 1rem;
     }
 
+    & > p {
+        padding-left: 2rem;
+    }
+  
     &:hover {
-        display: flex;
-        color: $darkBorder;
-        background: url(../assets/icons/coffee-cup.png) no-repeat $accent;
-        background-position: right 4rem bottom 1.4rem;
-        transition: none;
-
+        background-color: $darkBorder;
         & > p {
-            margin: 0.1rem 0rem 0rem 4.2rem;
-            //if you want get text animation
-            transition: all 0.5s ease-out;
+            padding-right: 0.2rem;
+            transition: all 0.4s ease-in;
+        }
+
+        & > span {
+            opacity: 100%;
+            padding-right: 2rem;
+            transition: none;
         }
     }
 }
