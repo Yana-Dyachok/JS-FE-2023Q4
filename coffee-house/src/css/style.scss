@@ -697,26 +697,35 @@ li {
     flex-direction: row;
     justify-content: center;
     padding: 2.5rem 0rem 6.25rem 0.8rem;
-}
-
-.indicator {
+  }
+  
+  .indicator {
     width: 2.5rem;
     height: 0.25rem;
     margin-right: 0.75rem;
     border-radius: 6.25rem;
     background-color: $lightBorder;
     cursor: pointer;
-    @media (hover: hover) {
-        &:hover {
-            background-color: $accent;
-        }
-    }
-}
-
-.active-indicator {
+    position: relative;
+    transform: translate(-50%, 50%);
+  }
+  
+  .active-indicator.indicator::after {
+    content: "";
+    width: 0;
+    height: 100%;
+    position: absolute;
     background-color: $dark;
-}
-
+    border-radius: 6.25rem;
+    animation: progress 5s linear forwards;
+  }
+  
+  @keyframes progress {
+    100% {
+      width: 100%;
+    }
+  }
+  
 @media screen and (max-width: 1430px) {
     .slider-block {
         justify-content: space-evenly;

@@ -601,17 +601,25 @@ li {
   border-radius: 6.25rem;
   background-color: #c1b6ad;
   cursor: pointer;
+  position: relative;
+  transform: translate(-50%, 50%);
 }
-@media (hover: hover) {
-  .indicator:hover {
-    background-color: #b0907a;
+
+.active-indicator.indicator::after {
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  background-color: #403f3d;
+  border-radius: 6.25rem;
+  animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+  100% {
+    width: 100%;
   }
 }
-
-.active-indicator {
-  background-color: #403f3d;
-}
-
 @media screen and (max-width: 1430px) {
   .slider-block {
     justify-content: space-evenly;
