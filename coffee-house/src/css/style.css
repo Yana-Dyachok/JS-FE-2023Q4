@@ -592,6 +592,7 @@ li {
   background-color: #403f3d;
   border-radius: 6.25rem;
   animation: progress 5s linear forwards;
+  animation-play-state: running;
 }
 
 @keyframes progress {
@@ -1463,7 +1464,7 @@ li {
 }
 @media screen and (max-width: 405px) {
   .title-menu {
-    padding: 0.05rem 14rem 0rem;
+    padding: 0.05rem 6rem 0rem;
   }
   .tabs {
     padding: 2.35rem 0rem 2.04rem;
@@ -1481,7 +1482,7 @@ li {
     margin-bottom: 2.45rem;
   }
   .loading-btn {
-    margin: 0.05rem 22.5rem 6.25rem;
+    margin: 0.1rem 0rem 6.25rem 15rem;
   }
 }
 /* popup---------------------------------------------------------------------------------------------------- */

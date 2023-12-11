@@ -1,18 +1,17 @@
 document.addEventListener('DOMContentLoaded', function (event) {
-    //window.addEventListener("resize", () => changeCountCards(window.innerWidth));
-   /// window.addEventListener("resize", () => changeClientWidth(clientWidth));
     const slider = document.querySelector('.slider');
     const sliderItems = document.querySelectorAll('.slider-item');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     const indicator = document.querySelectorAll('.indicator');
-    const slideWidth = sliderItems[0].clientWidth;
+    const activeIndicator = document.querySelector('.active-indicator');
+    let slideWidth = sliderItems[0].clientWidth;
     let currentIndex = 0;
     let amountImg = 1;
+    let touchStartX;
 
-    
     function changeIndicator(translateX) {
-        indicator.forEach(ind => ind.classList.remove('active-indicator'));
+        indicator.forEach((ind) => ind.classList.remove('active-indicator'));
         if (translateX === -2 * slideWidth) {
             indicator[2].classList.add('active-indicator');
         } else if (translateX === -slideWidth) {
@@ -22,30 +21,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
     }
 
-    indicator.forEach((btn, i) => {
-        btn.addEventListener('click', () => {
-            stopInterval();
-            indicator.forEach((otherBtn, index) => {
-                if (index !== i) {
-                    otherBtn.classList.remove('active-indicator');
-                }
-            });
-            btn.classList.add('active-indicator');
-            let translateX;
-            i === 1 ? translateX = -slideWidth : i === 2 ? translateX = -2 * slideWidth : translateX = 0;
-            slider.style.transform = `translateX(${translateX}px)`;
-            restartIntervalIfNeeded();
-        });
-    });
-
-
-    prevBtn.addEventListener('click', () => {
-        stopInterval();
+    function prevSliderMove() {
         currentIndex--;
         if (currentIndex < 0) {
             currentIndex = sliderItems.length - amountImg;
-            slider.style.transform = `translateX(${-slideWidth * sliderItems.length
-                }px)`;
+            slider.style.transform = `translateX(${
+                -slideWidth * sliderItems.length
+            }px)`;
             setTimeout(() => {
                 slider.style.transition = 'transform 0.5s ease-in-out';
                 currentIndex = sliderItems.length - amountImg;
@@ -54,11 +36,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
         } else {
             updateSlider();
         }
-        restartIntervalIfNeeded();
-    });
+    }
 
-    nextBtn.addEventListener('click', () => {
-        stopInterval();
+    function nextSliderMove() {
         currentIndex++;
         if (currentIndex >= sliderItems.length - (amountImg - 1)) {
             currentIndex = amountImg === 1 ? 0 : sliderItems.length - amountImg;
@@ -71,31 +51,31 @@ document.addEventListener('DOMContentLoaded', function (event) {
         } else {
             updateSlider();
         }
+    }
+
+    prevBtn.addEventListener('click', () => {
+        stopInterval();
+        prevSliderMove();
+        restartIntervalIfNeeded();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        stopInterval();
+        nextSliderMove();
         restartIntervalIfNeeded();
     });
 
     function updateSlider() {
+        slideWidth = sliderItems[0].clientWidth;
         const translateX = -currentIndex * slideWidth;
         slider.style.transform = `translateX(${translateX}px)`;
         changeIndicator(translateX);
         slider.style.transition = 'transform 0.5s ease-in-out';
     }
 
-
     function sliderMove() {
-        currentIndex--;
-        if (currentIndex < 0) {
-            currentIndex = sliderItems.length - amountImg;
-            slider.style.transform = `translateX(${-slideWidth * sliderItems.length
-                }px)`;
-            setTimeout(() => {
-                slider.style.transition = 'transform 0.5s ease-in-out';
-                currentIndex = sliderItems.length - amountImg;
-                updateSlider();
-            }, 0);
-        } else {
-            updateSlider();
-        }
+        slideWidth = sliderItems[0].clientWidth;
+        prevSliderMove();
     }
 
     let intervalId = setInterval(sliderMove, 5000);
@@ -112,4 +92,38 @@ document.addEventListener('DOMContentLoaded', function (event) {
             restartInterval = false;
         }
     }
+
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchmove', (e) => {
+        const touchEndX = e.touches[0].clientX;
+        const deltaX = touchStartX - touchEndX;
+        if (deltaX > 20) {
+            nextSliderMove();
+        } else if (deltaX < -20) {
+            prevSliderMove();
+        }
+    });
+
+    slider.addEventListener('mouseover', (e) => {
+        stopInterval();
+        activeIndicator.style.animationPlayState = 'paused';
+    });
+    
+    slider.addEventListener('mouseout', (e) => {
+        restartIntervalIfNeeded();
+        activeIndicator.style.animationPlayState = 'running';
+    });
+
+    slider.addEventListener('mousedown', (e) => {
+        stopInterval();
+        activeIndicator.style.animationPlayState = 'paused';
+    });
+    
+    slider.addEventListener('mouseup', (e) => {
+        restartIntervalIfNeeded();
+        activeIndicator.style.animationPlayState = 'running';
+    });
 });
