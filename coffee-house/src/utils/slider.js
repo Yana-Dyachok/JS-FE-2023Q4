@@ -3,25 +3,26 @@ document.addEventListener('DOMContentLoaded', function (event) {
     const sliderItems = document.querySelectorAll('.slider-item');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
-    const indicator = document.querySelectorAll('.indicator');
-    const activeIndicator = document.querySelector('.active-indicator');
+    const progress = document.querySelectorAll('.progress');
     let slideWidth = sliderItems[0].clientWidth;
     let currentIndex = 0;
     let amountImg = 1;
     let touchStartX;
+    let intervalId;
 
     function changeIndicator(translateX) {
-        indicator.forEach((ind) => ind.classList.remove('active-indicator'));
+        progress.forEach((element) => (element.style.width = '0'));
         if (translateX === -2 * slideWidth) {
-            indicator[2].classList.add('active-indicator');
+            setProgress(progress[2]);
         } else if (translateX === -slideWidth) {
-            indicator[1].classList.add('active-indicator');
+            setProgress(progress[1]);
         } else {
-            indicator[0].classList.add('active-indicator');
+            setProgress(progress[0]);
         }
     }
 
     function prevSliderMove() {
+        progress.forEach((element) => (element.style.width = '0'));
         currentIndex--;
         if (currentIndex < 0) {
             currentIndex = sliderItems.length - amountImg;
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     }
 
     function nextSliderMove() {
+        progress.forEach((element) => (element.style.width = '0'));
         currentIndex++;
         if (currentIndex >= sliderItems.length - (amountImg - 1)) {
             currentIndex = amountImg === 1 ? 0 : sliderItems.length - amountImg;
@@ -54,15 +56,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
     }
 
     prevBtn.addEventListener('click', () => {
-        stopInterval();
         prevSliderMove();
-        restartIntervalIfNeeded();
     });
 
     nextBtn.addEventListener('click', () => {
-        stopInterval();
         nextSliderMove();
-        restartIntervalIfNeeded();
     });
 
     function updateSlider() {
@@ -73,25 +71,20 @@ document.addEventListener('DOMContentLoaded', function (event) {
         slider.style.transition = 'transform 0.5s ease-in-out';
     }
 
-    function sliderMove() {
-        slideWidth = sliderItems[0].clientWidth;
-        prevSliderMove();
-    }
-
-    let intervalId = setInterval(sliderMove, 5000);
-    let restartInterval = true;
-
-    function stopInterval() {
+    function setProgress(element)  {
         clearInterval(intervalId);
-    }
-
-    function restartIntervalIfNeeded() {
-        restartInterval = true;
-        if (restartInterval) {
-            intervalId = setInterval(sliderMove, 5000);
-            restartInterval = false;
-        }
-    }
+        
+        intervalId = setInterval(() => {
+          const currentWidth = parseInt(element.style.width);
+          if (currentWidth === 100) {
+            prevSliderMove();
+          } else {
+            element.style.width = `${currentWidth + 10}%`;
+          }
+        }, 500);
+      };
+      
+    setProgress(progress[0]);
 
     slider.addEventListener('touchstart', (e) => {
         touchStartX = e.touches[0].clientX;
@@ -106,24 +99,22 @@ document.addEventListener('DOMContentLoaded', function (event) {
             prevSliderMove();
         }
     });
-
-    slider.addEventListener('mouseover', (e) => {
-        stopInterval();
-        activeIndicator.style.animationPlayState = 'paused';
-    });
     
-    slider.addEventListener('mouseout', (e) => {
-        restartIntervalIfNeeded();
-        activeIndicator.style.animationPlayState = 'running';
-    });
+    sliderItems.forEach((item, index) => {
+        item.addEventListener('mouseover', () => {
+            clearInterval(intervalId);
+        });
 
-    slider.addEventListener('mousedown', (e) => {
-        stopInterval();
-        activeIndicator.style.animationPlayState = 'paused';
-    });
-    
-    slider.addEventListener('mouseup', (e) => {
-        restartIntervalIfNeeded();
-        activeIndicator.style.animationPlayState = 'running';
+        item.addEventListener('mouseout', () => {
+            setProgress(progress[index]);
+        });
+
+        item.addEventListener('mousedown', () => {
+            clearInterval(intervalId);
+        });
+
+        item.addEventListener('mouseup', () => {
+            setProgress(progress[index]);
+        });
     });
 });
