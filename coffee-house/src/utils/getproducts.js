@@ -117,14 +117,10 @@ window.addEventListener("resize", () => changeCountCards(window.innerWidth));
 
 function changeCountCards(width) {
   const cardBlocks = document.querySelectorAll(".card-block");
-  // const hasHiddenClass = Array.from(cardBlocks).some((card) =>
-  //   card.classList.contains("hidden")
-  // );
   cardBlocks.forEach((btn, i) => {
     if (width <= 868) {
       if (cardBlocks.length > 4 && i >= cardBlocks.length - 4)
         btn.classList.add("hidden");
-      // if (i < cardBlocks.length - 4) btn.classList.remove("hidden");
       (!menuButtons[1].classList.contains("active-btn"))?loadingButton.classList.remove("hidden"):loadingButton.classList.add("hidden")
       checkContainsClass();
     } else if (width > 868) {
