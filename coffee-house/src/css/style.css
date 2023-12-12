@@ -570,7 +570,7 @@ li {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 2.35rem 0rem 6.35rem 3.3rem;
+  padding: 2.35rem 0rem 6.35rem 1rem;
 }
 
 .indicator {
@@ -579,27 +579,16 @@ li {
   margin-right: 0.75rem;
   border-radius: 6.25rem;
   background-color: #c1b6ad;
-  cursor: pointer;
-  position: relative;
-  transform: translate(-50%, 50%);
+  overflow: hidden;
 }
 
-.active-indicator.indicator::after {
-  content: "";
-  width: 0;
+.progress {
   height: 100%;
-  position: absolute;
-  background-color: #403f3d;
+  background-color: #665f55;
   border-radius: 6.25rem;
-  animation: progress 5s linear forwards;
-  animation-play-state: running;
+  transition: ease-in-out 0.5s;
 }
 
-@keyframes progress {
-  100% {
-    width: 100%;
-  }
-}
 @media screen and (max-width: 1430px) {
   .slider-block {
     justify-content: space-evenly;
