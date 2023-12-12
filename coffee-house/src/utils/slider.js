@@ -71,35 +71,21 @@ document.addEventListener('DOMContentLoaded', function (event) {
         slider.style.transition = 'transform 0.5s ease-in-out';
     }
 
-    function setProgress(element)  {
+    function setProgress(element) {
         clearInterval(intervalId);
-        
+
         intervalId = setInterval(() => {
-          const currentWidth = parseInt(element.style.width);
-          if (currentWidth === 100) {
-            prevSliderMove();
-          } else {
-            element.style.width = `${currentWidth + 10}%`;
-          }
+            const currentWidth = parseInt(element.style.width);
+            if (currentWidth === 100) {
+                nextSliderMove();
+            } else {
+                element.style.width = `${currentWidth + 10}%`;
+            }
         }, 500);
-      };
-      
+    }
+
     setProgress(progress[0]);
 
-    slider.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-    });
-
-    slider.addEventListener('touchmove', (e) => {
-        const touchEndX = e.touches[0].clientX;
-        const deltaX = touchStartX - touchEndX;
-        if (deltaX > 20) {
-            nextSliderMove();
-        } else if (deltaX < -20) {
-            prevSliderMove();
-        }
-    });
-    
     sliderItems.forEach((item, index) => {
         item.addEventListener('mouseover', () => {
             clearInterval(intervalId);
@@ -115,6 +101,22 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
         item.addEventListener('mouseup', () => {
             setProgress(progress[index]);
+        });
+
+        item.addEventListener('touchstart', (e) => {
+            clearInterval(intervalId);
+            touchStartX = e.touches[0].clientX;
+        });
+        item.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const deltaX =touchEndX-touchStartX;;
+            if (deltaX > 0) {
+                nextSliderMove();
+            } else if (deltaX < 0) {
+                prevSliderMove();
+            } else {
+                setProgress(progress[index]);
+            }
         });
     });
 });
