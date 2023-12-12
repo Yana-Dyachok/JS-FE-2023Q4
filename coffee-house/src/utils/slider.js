@@ -111,9 +111,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
             const touchEndX = e.changedTouches[0].clientX;
             const deltaX =touchEndX-touchStartX;;
             if (deltaX > 0) {
-                nextSliderMove();
-            } else if (deltaX < 0) {
                 prevSliderMove();
+            } else if (deltaX < 0) {
+                nextSliderMove();
             } else {
                 setProgress(progress[index]);
             }
