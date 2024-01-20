@@ -1,47 +1,46 @@
-  @font-face {
-    font-family: "tenpounds regular";
-    src:
-      url("../assets/fonts/tenpounds-regular.woff2") format("woff2"),
-      url("../assets/fonts/tenpounds-regular.woff") format("woff");
+@font-face {
+    font-family: 'tenpounds regular';
+    src: url('../assets/fonts/tenpounds-regular.woff2') format('woff2'),
+        url('../assets/fonts/tenpounds-regular.woff') format('woff');
     font-weight: 400;
     font-display: swap;
     font-style: normal;
-  }
+}
 
 :root {
     box-sizing: border-box;
-  }
-  
-  *,
-  *::before,
-  *::after {
+}
+
+*,
+*::before,
+*::after {
     box-sizing: inherit;
-  }
-  
-  body {
+}
+
+body {
     margin: 0;
-  }
-  
-  ul li {
+}
+
+ul li {
     list-style-type: none;
-  }
-  
-  ul {
+}
+
+ul {
     margin: 0;
     padding: 0;
-  }
-  
-  p {
+}
+
+p {
     margin: 0;
-  }
-  
-  a {
+}
+
+a {
     text-decoration: none;
     color: inherit;
-  }
-  
-  button,
-  input {
+}
+
+button,
+input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -52,55 +51,84 @@
     background-color: transparent;
     color: inherit;
     font: inherit;
-  }
-  
-  img {
+}
+
+img {
     display: block;
     max-width: 100%;
-  }
-  
-  h1,
-  h2,
-  h3 {
+}
+
+h1,
+h2,
+h3 {
     margin: 0;
     padding: 0;
     font-weight: 400;
-  }
+}
 
-
-  @mixin position($direct) {
+@mixin position($direct) {
     display: flex;
     flex-direction: $direct;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  @mixin changeTheme {
+}
+
+@mixin changeTheme {
     color: $blue;
     font-size: 1.5rem;
-  
+
     &.dark {
-      color: $red;
+        color: $red;
     }
-  }
-  
-  html {
+}
+
+html {
     scroll-behavior: smooth;
-  }
-  
-  .body {
+}
+
+.body {
     background-color: #85d9ee;
-  
+
     &.dark {
-      background-color: #520e42;
+        background-color: #5f535c;
     }
-  }
-  
-  .wrapper {
+}
+
+.wrapper {
     @include position(column);
-    font-family: "tenpounds regular";
+    font-family: 'tenpounds regular';
     font-weight: 400;
     font-size: 2rem;
-  }
+}
 
-  
+.theme-toggle {
+    width: 3rem;
+    height: 3rem;
+    background: url('../assets/img/sun.svg') center/cover no-repeat;
+    cursor: pointer;
+
+    &.dark {
+        background: url('../assets/img/moon.svg') center/cover no-repeat;
+    }
+}
+
+.mike {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: url('../assets/img/sound-light.svg') center/cover no-repeat;
+    cursor: pointer;
+
+    &.dark {
+        background: url('../assets/img/sound-dark.svg') center/cover no-repeat;
+    }
+
+    &.off {
+        background: url('../assets/img/mute-light.svg') center/cover no-repeat;
+
+        &.dark {
+            background: url('../assets/img/mute-dark.svg') center/cover
+                no-repeat;
+        }
+    }
+}
