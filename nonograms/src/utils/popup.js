@@ -6,7 +6,7 @@ export function createPopUp(flag, time) {
     popupBody.setAttribute('class', 'popup__body');
 
     const popupContent = document.createElement('div');
-    popupContent.setAttribute('class', 'popup__content');
+    popupContent.setAttribute('class', 'popup__content change');
 
     const popupText = document.createElement('h3');
     popupText.setAttribute('class', 'popup__text');
@@ -15,12 +15,12 @@ export function createPopUp(flag, time) {
         : 'Unfortunately, you lost!';
 
     const closeButton = document.createElement('button');
-    closeButton.setAttribute('class', 'popup__close-btn btn');
+    closeButton.setAttribute('class', 'popup__close-btn btn change');
     closeButton.textContent = 'New Game';
 
     closeButton.addEventListener('click', () => {
         popup.classList.toggle('target');
-        newGame();
+        //  newGame();
     });
 
     popupContent.append(popupText);

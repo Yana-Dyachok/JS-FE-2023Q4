@@ -18,7 +18,7 @@ levelText.setAttribute('class', 'scoreboard__level__title');
 levelText.textContent = 'Level: ';
 levelBlock.append(levelText);
 export const level = document.createElement('select');
-level.setAttribute('class', 'scoreboard__level__select select');
+level.setAttribute('class', 'scoreboard__level__select select change');
 
 const option1 = document.createElement('option');
 option1.value = 'value1';
@@ -38,8 +38,8 @@ level.appendChild(option3);
 levelBlock.append(level);
 firstRow.append(levelBlock);
 
-const randomBtn = document.createElement('button');
-randomBtn.setAttribute('class', 'scoreboard__random-btn btn');
+export const randomBtn = document.createElement('button');
+randomBtn.setAttribute('class', 'scoreboard__random-btn btn change');
 randomBtn.textContent='Random game'
 firstRow.append(randomBtn);
 
@@ -53,7 +53,7 @@ pictureText.textContent = 'Picture: ';
 pictureBlock.append(pictureText);
 
 export const picture = document.createElement('select');
-picture.setAttribute('class', 'scoreboard__picture__select select');
+picture.setAttribute('class', 'scoreboard__picture__select select change');
 
 const pictureOptions = [
   { value: 'pictureValue1', text: 'animals' },
@@ -118,18 +118,18 @@ secondRow.append(mike);
 //third row - time-----------------------------------------------------------------------------------------------------
 const thirdRow = document.createElement('div');
 thirdRow.setAttribute('class', 'scoreboard__rows scoreboard__third-row');
-const resetGameBtn = document.createElement('button');
-resetGameBtn.setAttribute('class', 'scoreboard__reset-btn btn');
+export const resetGameBtn = document.createElement('button');
+resetGameBtn.setAttribute('class', 'scoreboard__reset-btn btn change');
 resetGameBtn.textContent='Reset'
 thirdRow.append(resetGameBtn);
 
-const continueBtn = document.createElement('button');
-continueBtn.setAttribute('class', 'scoreboard__continue-btn btn');
+export const continueBtn = document.createElement('button');
+continueBtn.setAttribute('class', 'scoreboard__continue-btn btn change');
 continueBtn.textContent='Continue'
 thirdRow.append(continueBtn);
 
-const solutionBtn = document.createElement('button');
-solutionBtn.setAttribute('class', 'scoreboard__solution-btn btn');
+export const solutionBtn = document.createElement('button');
+solutionBtn.setAttribute('class', 'scoreboard__solution-btn btn change');
 solutionBtn.textContent='Solution'
 thirdRow.append(solutionBtn);
 
