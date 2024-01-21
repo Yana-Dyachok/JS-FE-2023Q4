@@ -152,6 +152,7 @@ html {
         grid-template-columns: repeat(3, 1fr);
         place-items: center;
         gap: 2rem;
+        padding: 1rem;
     }
 
     &__time__date {
@@ -239,4 +240,19 @@ html {
 .target {
     opacity: 0;
     visibility: hidden;
+}
+
+.select {
+    padding: 0.5rem;
+    color: $c-green;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+        border: none;
+        color: $c-blue;
+    }
 }

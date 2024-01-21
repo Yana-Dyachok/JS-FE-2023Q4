@@ -121,6 +121,7 @@ html {
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
   gap: 2rem;
+  padding: 1rem;
 }
 .scoreboard__time__date {
   color: #1fa41f;
@@ -195,4 +196,18 @@ html {
 .target {
   opacity: 0;
   visibility: hidden;
+}
+
+.select {
+  padding: 0.5rem;
+  color: #1fa41f;
+  font-size: 1.5rem;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+}
+.select:focus {
+  outline: none;
+  border: none;
+  color: #0b0bd1;
 }/*# sourceMappingURL=style.css.map */

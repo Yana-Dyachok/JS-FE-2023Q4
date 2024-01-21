@@ -18,7 +18,7 @@ levelText.setAttribute('class', 'scoreboard__level__title');
 levelText.textContent = 'Level: ';
 levelBlock.append(levelText);
 export const level = document.createElement('select');
-level.setAttribute('class', 'scoreboard__level__select');
+level.setAttribute('class', 'scoreboard__level__select select');
 
 const option1 = document.createElement('option');
 option1.value = 'value1';
@@ -53,7 +53,7 @@ pictureText.textContent = 'Picture: ';
 pictureBlock.append(pictureText);
 
 export const picture = document.createElement('select');
-picture.setAttribute('class', 'scoreboard__picture__select');
+picture.setAttribute('class', 'scoreboard__picture__select select');
 
 const pictureOptions = [
   { value: 'pictureValue1', text: 'animals' },
