@@ -5,6 +5,13 @@
   font-display: swap;
   font-style: normal;
 }
+@font-face {
+  font-family: "salina trial";
+  src: url("../assets/fonts/Salina-Trial-Regular.woff2") format("woff2"), url("../assets/fonts/Salina-Trial-Regular.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
 :root {
   box-sizing: border-box;
 }
@@ -66,9 +73,14 @@ h3 {
 
 html {
   scroll-behavior: smooth;
+  font-size: 10px;
 }
 
 .body {
+  font-family: "tenpounds regular";
+  font-weight: 600;
+  font-size: 2rem;
+  color: #0b0bd1;
   background-color: #85d9ee;
 }
 .body.dark {
@@ -76,38 +88,111 @@ html {
 }
 
 .wrapper {
+  max-width: 100rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-family: "tenpounds regular";
-  font-weight: 400;
-  font-size: 2rem;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
-.theme-toggle {
+.btn {
+  padding: 1rem 2rem;
+  font-family: "salina trial";
+  color: white;
+  background-color: aqua;
+  border-radius: 1rem;
+  cursor: pointer;
+  box-shadow: inset 0 0.5rem 8rem rgba(3, 29, 54, 0.7), inset 0 0.5rem 1rem rgba(6, 14, 102, 0.9), inset 0 -0.5rem 1rem rgba(60, 28, 166, 0.8);
+}
+.btn:hover {
+  background-color: #1fa41f;
+  box-shadow: inset 0 0.5rem 8rem rgba(10, 138, 83, 0.7), inset 0 0.5rem 1rem rgba(5, 77, 46, 0.9), inset 0 -0.5rem 1rem rgba(8, 66, 19, 0.8);
+  transform: scale(1.1);
+}
+.btn.dark {
+  background-color: aquamarine;
+}
+
+.scoreboard__rows {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  gap: 2rem;
+}
+.scoreboard__time__date {
+  color: #1fa41f;
+}
+.scoreboard__theme-toggle {
   width: 3rem;
   height: 3rem;
   background: url("../assets/img/sun.svg") center/cover no-repeat;
   cursor: pointer;
 }
-.theme-toggle.dark {
+.scoreboard__theme-toggle.dark {
   background: url("../assets/img/moon.svg") center/cover no-repeat;
 }
-
-.mike {
+.scoreboard__mike {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
   background: url("../assets/img/sound-light.svg") center/cover no-repeat;
   cursor: pointer;
 }
-.mike.dark {
+.scoreboard__mike.dark {
   background: url("../assets/img/sound-dark.svg") center/cover no-repeat;
 }
-.mike.off {
+.scoreboard__mike.off {
   background: url("../assets/img/mute-light.svg") center/cover no-repeat;
 }
-.mike.off.dark {
+.scoreboard__mike.off.dark {
   background: url("../assets/img/mute-dark.svg") center/cover no-repeat;
+}
+
+.blocks {
+  display: flex;
+  gap: 1rem;
+}
+
+.popup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(37, 34, 34, 0.7);
+  opacity: 1;
+  visibility: visible;
+}
+.popup__body {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+.popup__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  text-align: center;
+  color: #1fa41f;
+  background-color: aqua;
+  border-radius: 1rem;
+}
+.popup__text {
+  padding: 2rem 1rem;
+}
+.popup__span-word {
+  color: #0b0bd1;
+}
+
+.target {
+  opacity: 0;
+  visibility: hidden;
 }/*# sourceMappingURL=style.css.map */
