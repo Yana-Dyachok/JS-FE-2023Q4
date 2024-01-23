@@ -56,11 +56,12 @@ export const picture = document.createElement('select');
 picture.setAttribute('class', 'scoreboard__picture__select select change');
 
 const pictureOptions = [
-  { value: 'pictureValue1', text: 'animals' },
+  { value: 'pictureValue1', text: 'random cells'},
   { value: 'pictureValue2', text: 'plants' },
   { value: 'pictureValue3', text: 'different subjects'},
   { value: 'pictureValue4', text: 'geometric shapes'},
-  { value: 'pictureValue5', text: 'food' }
+  { value: 'pictureValue5', text: 'food' },
+  { value: 'pictureValue6', text: 'animals' },
 ];
 
 for (const optionData of pictureOptions) {
@@ -105,10 +106,10 @@ export const audioWin = document.createElement('scoreboard__audio');
 audioWin.setAttribute('class', 'scoreboard__audio--win');
 audioWin.src = './src/assets/audio/win.mp3';
 mike.append(audioWin);
-export const audiMark = document.createElement('scoreboard__audio');
-audiMark.setAttribute('class', 'scoreboard__audio--mark');
-audiMark.src = './src/assets/audio/point-cell.mp3';
-mike.append(audiMark);
+export const audioMark = document.createElement('scoreboard__audio');
+audioMark.setAttribute('class', 'scoreboard__audio--mark');
+audioMark.src = './src/assets/audio/point-cell.mp3';
+mike.append(audioMark);
 export const audioFlag = document.createElement('scoreboard__audio');
 audioFlag.setAttribute('class', 'scoreboard__audio--flag');
 audioFlag.src = './src/assets/audio/flag.mp3';
