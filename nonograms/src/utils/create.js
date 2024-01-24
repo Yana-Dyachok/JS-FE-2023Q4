@@ -68,7 +68,7 @@ pictureBlock.append(pictureText);
 export const picture = document.createElement('select');
 picture.setAttribute('class', 'scoreboard__picture__select select change');
 
-const pictureOptions = [
+export const pictureOptions = [
     { value: 'pictureValue1', text: 'random cells' },
     { value: 'pictureValue2', text: 'plants' },
     { value: 'pictureValue3', text: 'different subjects' },
