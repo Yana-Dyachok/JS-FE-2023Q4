@@ -7,7 +7,9 @@ import {
     audioWin,
     audioLose,
     audioFlag,
+    randomBtn,
     themeToggle,
+    pictureOptions,
 } from './create.js';
 
 import { startGame, startDate, flags } from './game.js';
@@ -69,7 +71,7 @@ function getPicture(selectedPicture) {
     }
 }
 
-function getSelectedValue(selectedValue,select) {
+function getSelectedValue(selectedValue, select) {
     const childrenArray = Array.from(select.children);
     childrenArray.forEach((el) => {
         if (el.textContent === selectedValue) el.selected = true;
@@ -83,6 +85,33 @@ picture.addEventListener('change', function () {
     getPicture(selectedPicture);
     startGame();
 });
+
+//random game ----------------------------------------------------------------------------------------------------------------------
+randomBtn.addEventListener('click', getRandomGame);
+
+function getRandomLevel() {
+    const levels = ['easy', 'medium', 'hard'];
+    const randomIndex = Math.floor(Math.random() * levels.length);
+    selectedLevel = levels[randomIndex];
+    setLocalStorage();
+    getSelectedValue(selectedLevel, level);
+    getLevel(selectedLevel);
+}
+
+function getRandomPicture() {
+    const pictures = pictureOptions.map((option) => option.text);
+    const randomIndex = Math.floor(Math.random() * pictures.length);
+    selectedPicture = pictures[randomIndex];
+    setLocalStorage();
+    getSelectedValue(selectedPicture, picture);
+    getPicture(selectedPicture);
+}
+
+function getRandomGame() {
+    getRandomLevel();
+    getRandomPicture();
+    startGame();
+}
 
 //sound/mute-------------------------------------------------------------------------------------------------------------------------
 export function audioPlay(elem) {
