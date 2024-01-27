@@ -1,156 +1,280 @@
 import { createPopUp } from './popup.js';
 import {
     gameTable,
-    level,
-    mike,
-    audiMark,
+    date,
+    audioMark,
     audioWin,
     audioLose,
     audioFlag,
-    randomBtn,
-    themeToggle,
     resetGameBtn,
     continueBtn,
     solutionBtn,
 } from './create.js';
-let row = 5;
-let column = 5;
-let selectedOption = localStorage.getItem('level') || 'easy';
-let themeFlag = false;
-let mikeFlag = true;
-let solutionOn = false;
-let solutionShown = false;
+import {
+    row,
+    column,
+    updateGameDuration,
+    audioPlay,
+    selectedPicture,
+    getPicture,
+} from './settings.js';
 
-//change level ---------------------------------------------------------------------------
-function changeSize(n) {
-    row = n;
-    column = n;
+export let flags = {
+    solutionOn: 'false',
+    solutionShown: 'false',
+    isFirstClickDone: 'false',
+    gameOver: 'false',
+    themeFlag: 'false',
+    mikeFlag: 'true',
+    isDragging: 'false',
+};
+
+export let startDate;
+const cellStates = ['none', 'off', 'on'];
+let fieldState = {
+    field: [],
+    solution: [],
+    keys: {
+        h: [],
+        v: [],
+    },
+};
+
+let gameDurationInterval;
+
+function getRandomBinary() {
+    return Math.round(Math.random());
 }
 
-function getLevel(selectedOption) {
-    if (selectedOption === 'easy') changeSize(5);
-    if (selectedOption === 'medium') changeSize(10);
-    if (selectedOption === 'hard') changeSize(15);
-}
+let cells = [];
+let headers = {
+    h: [],
+    v: [],
+};
 
-function getSelectedOption(selectedOption) {
-    const childrenArray = Array.from(level.children);
-    childrenArray.forEach((el) => {
-        if (el.textContent === selectedOption) el.selected = true;
-    });
-}
-
-level.addEventListener('change', function () {
-    let option = level.options[level.selectedIndex];
-    selectedOption = option.textContent;
-    setLocalStorage();
-    getLevel(selectedOption);
-    startGame();
-});
-
-// randomBtn.addEventListener('click',);
-
-// mike.addEventListener('click',);
-// resetGameBtn.addEventListener('click',);
-// continueBtn.addEventListener('click',);
-// solutionBtn.addEventListener('click',);
-//sound/mute-------------------------------------------------------------------------------------------------------------------------
-function audioPlay(elem) {
-    if (!mike.classList.contains('off')) {
-        elem.play();
-    } else {
-        elem.pause();
+export function fillArrayRandom(array) {
+    for (let i = 0; i < column; i++) {
+        array[i] = [];
+        for (let j = 0; j < row; j++) {
+            array[i][j] = getRandomBinary();
+        }
     }
 }
 
-function toggleMute() {
-    if (mike.classList.contains('off')) {
-        audiMark.pause();
-        audioLose.pause();
-        audioFlag.pause();
-        audioWin.pause();
+function fillArrayZero(array) {
+    for (let i = 0; i < column; i++) {
+        array[i] = [];
+        for (let j = 0; j < row; j++) {
+            array[i][j] = 0;
+        }
     }
-    //  else {
-    //   if ()audioLose.play();
-    //   if () audioWin.play();
-    // }
 }
 
-mike.addEventListener('click', () => {
-    mike.classList.toggle('off');
-    toggleMute();
-    mikeFlag = !mike.classList.contains('off') ? true : false;
-    setLocalStorage();
-});
-
-// theme toggle-----------------------------------------------------------------------------------------------------------------------------
-function getThemeToggle() {
-    themeToggle.addEventListener('click', () => {
-        const themeToggleElements = document.querySelectorAll('.change');
-        themeToggleElements.forEach((btn) => btn.classList.toggle('dark'));
-        themeFlag = themeToggle.classList.contains('dark') ? true : false;
-        setLocalStorage();
-    });
+function getKeyHeaderV(array, key) {
+    let temp = [];
+    let res = [];
+    for (let i = 0; i < column; i++) {
+        temp.push(array[i].join('').replace(/0/g, ',').split(','));
+        res = temp[i].filter((el) => el.length > 0);
+        key[i] = res.map((el) => el.length);
+    }
 }
 
-getThemeToggle();
+function getKeyHeaderH(primArray, key) {
+    let temp = [];
+    let res = [];
+    let array = primArray[0].map((col, i) => primArray.map((row) => row[i]));
 
-//save in localStorage-----------------------------------------------------------------------------------------------------------------
-let tenGameDuration = [];
-function setLocalStorage() {
-    localStorage.setItem('mike', mikeFlag);
-    localStorage.setItem('theme', themeFlag);
-    localStorage.setItem('level', selectedOption);
-    localStorage.setItem('gameDuration', gameDuration);
-    localStorage.setItem('duration', JSON.stringify(tenGameDuration));
+    for (let i = 0; i < column; i++) {
+        temp.push(array[i].join('').replace(/0/g, ',').split(','));
+        res = temp[i].filter((el) => el.length > 0);
+        key[i] = res.map((el) => el.length);
+    }
 }
 
-function getLocalStorage() {
-    if (localStorage.getItem('gameDuration')) {
-        gameDuration = localStorage.getItem('gameDuration');
-        tenGameDuration.push(gameDuration);
-        console.log(tenGameDuration);
-        localStorage.setItem('duration', JSON.stringify(tenGameDuration));
+function generateField() {
+    let temporaryState = {
+        field: [],
+        solution: [],
+        keys: {
+            h: [],
+            v: [],
+        },
+    };
+    getPicture(selectedPicture, temporaryState.solution);
+    fillArrayZero(temporaryState.field);
+    getKeyHeaderV(temporaryState.solution, temporaryState.keys.v);
+    getKeyHeaderH(temporaryState.solution, temporaryState.keys.h);
+
+    return temporaryState;
+}
+
+function onCellMouseClick(event) {
+    if (!flags.isFirstClickDone) {
+        startDate = new Date();
+        gameDurationInterval = setInterval(updateGameDuration, 1000);
+        flags.isFirstClickDone = true;
     }
 
-    //   if (localStorage.getItem("mike")) {
-    //     mikeFlag = localStorage.getItem("mike");
-    //     if (mikeFlag === "false") {
-    //       mike.classList.add("off");
-    //     } else {
-    //       mike.classList.remove("off");
-    //     }
-    //     toggleMute();
-    //   }
+    if (flags.solutionOn) return;
 
-    if (localStorage.getItem('theme')) {
-        themeFlag = localStorage.getItem('theme');
-        const themeToggleElements = document.querySelectorAll('.change');
-        if (themeFlag === 'true') {
-            themeToggleElements.forEach((btn) => btn.classList.add('dark'));
-        } else {
-            themeToggleElements.forEach((btn) => btn.classList.remove('dark'));
+    audioPlay(audioMark);
+    const clickedTd = event.target;
+    if (clickedTd.classList.contains('off')) clickedTd.classList.remove('off');
+    clickedTd.classList.toggle('on');
+}
+
+function createGameTable() {
+    while (gameTable.firstChild) {
+        gameTable.removeChild(gameTable.firstChild);
+    }
+
+    cells = [];
+    headers = { h: [], v: [] };
+
+    for (let i = 0; i < row; i++) {
+        let el = document.createElement('th');
+        headers.h.push(el);
+    }
+
+    for (let i = 0; i < column; i++) {
+        let el = document.createElement('th');
+        headers.v.push(el);
+    }
+
+    for (let i = 0; i < column; i++) {
+        cells[i] = [];
+
+        for (let j = 0; j < row; j++) {
+            let el = document.createElement('td');
+
+            el.dataset.x = j;
+            el.dataset.y = i;
+            el.addEventListener('click', onCellMouseClick);
+
+            el.addEventListener('contextmenu', (event) => {
+                audioPlay(audioFlag);
+                const clickedTd = event.target;
+                if (clickedTd.classList.contains('on'))
+                    clickedTd.classList.remove('on');
+                clickedTd.classList.toggle('off');
+            });
+
+            cells[i].push(el);
         }
     }
 
-    if (localStorage.getItem('level')) {
-        let selected = localStorage.getItem('level');
-        getLevel(selected);
-        getSelectedOption(selectedOption);
-        // startGame();
-    }
+    let headerTr = document.createElement('tr');
+    let emptyHeader = document.createElement('th');
+    headerTr.append(emptyHeader);
 
-    if (localStorage.getItem('duration')) {
-        const durationJSON = localStorage.getItem('duration');
-        tenGameDuration = JSON.parse(durationJSON);
+    for (let i = 0; i < row; i++) {
+        headerTr.append(headers.h[i]);
+    }
+    gameTable.append(headerTr);
+
+    for (let i = 0; i < column; i++) {
+        let tr = document.createElement('tr');
+        tr.append(headers.v[i]);
+        for (let j = 0; j < row; j++) {
+            tr.append(cells[i][j]);
+        }
+        gameTable.append(tr);
     }
 }
 
-// function getGameDuration(data) {
-//   tenGameDuration.push(data);
-//   localStorage.setItem("duration", JSON.stringify(tenGameDuration));
-//   console.log(tenGameDuration );
-// }
+function setTableField(field) {
+    for (let i = 0; i < column; i++) {
+        for (let j = 0; j < row; j++) {
+            let state = cellStates[field[i][j]];
+            markCell(j, i, state);
+        }
+    }
+}
 
-window.addEventListener('load', getLocalStorage);
-window.addEventListener('beforeunload', setLocalStorage);
+function setTableHeaders(keys) {
+    for (let i = 0; i < column; i++) {
+        let str = keys.v[i].join(' ');
+        headers.v[i].innerText = str;
+    }
+
+    for (let i = 0; i < row; i++) {
+        let str = keys.h[i].join('\n');
+        headers.h[i].innerText = str;
+    }
+}
+
+export function startGame() {
+    flags.solutionOn = false;
+    flags.solutionShown = false;
+    fieldState = generateField();
+    createGameTable();
+    redraw();
+    clearInterval(gameDurationInterval);
+    date.textContent = '00:00';
+    flags.gameOver = false;
+    flags.isFirstClickDone = false;
+}
+
+function redraw() {
+    setTableHeaders(fieldState.keys);
+    // if (flags.solutionOn) {
+    //     setTableField(fieldState.solution);
+    // } else {
+    //     setTableField(fieldState.field);
+    // }
+}
+
+function showSolution() {
+    flags.solutionShown = true;
+    flags.solutionOn = !flags.solutionOn;
+    redraw();
+}
+
+function areArraysEqual() {
+    for (let i = 0; i < column; i++) {
+        for (let j = 0; j < row; j++) {
+            if (
+                fieldState.solution[i][j] !== 2 &&
+                fieldState.solution[i][j] !== 2
+            ) {
+                //console.log('Solution:', fieldState.solution[i][j]);
+                //console.log('Field:', fieldState.solution[i][j]);
+                //console.log('Solution-all:', fieldState.solution[i][j]);
+                //console.log('Field-all:', fieldState.field[i][j]);
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function checkVictory() {
+    if (flags.solutionOn) return false;
+
+    const result = areArraysEqual();
+
+    // console.log('Solution:', fieldState.solution);
+    // console.log('Field:', fieldState.field);
+    console.log('Result:', result);
+
+    if (result) {
+        audioPlay(audioWin);
+        flags.gameOver = true;
+        createPopUp(true, date.textContent);
+    } else {
+        return false;
+    }
+}
+
+startGame();
+
+resetGameBtn.addEventListener('click', startGame);
+// continueBtn.addEventListener('click',);
+solutionBtn.addEventListener('click', showSolution);
+
+document.getElementById('game').addEventListener('contextmenu', (event) => {
+    event.preventDefault();
+});
+
+//the idea and some code were taken from https://codepen.io/McXinuS/pen/KQMdmM

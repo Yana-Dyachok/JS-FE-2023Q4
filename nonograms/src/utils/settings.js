@@ -12,12 +12,12 @@ import {
     pictureOptions,
 } from './create.js';
 
-import { startGame, startDate, flags } from './game.js';
+import { startGame, startDate, flags, fillArrayRandom} from './game.js';
 
 export let row = 5;
 export let column = 5;
 let selectedLevel = localStorage.getItem('level') || 'easy';
-let selectedPicture = localStorage.getItem('picture') || 'random cells';
+export let selectedPicture = localStorage.getItem('picture') || 'random cells';
 let gameDuration = 0;
 
 //change level ---------------------------------------------------------------------------
@@ -41,29 +41,25 @@ level.addEventListener('change', function () {
 });
 
 //change picture ---------------------------------------------------------------------------
-function changePicture(n) {
-    console.log(n);
-}
-
-function getPicture(selectedPicture) {
+export function getPicture(selectedPicture, array) {
     switch (selectedPicture) {
         case 'random cells':
-            changePicture(1);
+            fillArrayRandom(array);
             break;
         case 'plants':
-            changePicture(2);
+            fillArrayRandom(array);
             break;
         case 'different subjects':
-            changePicture(3);
+            fillArrayRandom(array);
             break;
         case 'geometric shapes':
-            changePicture(4);
+            fillArrayRandom(array);
             break;
         case 'animals':
-            changePicture(5);
+            fillArrayRandom(array);
             break;
         case 'food':
-            changePicture(6);
+            fillArrayRandom(array);
             break;
         default:
             console.error('Invalid selectedLevel:', selectedPicture);
@@ -104,7 +100,6 @@ function getRandomPicture() {
     selectedPicture = pictures[randomIndex];
     setLocalStorage();
     getSelectedValue(selectedPicture, picture);
-    getPicture(selectedPicture);
 }
 
 function getRandomGame() {
@@ -129,10 +124,6 @@ function toggleMute() {
         audioFlag.pause();
         audioWin.pause();
     }
-    //  else {
-    //   if ()audioLose.play();
-    //   if () audioWin.play();
-    // }
 }
 
 mike.addEventListener('click', () => {
@@ -146,14 +137,15 @@ mike.addEventListener('click', () => {
 export function updateGameDuration() {
     if (flags.gameOver) {
         gameDuration = date.textContent;
+        date.textContent = '00:00';
         //tenGameDuration.push(gameDuration);
         setLocalStorage();
         return;
     }
     if (!flags.gameOver) {
         let currentDate = new Date();
-        let timeDiff = ~~((currentDate - startDate) / 1000);
-        let minutes = ~~(timeDiff / 60);
+        let timeDiff = Math.floor((currentDate - startDate) / 1000);
+        let minutes = Math.floor(timeDiff / 60);
         let seconds = timeDiff % 60;
         date.textContent = `${minutes.toString().padStart(2, '0')}:${seconds
             .toString()
@@ -188,7 +180,6 @@ function getLocalStorage() {
     if (localStorage.getItem('gameDuration')) {
         gameDuration = localStorage.getItem('gameDuration');
         tenGameDuration.push(gameDuration);
-        console.log(tenGameDuration);
         localStorage.setItem('duration', JSON.stringify(tenGameDuration));
     }
 

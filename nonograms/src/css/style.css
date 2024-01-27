@@ -87,6 +87,24 @@ html {
   color: #efe0e0;
   background-color: #5f535c;
 }
+.body.active {
+  overflow-y: hidden;
+  z-index: 1002;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+.overlay.active {
+  display: block;
+}
 
 .wrapper {
   max-width: 100rem;
@@ -96,7 +114,8 @@ html {
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 2rem;
+  overflow-x: hidden;
 }
 
 .btn {
@@ -108,27 +127,37 @@ html {
   cursor: pointer;
   box-shadow: inset 0 0.5rem 8rem rgba(3, 29, 54, 0.7), inset 0 0.5rem 1rem rgba(6, 14, 102, 0.9), inset 0 -0.5rem 1rem rgba(60, 28, 166, 0.8);
 }
-.btn:hover {
-  background-color: #1fa41f;
-  box-shadow: inset 0 0.5rem 8rem rgba(10, 138, 83, 0.7), inset 0 0.5rem 1rem rgba(5, 77, 46, 0.9), inset 0 -0.5rem 1rem rgba(8, 66, 19, 0.8);
-  transform: scale(1.1);
+@media (hover: hover) and (pointer: fine) and (pointer: fine) {
+  .btn:hover {
+    background-color: #1fa41f;
+    box-shadow: inset 0 0.5rem 8rem rgba(10, 138, 83, 0.7), inset 0 0.5rem 1rem rgba(5, 77, 46, 0.9), inset 0 -0.5rem 1rem rgba(8, 66, 19, 0.8);
+    transform: scale(1.1);
+  }
 }
 .btn.dark {
   color: #2d2c2d;
   background-color: #efe0e0;
   box-shadow: inset 0 0.1rem 1rem rgba(14, 14, 14, 0.862745098);
 }
-.btn.dark:hover {
-  background-color: #00a2ff;
-  box-shadow: inset 0 0.1rem 1rem rgba(71, 36, 187, 0.862745098);
+@media (hover: hover) and (pointer: fine) and (pointer: fine) {
+  .btn.dark:hover {
+    background-color: #00a2ff;
+    box-shadow: inset 0 0.1rem 1rem rgba(71, 36, 187, 0.862745098);
+  }
 }
 
+.scoreboard {
+  max-width: 70rem;
+}
 .scoreboard__rows {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
   gap: 2rem;
-  padding: 1rem;
+  padding: 1.5rem;
+}
+.scoreboard__rows:first-child {
+  padding: 0;
 }
 .scoreboard__time__date {
   color: #1fa41f;
@@ -182,6 +211,141 @@ html {
   outline: none;
   border: none;
   color: #0b0bd1;
+}
+
+@media screen and (max-width: 768px) {
+  .scoreboard__burger {
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    left: 90vw;
+    background-color: #00a2ff;
+    border-radius: 10rem;
+    z-index: 1001;
+  }
+  .scoreboard__burger::before {
+    content: "";
+    height: 4%;
+    width: 40%;
+    left: 30%;
+    position: absolute;
+    transition: all 0.5s ease 0s;
+    background-color: white;
+  }
+  .scoreboard__burger::after {
+    content: "";
+    height: 4%;
+    width: 40%;
+    left: 30%;
+    position: absolute;
+    transition: all 0.5s ease 0s;
+    background-color: white;
+  }
+  .scoreboard__burger::before {
+    content: "";
+  }
+  .scoreboard__burger::after {
+    content: "";
+  }
+  .scoreboard__burger::before {
+    top: 40%;
+  }
+  .scoreboard__burger::after {
+    bottom: 40%;
+  }
+  .scoreboard__burger.active::before {
+    top: 50%;
+    transform: rotate(-45deg) translate(0, -50%);
+  }
+  .scoreboard__burger.active::after {
+    bottom: 48%;
+    transform: rotate(45deg) translate(0, 50%);
+  }
+  .scoreboard__nav {
+    width: 32rem;
+    height: 100%;
+    position: fixed;
+    padding-top: 5rem;
+    top: 0;
+    right: -32rem;
+    background-color: #8fd5e7;
+    transform: translateX(0%);
+    transition: transform 0.5s ease-out, right 0.5s ease-out;
+    z-index: 1000;
+  }
+  .scoreboard__nav.active {
+    transform: translateX(0%);
+    right: 0;
+  }
+  .scoreboard__nav.dark {
+    background-color: #5f535c;
+  }
+  .scoreboard__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+    gap: 5rem;
+    font-size: 2.5rem;
+  }
+}
+.main {
+  padding-top: 1rem;
+}
+
+#game {
+  background-color: #8fd5e7;
+  border-spacing: 0;
+  border-collapse: collapse;
+  border: 0.1rem solid black;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#game.dark {
+  color: #00a2ff;
+  background-color: white;
+}
+#game td,
+#game th {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.4rem;
+  font-size: 1.3rem;
+  white-space: nowrap;
+}
+#game td:nth-child(5n+1),
+#game th:nth-child(5n+1) {
+  border-right: 0.2rem solid #2d2c2d;
+}
+#game tr:nth-child(5n+1) td,
+#game tr:nth-child(5n+1) th {
+  border-bottom: 0.2rem solid #2d2c2d;
+}
+#game th {
+  background-color: #efe0e0;
+  font-family: "salina trial";
+  border-top: 0.1rem dotted #2d2c2d;
+  border-left: 0.1rem dotted #2d2c2d;
+}
+#game th.highlight {
+  background-color: white;
+}
+#game td {
+  border-top: 0.1rem dotted #5f535c;
+  border-left: 0.1rem dotted #5f535c;
+}
+@media (hover: hover) and (pointer: fine) and (pointer: fine) {
+  #game td:hover {
+    background-color: #aaaaaa;
+  }
+}
+#game td.off {
+  background: url("../assets/img/cross.svg") center no-repeat transparent;
+}
+#game td.on {
+  background-color: black;
 }
 
 .popup {

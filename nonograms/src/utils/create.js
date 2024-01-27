@@ -51,10 +51,10 @@ level.append(option3);
 levelBlock.append(level);
 firstRow.append(levelBlock);
 
-export const continueBtn = document.createElement('button');
-continueBtn.setAttribute('class', 'scoreboard__continue-btn btn change');
-continueBtn.textContent = 'Continue';
-firstRow.append(continueBtn);
+export const randomBtn = document.createElement('button');
+randomBtn.setAttribute('class', 'scoreboard__random-btn btn change');
+randomBtn.textContent = 'Random';
+firstRow.append(randomBtn);
 
 //picture----------------------------------------------------------------------------------------------------------------------------------------------------
 const pictureBlock = document.createElement('div');
@@ -96,10 +96,10 @@ resetGameBtn.setAttribute('class', 'scoreboard__reset-btn btn change');
 resetGameBtn.textContent = 'Reset';
 secondRow.append(resetGameBtn);
 
-export const randomBtn = document.createElement('button');
-randomBtn.setAttribute('class', 'scoreboard__random-btn btn change');
-randomBtn.textContent = 'Random game';
-secondRow.append(randomBtn);
+export const continueBtn = document.createElement('button');
+continueBtn.setAttribute('class', 'scoreboard__continue-btn btn change');
+continueBtn.textContent = 'Continue';
+secondRow.append(continueBtn);
 
 export const solutionBtn = document.createElement('button');
 solutionBtn.setAttribute('class', 'scoreboard__solution-btn btn change');
