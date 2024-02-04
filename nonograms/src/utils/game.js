@@ -110,6 +110,8 @@ function generateField() {
 }
 
 function onCellMouseClick(event) {
+    let x = event.target.dataset.x;
+    let y = event.target.dataset.y;
     if (!flags.isFirstClickDone) {
         startDate = new Date();
         gameDurationInterval = setInterval(updateGameDuration, 1000);
@@ -122,6 +124,21 @@ function onCellMouseClick(event) {
     const clickedTd = event.target;
     if (clickedTd.classList.contains('off')) clickedTd.classList.remove('off');
     clickedTd.classList.toggle('on');
+    fieldState.field[x][y] = clickedTd.classList.contains('on') ? 1 : 0;
+    checkVictory();
+}
+
+function onCellRighClick(event) {
+    let x = event.target.dataset.x;
+    let y = event.target.dataset.y;
+    audioPlay(audioFlag);
+    const clickedTd = event.target;
+    if (clickedTd.classList.contains('on')) {
+        fieldState.field[x][y] = 0;
+        clickedTd.classList.remove('on');
+    }
+    clickedTd.classList.toggle('off');
+    checkVictory();
 }
 
 function createGameTable() {
@@ -148,18 +165,10 @@ function createGameTable() {
         for (let j = 0; j < row; j++) {
             let el = document.createElement('td');
 
-            el.dataset.x = j;
-            el.dataset.y = i;
+            el.dataset.x = i;
+            el.dataset.y = j;
             el.addEventListener('click', onCellMouseClick);
-
-            el.addEventListener('contextmenu', (event) => {
-                audioPlay(audioFlag);
-                const clickedTd = event.target;
-                if (clickedTd.classList.contains('on'))
-                    clickedTd.classList.remove('on');
-                clickedTd.classList.toggle('off');
-            });
-
+            el.addEventListener('contextmenu', onCellRighClick);
             cells[i].push(el);
         }
     }
@@ -183,15 +192,6 @@ function createGameTable() {
     }
 }
 
-function setTableField(field) {
-    for (let i = 0; i < column; i++) {
-        for (let j = 0; j < row; j++) {
-            let state = cellStates[field[i][j]];
-            markCell(j, i, state);
-        }
-    }
-}
-
 function setTableHeaders(keys) {
     for (let i = 0; i < column; i++) {
         let str = keys.v[i].join(' ');
@@ -209,39 +209,39 @@ export function startGame() {
     flags.solutionShown = false;
     fieldState = generateField();
     createGameTable();
-    redraw();
+    setTableHeaders(fieldState.keys);
     clearInterval(gameDurationInterval);
-    date.textContent = '00:00';
     flags.gameOver = false;
     flags.isFirstClickDone = false;
+    date.textContent='00:00'
+   // console.log(fieldState.solution);
+   // console.log(fieldState.field);
 }
 
-function redraw() {
-    setTableHeaders(fieldState.keys);
-    // if (flags.solutionOn) {
-    //     setTableField(fieldState.solution);
-    // } else {
-    //     setTableField(fieldState.field);
-    // }
+function drawSolution() {
+    const el = document.querySelectorAll('td');
+    for (let i = 0; i < column; i++) {
+        for (let j = 0; j < row; j++) {
+            if (flags.solutionOn) {
+                el[i * row + j].classList.add(fieldState.solution[i][j] === 1 ? 'on-solution' : 'off-solution');
+            } else {
+                el[i * row + j].classList.remove(fieldState.solution[i][j] === 1 ? 'on-solution' : 'off-solution');
+            }
+        }
+    }
 }
 
 function showSolution() {
+    solutionBtn.classList.toggle('active');
     flags.solutionShown = true;
     flags.solutionOn = !flags.solutionOn;
-    redraw();
+    drawSolution();
 }
 
 function areArraysEqual() {
     for (let i = 0; i < column; i++) {
         for (let j = 0; j < row; j++) {
-            if (
-                fieldState.solution[i][j] !== 2 &&
-                fieldState.solution[i][j] !== 2
-            ) {
-                //console.log('Solution:', fieldState.solution[i][j]);
-                //console.log('Field:', fieldState.solution[i][j]);
-                //console.log('Solution-all:', fieldState.solution[i][j]);
-                //console.log('Field-all:', fieldState.field[i][j]);
+            if (fieldState.solution[i][j] !== fieldState.field[i][j]) {
                 return false;
             }
         }
@@ -251,17 +251,12 @@ function areArraysEqual() {
 
 function checkVictory() {
     if (flags.solutionOn) return false;
-
     const result = areArraysEqual();
-
-    // console.log('Solution:', fieldState.solution);
-    // console.log('Field:', fieldState.field);
-    console.log('Result:', result);
-
     if (result) {
         audioPlay(audioWin);
         flags.gameOver = true;
-        createPopUp(true, date.textContent);
+        const timeResult = date.textContent;
+        setTimeout(() => createPopUp(true, timeResult), 1000);
     } else {
         return false;
     }
