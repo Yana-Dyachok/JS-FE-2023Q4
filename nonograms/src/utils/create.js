@@ -70,11 +70,10 @@ picture.setAttribute('class', 'scoreboard__picture__select select change');
 
 export const pictureOptions = [
     { value: 'pictureValue1', text: 'random cells' },
-    { value: 'pictureValue2', text: 'plants' },
-    { value: 'pictureValue3', text: 'different subjects' },
+    { value: 'pictureValue3', text: 'letters' },
     { value: 'pictureValue4', text: 'geometric shapes' },
     { value: 'pictureValue5', text: 'food' },
-    { value: 'pictureValue6', text: 'animals' },
+    { value: 'pictureValue6', text: 'objects' },
 ];
 
 for (const optionData of pictureOptions) {

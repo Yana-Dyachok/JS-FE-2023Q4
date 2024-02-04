@@ -61,6 +61,18 @@ export function fillArrayRandom(array) {
     }
 }
 
+export function fillArrayPictures(array, data) {
+    const randomIndex =
+        Math.floor(Math.random() * (row - (row - 5) + 1)) + (row - 5);
+    const selectedFigure = data[randomIndex];
+    for (let i = 0; i < column; i++) {
+        array[i] = [];
+        for (let j = 0; j < row; j++) {
+            array[i][j] = selectedFigure[i][j];
+        }
+    }
+}
+
 function fillArrayZero(array) {
     for (let i = 0; i < column; i++) {
         array[i] = [];
@@ -112,7 +124,7 @@ function generateField() {
 function onCellMouseClick(event) {
     let x = event.target.dataset.x;
     let y = event.target.dataset.y;
-    if (!flags.isFirstClickDone) {
+    if (!flags.isFirstClickDone && !flags.solutionOn) {
         startDate = new Date();
         gameDurationInterval = setInterval(updateGameDuration, 1000);
         flags.isFirstClickDone = true;
@@ -131,6 +143,7 @@ function onCellMouseClick(event) {
 function onCellRighClick(event) {
     let x = event.target.dataset.x;
     let y = event.target.dataset.y;
+    if (flags.solutionOn) return false;
     audioPlay(audioFlag);
     const clickedTd = event.target;
     if (clickedTd.classList.contains('on')) {
@@ -213,9 +226,7 @@ export function startGame() {
     clearInterval(gameDurationInterval);
     flags.gameOver = false;
     flags.isFirstClickDone = false;
-    date.textContent='00:00'
-   // console.log(fieldState.solution);
-   // console.log(fieldState.field);
+    date.textContent = '00:00';
 }
 
 function drawSolution() {
@@ -223,18 +234,28 @@ function drawSolution() {
     for (let i = 0; i < column; i++) {
         for (let j = 0; j < row; j++) {
             if (flags.solutionOn) {
-                el[i * row + j].classList.add(fieldState.solution[i][j] === 1 ? 'on-solution' : 'off-solution');
+                el[i * row + j].classList.add(
+                    fieldState.solution[i][j] === 1
+                        ? 'on-solution'
+                        : 'off-solution'
+                );
             } else {
-                el[i * row + j].classList.remove(fieldState.solution[i][j] === 1 ? 'on-solution' : 'off-solution');
+                el[i * row + j].classList.remove(
+                    fieldState.solution[i][j] === 1
+                        ? 'on-solution'
+                        : 'off-solution'
+                );
             }
         }
     }
 }
 
 function showSolution() {
-    solutionBtn.classList.toggle('active');
     flags.solutionShown = true;
     flags.solutionOn = !flags.solutionOn;
+    flags.solutionOn
+        ? solutionBtn.classList.add('active')
+        : solutionBtn.classList.remove('active');
     drawSolution();
 }
 

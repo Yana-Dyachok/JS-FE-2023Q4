@@ -11,8 +11,8 @@ import {
     themeToggle,
     pictureOptions,
 } from './create.js';
-
-import { startGame, startDate, flags, fillArrayRandom} from './game.js';
+import {geometricData, lettersData, foodData, objectsData} from './pictures-data.js';
+import { startGame, startDate, flags, fillArrayRandom, fillArrayPictures} from './game.js';
 
 export let row = 5;
 export let column = 5;
@@ -46,20 +46,17 @@ export function getPicture(selectedPicture, array) {
         case 'random cells':
             fillArrayRandom(array);
             break;
-        case 'plants':
-            fillArrayRandom(array);
-            break;
-        case 'different subjects':
-            fillArrayRandom(array);
+        case 'letters':
+            fillArrayPictures(array, lettersData);
             break;
         case 'geometric shapes':
-            fillArrayRandom(array);
+            fillArrayPictures(array, geometricData);
             break;
-        case 'animals':
-            fillArrayRandom(array);
+        case 'objects':
+            fillArrayPictures(array, objectsData);
             break;
         case 'food':
-            fillArrayRandom(array);
+            fillArrayPictures(array, foodData);
             break;
         default:
             console.error('Invalid selectedLevel:', selectedPicture);
@@ -77,9 +74,8 @@ function getSelectedValue(selectedValue, select) {
 picture.addEventListener('change', function () {
     let option = picture.options[picture.selectedIndex];
     selectedPicture = option.textContent;
-    setLocalStorage();
-    getPicture(selectedPicture);
     startGame();
+    setLocalStorage();
 });
 
 //random game ----------------------------------------------------------------------------------------------------------------------
@@ -212,7 +208,6 @@ function getLocalStorage() {
 
     if (localStorage.getItem('picture')) {
         let selected = localStorage.getItem('picture');
-        getPicture(selected);
         getSelectedValue(selectedPicture, picture);
         startGame();
     }
