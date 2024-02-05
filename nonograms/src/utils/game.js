@@ -279,7 +279,7 @@ function checkVictory() {
         audioPlay(audioWin);
         flags.gameOver = true;
         const timeResult = date.textContent;
-        setTimeout(() => createPopUp(true, timeResult), 1000);
+        setTimeout(() => createPopUp(true, timeResult, flags.themeFlag), 1000);
     } else {
         return false;
     }

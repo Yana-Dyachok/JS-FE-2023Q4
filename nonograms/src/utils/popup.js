@@ -1,6 +1,6 @@
 import { startGame, flags } from './game.js';
 
-export function createPopUp(flag, time) {
+export function createPopUp(flag, time, theme) {
     time = convertToSeconds(time);
 
     const popup = document.createElement('div');
@@ -12,7 +12,7 @@ export function createPopUp(flag, time) {
     const popupContent = document.createElement('div');
     popupContent.setAttribute(
         'class',
-        `popup__content ${flags.themeFlag === 'true' ? 'dark' : ''}`
+        `popup__content ${theme? 'dark' : ''}`
     );
 
     const popupText = document.createElement('h3');
@@ -24,7 +24,7 @@ export function createPopUp(flag, time) {
     const closeButton = document.createElement('button');
     closeButton.setAttribute(
         'class',
-        `popup__close-btn btn ${flags.themeFlag === 'true' ? 'dark' : ''}`
+        `popup__close-btn btn ${theme? 'dark' : ''}`
     );
     closeButton.textContent = 'New Game';
     closeButton.addEventListener('click', () => {
