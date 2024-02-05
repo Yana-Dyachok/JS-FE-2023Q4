@@ -1,4 +1,4 @@
-import { startGame, flags  } from './game.js';
+import { startGame, flags } from './game.js';
 
 export function createPopUp(flag, time) {
     time = convertToSeconds(time);
@@ -10,7 +10,10 @@ export function createPopUp(flag, time) {
     popupBody.setAttribute('class', 'popup__body');
 
     const popupContent = document.createElement('div');
-    popupContent.setAttribute('class', `popup__content ${flags.themeFlag === 'true' ? 'dark' : ''}`);
+    popupContent.setAttribute(
+        'class',
+        `popup__content ${flags.themeFlag === 'true' ? 'dark' : ''}`
+    );
 
     const popupText = document.createElement('h3');
     popupText.setAttribute('class', 'popup__text');
@@ -19,7 +22,10 @@ export function createPopUp(flag, time) {
         : 'Unfortunately, you lost!';
 
     const closeButton = document.createElement('button');
-    closeButton.setAttribute('class', `popup__close-btn btn ${flags.themeFlag === 'true' ? 'dark' : ''}`);
+    closeButton.setAttribute(
+        'class',
+        `popup__close-btn btn ${flags.themeFlag === 'true' ? 'dark' : ''}`
+    );
     closeButton.textContent = 'New Game';
     closeButton.addEventListener('click', () => {
         popup.classList.toggle('target');
