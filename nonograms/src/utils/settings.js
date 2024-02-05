@@ -11,8 +11,20 @@ import {
     themeToggle,
     pictureOptions,
 } from './create.js';
-import {geometricData, lettersData, foodData, objectsData} from './pictures-data.js';
-import { startGame, startDate, flags, fillArrayRandom, fillArrayPictures} from './game.js';
+import {
+    geometricData,
+    lettersData,
+    foodData,
+    objectsData,
+} from './pictures-data.js';
+import {
+    fieldState,
+    startGame,
+    startDate,
+    flags,
+    fillArrayRandom,
+    fillArrayPictures,
+} from './game.js';
 
 export let row = 5;
 export let column = 5;
@@ -161,9 +173,16 @@ function getThemeToggle() {
 
 getThemeToggle();
 
+// continue game--------------------------------------------------------------------------------------
+export function getValueFromLocalStorage() {
+    selectedLevel = localStorage.getItem('level');
+    getLevel(selectedLevel);
+    selectedPicture = localStorage.getItem('picture');
+}
+
 //save in localStorage-----------------------------------------------------------------------------------------------------------------
 let tenGameDuration = [];
-function setLocalStorage() {
+export function setLocalStorage() {
     localStorage.setItem('mike', flags.mikeFlag);
     localStorage.setItem('theme', flags.themeFlag);
     localStorage.setItem('level', selectedLevel);
@@ -172,10 +191,11 @@ function setLocalStorage() {
     localStorage.setItem('duration', JSON.stringify(tenGameDuration));
 }
 
-function getLocalStorage() {
+export function getLocalStorage() {
     if (localStorage.getItem('gameDuration')) {
         gameDuration = localStorage.getItem('gameDuration');
         tenGameDuration.push(gameDuration);
+
         localStorage.setItem('duration', JSON.stringify(tenGameDuration));
     }
 

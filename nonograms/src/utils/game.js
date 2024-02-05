@@ -17,6 +17,7 @@ import {
     audioPlay,
     selectedPicture,
     getPicture,
+    getValueFromLocalStorage,
 } from './settings.js';
 
 export let flags = {
@@ -27,11 +28,11 @@ export let flags = {
     themeFlag: 'false',
     mikeFlag: 'true',
     isDragging: 'false',
+    isContinue: 'false',
 };
 
 export let startDate;
-const cellStates = ['none', 'off', 'on'];
-let fieldState = {
+export let fieldState = {
     field: [],
     solution: [],
     keys: {
@@ -62,8 +63,7 @@ export function fillArrayRandom(array) {
 }
 
 export function fillArrayPictures(array, data) {
-    const randomIndex =
-        Math.floor(Math.random() * (row - (row - 5) + 1)) + (row - 5);
+    const randomIndex = row / 5 - 1;
     const selectedFigure = data[randomIndex];
     for (let i = 0; i < column; i++) {
         array[i] = [];
@@ -137,6 +137,7 @@ function onCellMouseClick(event) {
     if (clickedTd.classList.contains('off')) clickedTd.classList.remove('off');
     clickedTd.classList.toggle('on');
     fieldState.field[x][y] = clickedTd.classList.contains('on') ? 1 : 0;
+    setLocalStorage();
     checkVictory();
 }
 
@@ -220,12 +221,16 @@ function setTableHeaders(keys) {
 export function startGame() {
     flags.solutionOn = false;
     flags.solutionShown = false;
-    fieldState = generateField();
+    fieldState = !flags.isContinue
+        ? generateField()
+        : JSON.parse(localStorage.getItem('playField'));
     createGameTable();
     setTableHeaders(fieldState.keys);
+    drawContinue();
     clearInterval(gameDurationInterval);
     flags.gameOver = false;
     flags.isFirstClickDone = false;
+    flags.isContinue = false;
     date.textContent = '00:00';
 }
 
@@ -285,12 +290,40 @@ function checkVictory() {
 
 startGame();
 
+function continueGame() {
+    flags.isContinue = true;
+    getValueFromLocalStorage();
+    startGame();
+}
+
+function drawContinue() {
+    const el = document.querySelectorAll('td');
+    for (let i = 0; i < column; i++) {
+        for (let j = 0; j < row; j++) {
+            if (flags.isContinue && fieldState.field[i][j] === 1) {
+                el[i * row + j].classList.add('on');
+            }
+        }
+    }
+}
+
 resetGameBtn.addEventListener('click', startGame);
-// continueBtn.addEventListener('click',);
+continueBtn.addEventListener('click', continueGame);
 solutionBtn.addEventListener('click', showSolution);
 
 document.getElementById('game').addEventListener('contextmenu', (event) => {
     event.preventDefault();
 });
 
+function setLocalStorage() {
+    localStorage.setItem('playField', JSON.stringify(fieldState));
+}
+
+function getLocalStorage() {
+    const playField = JSON.parse(localStorage.getItem('playField') || '{}');
+    return playField;
+}
+
+window.addEventListener('load', getLocalStorage);
+window.addEventListener('beforeunload', setLocalStorage);
 //the idea and some code were taken from https://codepen.io/McXinuS/pen/KQMdmM
