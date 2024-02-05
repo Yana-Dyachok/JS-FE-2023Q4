@@ -290,7 +290,7 @@ startGame();
 function continueGame() {
     flags.isContinue = true;
     fieldState = JSON.parse(localStorage.getItem('playField'));
-    getValueFromLocalStorage();
+    getValueFromLocalStorage(fieldState.field.length);
     createGameTable();
     setTableHeaders(fieldState.keys);
     drawContinue();

@@ -81,13 +81,14 @@ function getSelectedValue(selectedValue, select) {
     childrenArray.forEach((el) => {
         if (el.textContent === selectedValue) el.selected = true;
     });
+   setLocalStorage();
 }
 
 picture.addEventListener('change', function () {
     let option = picture.options[picture.selectedIndex];
     selectedPicture = option.textContent;
     startGame();
-    setLocalStorage();
+    //setLocalStorage();
 });
 
 //random game ----------------------------------------------------------------------------------------------------------------------
@@ -174,10 +175,12 @@ function getThemeToggle() {
 getThemeToggle();
 
 // continue game--------------------------------------------------------------------------------------
-export function getValueFromLocalStorage() {
-    selectedLevel = localStorage.getItem('level');
+export function getValueFromLocalStorage(row) {
+    selectedLevel = row === 5 ? 'easy' : row === 10 ? 'medium' : 'hard';
     getLevel(selectedLevel);
+    getSelectedValue(selectedLevel, level);
     selectedPicture = localStorage.getItem('picture');
+    getSelectedValue(selectedPicture, picture);
 }
 
 //save in localStorage-----------------------------------------------------------------------------------------------------------------
@@ -228,7 +231,7 @@ export function getLocalStorage() {
 
     if (localStorage.getItem('picture')) {
         let selected = localStorage.getItem('picture');
-        getSelectedValue(selectedPicture, picture);
+        getSelectedValue(selected, picture);
         startGame();
     }
 
