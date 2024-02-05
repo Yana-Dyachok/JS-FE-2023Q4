@@ -221,12 +221,9 @@ function setTableHeaders(keys) {
 export function startGame() {
     flags.solutionOn = false;
     flags.solutionShown = false;
-    fieldState = !flags.isContinue
-        ? generateField()
-        : JSON.parse(localStorage.getItem('playField'));
+    fieldState = generateField();
     createGameTable();
     setTableHeaders(fieldState.keys);
-    drawContinue();
     clearInterval(gameDurationInterval);
     flags.gameOver = false;
     flags.isFirstClickDone = false;
@@ -292,8 +289,16 @@ startGame();
 
 function continueGame() {
     flags.isContinue = true;
+    fieldState = JSON.parse(localStorage.getItem('playField'));
     getValueFromLocalStorage();
-    startGame();
+    createGameTable();
+    setTableHeaders(fieldState.keys);
+    drawContinue();
+    clearInterval(gameDurationInterval);
+    flags.gameOver = false;
+    flags.isFirstClickDone = false;
+    flags.isContinue = false;
+    date.textContent = '00:00';
 }
 
 function drawContinue() {
