@@ -1,0 +1,490 @@
+@font-face {
+  font-family: "candy psyche";
+  src: url("../assets/fonts/candypsycheregular.woff2") format("woff2"), url("../assets/fonts/candypsycheregular.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "salina trial";
+  src: url("../assets/fonts/Salina-Trial-Regular.woff2") format("woff2"), url("../assets/fonts/Salina-Trial-Regular.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "tenpounds regular";
+  src: url("../assets/fonts/tenpounds-regular.woff2") format("woff2"), url("../assets/fonts/tenpounds-regular.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+:root {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button,
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+}
+
+body {
+  height: 100vh;
+  font-family: "salina trial", serif;
+  font-size: 2.3rem;
+  text-align: center;
+  background-image: linear-gradient(to right, #ecf1f7, #3d92e0);
+}
+
+.wrapper {
+  max-width: 92rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.main {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.gallows__part {
+  display: flex;
+  flex-direction: column;
+}
+.gallows__inner {
+  display: flex;
+  position: relative;
+  padding-top: 3rem;
+}
+.gallows__tree {
+  width: 22rem;
+  height: 30rem;
+  background: url(../assets/img/gallows..svg) center no-repeat;
+  filter: drop-shadow(0.2rem 0.2rem 0.2rem black);
+  border-bottom: 0.5rem solid #860f63;
+}
+.gallows__title {
+  padding-top: 1rem;
+  font-family: "tenpounds regular", serif;
+  font-size: 6rem;
+  color: #3d92e0;
+  filter: drop-shadow(0.1rem 0.1rem 0.1rem black);
+}
+
+.man {
+  position: absolute;
+  top: 8.5rem;
+  left: 15.5rem;
+  background-color: transparent;
+}
+.man__head {
+  width: 7rem;
+  height: 7rem;
+  background: url(../assets/img/head.svg) center no-repeat;
+  opacity: 0;
+}
+.man__body {
+  width: 1rem;
+  height: 8rem;
+  position: absolute;
+  top: 6.5rem;
+  left: 3rem;
+  background: url(../assets/img/body.svg) center no-repeat;
+  opacity: 0;
+}
+.man__left-hand {
+  width: 4rem;
+  height: 5rem;
+  position: absolute;
+  top: 8rem;
+  right: 3.5rem;
+  background: url(../assets/img/hand-one.svg) center no-repeat;
+  opacity: 0;
+}
+.man__right-hand {
+  width: 4rem;
+  height: 5rem;
+  position: absolute;
+  top: 8rem;
+  left: 3.5rem;
+  background: url(../assets/img/hand-two.svg) center no-repeat;
+  opacity: 0;
+}
+.man__left-leg {
+  width: 4rem;
+  height: 5rem;
+  position: absolute;
+  top: 14.2rem;
+  right: 3.4rem;
+  background: url(../assets/img/leg-one.svg) center no-repeat;
+  opacity: 0;
+}
+.man__right-leg {
+  width: 4rem;
+  height: 5rem;
+  position: absolute;
+  top: 14.2rem;
+  left: 3.5rem;
+  background: url(../assets/img/leg-two.svg) center no-repeat;
+  opacity: 0;
+}
+
+@keyframes allBodyMove {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+@keyframes leftPartMove {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes rightPartMove {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes bodyPartMove {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.quiz__part {
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.quiz__question {
+  padding: 1rem;
+  color: #33051c;
+}
+.quiz__display {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  padding-bottom: 1rem;
+}
+.quiz__display__title {
+  color: #2959c2;
+  padding-right: 1rem;
+}
+.quiz__display__incorect-guess {
+  color: #860f63;
+}
+.quiz__display__all-guess {
+  color: #860f63;
+}
+.quiz__letter {
+  display: inline-block;
+  margin-right: 2rem;
+  font-family: "candy psyche", serif;
+  color: #66145b;
+  filter: drop-shadow(0.1rem 0.1rem 0.1rem #ecf1f7);
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition: all 0.5s ease 0s;
+}
+.keyboard__btn {
+  min-width: 4rem;
+  height: 4rem;
+  margin: 0.3rem;
+  font-size: 1.5rem;
+  color: #ecf1f7;
+  background-color: #9161b7;
+  border: 0.2rem solid rgba(61, 14, 43, 0.9);
+  border-radius: 10%;
+  cursor: pointer;
+  box-shadow: inset 0 0.5rem 8rem rgba(87, 8, 70, 0.7), inset 0 0.5rem 1rem rgba(104, 32, 138, 0.9), inset 0 -0.5rem 1rem rgba(87, 19, 59, 0.8);
+}
+.keyboard__btn:hover {
+  background-color: #3d92e0;
+  border: 0.1rem solid rgba(249, 245, 245, 0.9);
+  box-shadow: inset 0 0.5rem 8rem rgba(61, 146, 224, 0.7), inset 0 0.5rem 1rem rgba(7, 4, 22, 0.9), inset 0 -0.5rem 1rem rgba(1, 0, 15, 0.8);
+}
+.keyboard__btn--focused {
+  border: 0.1rem solid rgba(249, 245, 245, 0.9);
+  border-radius: 50%;
+  box-shadow: inset 0 0.5rem 8rem rgba(134, 15, 99, 0.7), inset 0 0.5rem 1rem rgba(212, 64, 190, 0.9), inset 0 -0.5rem 1rem rgba(170, 31, 109, 0.8);
+}
+
+.popup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(37, 34, 34, 0.7);
+  opacity: 1;
+  visibility: visible;
+}
+.popup__body {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+.popup__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #ecf1f7;
+  background-color: #3d92e0;
+  border-radius: 1rem;
+}
+.popup__text {
+  padding: 2rem 1rem 0rem;
+  font-size: 2rem;
+}
+.popup__span-word {
+  font-family: "candy psyche", serif;
+  color: #66145b;
+}
+.popup__close-btn {
+  padding: 1rem 2rem;
+  color: #ecf1f7;
+  background-color: #9161b7;
+  border-radius: 1rem;
+  cursor: pointer;
+  box-shadow: inset 0 0.5rem 8rem rgba(87, 8, 70, 0.7), inset 0 0.5rem 1rem rgba(104, 32, 138, 0.9), inset 0 -0.5rem 1rem rgba(87, 19, 59, 0.8);
+}
+.popup__close-btn:hover {
+  transform: scale(1.1);
+  box-shadow: inset 0 0.5rem 8rem rgba(194, 22, 157, 0.7), inset 0 0.5rem 1rem rgba(78, 14, 107, 0.9), inset 0 -0.5rem 1rem rgba(87, 19, 59, 0.8);
+}
+
+.target {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media screen and (max-width: 1150px) {
+  .gallows__tree {
+    width: 18rem;
+    height: 25rem;
+    background-size: 18rem;
+  }
+  .gallows__title {
+    font-size: 5rem;
+  }
+  .man {
+    top: 7.6rem;
+    left: 12rem;
+  }
+  .man__body {
+    height: 7rem;
+  }
+  .man__left-leg {
+    top: 13rem;
+  }
+  .man__right-leg {
+    top: 13rem;
+  }
+  .quiz__part {
+    padding: 2rem 1rem;
+  }
+  .quiz__question {
+    font-size: 2.4rem;
+  }
+  .quiz__letter {
+    margin-right: 1rem;
+  }
+}
+@media screen and (max-width: 920px) {
+  .body {
+    font-size: 1.5rem;
+  }
+  .main {
+    flex-direction: column;
+  }
+  .man {
+    top: 5.3rem;
+    left: 12.4rem;
+  }
+  .man__head {
+    width: 5rem;
+    height: 5rem;
+    background-size: 5rem;
+  }
+  .man__body {
+    height: 5.5rem;
+    top: 4.8rem;
+    left: 2rem;
+  }
+  .man__left-hand {
+    height: 3rem;
+    top: 6rem;
+    right: 1.8rem;
+  }
+  .man__right-hand {
+    height: 3rem;
+    top: 6rem;
+    left: 1.8rem;
+  }
+  .man__left-leg {
+    top: 10rem;
+    height: 3rem;
+    right: 1.7rem;
+  }
+  .man__right-leg {
+    top: 10rem;
+    height: 3rem;
+    left: 1.8rem;
+  }
+  .gallows__part {
+    flex-direction: row;
+    gap: 4rem;
+  }
+  .gallows__inner {
+    padding-top: 1rem;
+  }
+  .gallows__tree {
+    width: 18rem;
+    height: 22rem;
+    background-size: 16rem;
+  }
+  .gallows__title {
+    padding-top: 8rem;
+  }
+  .quiz__part {
+    padding: 1rem 0.5rem;
+  }
+  .keyboard__btn {
+    min-width: 3rem;
+    height: 3rem;
+    margin: 0.2rem;
+  }
+}
+@media screen and (max-width: 700px) {
+  .body {
+    font-size: 1rem;
+  }
+  .gallows__part {
+    flex-direction: column;
+    max-height: 24rem;
+    gap: 0;
+  }
+  .gallows__inner {
+    padding-top: 0rem;
+    left: 10%;
+  }
+  .gallows__tree {
+    width: 16rem;
+    height: 20rem;
+    background-size: 14rem;
+  }
+  .gallows__title {
+    padding: 0rem 3rem;
+    font-size: 3.2rem;
+  }
+  .man {
+    top: 4.1rem;
+    left: 10.5rem;
+  }
+  .quiz__part {
+    padding: 0.5rem;
+  }
+  .quiz__question {
+    padding: 0.5rem 0rem;
+    font-size: 1.7rem;
+  }
+  .quiz__display {
+    font-size: 1.4rem;
+  }
+  .quiz__title {
+    padding-right: 0.1rem;
+  }
+  .quiz__letter {
+    font-size: 1.6rem;
+    margin-right: 0.5rem;
+  }
+  .keyboard__btn {
+    min-width: 2.2rem;
+    height: 2.2rem;
+    margin: 0.2rem;
+    font-size: 1.2rem;
+  }
+}/*# sourceMappingURL=style.css.map */
