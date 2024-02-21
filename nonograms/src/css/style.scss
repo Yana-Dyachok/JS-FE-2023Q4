@@ -1,0 +1,480 @@
+@font-face {
+    font-family: 'tenpounds regular';
+    src: url('../assets/fonts/tenpounds-regular.woff2') format('woff2'),
+        url('../assets/fonts/tenpounds-regular.woff') format('woff');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'salina trial';
+    src: url('../assets/fonts/Salina-Trial-Regular.woff2') format('woff2'),
+        url('../assets/fonts/Salina-Trial-Regular.woff') format('woff');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+
+:root {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    color: inherit;
+    font: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+@mixin position($direct) {
+    display: flex;
+    flex-direction: $direct;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin borderDot($color) {
+    border-top: 0.1rem dotted $color;
+    border-left: 0.1rem dotted $color;
+}
+
+@mixin burger-line() {
+    content: '';
+    height: 4%;
+    width: 40%;
+    left: 30%;
+    position: absolute;
+    transition: all 0.5s ease 0s;
+    background-color: $c-white-500;
+}
+
+$c-white-100: #efe0e0;
+$c-white-500: white;
+$c-aqua-100: #a4ebfd;
+$c-aqua-300: #8fd5e7;
+$c-aqua-500: aqua;
+$c-aqua-800: #00a2ff;
+$c-blue: #0b0bd1;
+$c-green: #1fa41f;
+$c-gray-100: #aaaaaa;
+$c-gray-300: #5f535c;
+$c-gray-800: #2d2c2d;
+$c-black: black;
+
+html {
+    scroll-behavior: smooth;
+    font-size: 10px;
+}
+
+.body {
+    font-family: 'tenpounds regular';
+    font-weight: 600;
+    font-size: 2rem;
+    color: $c-blue;
+    background-color: $c-aqua-100;
+
+    &.dark {
+        color: $c-white-100;
+        background-color: $c-gray-300;
+    }
+
+    &.active {
+        overflow-y: hidden;
+        z-index: 1002;
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+    &.active {
+        display: block;
+    }
+}
+
+.wrapper {
+    max-width: 100rem;
+    @include position(column);
+    justify-content: center;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    overflow-x: hidden;
+}
+
+.btn {
+    padding: 1rem 2rem;
+    font-family: 'salina trial';
+    color: $c-white-500;
+    background-color: $c-aqua-800;
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: inset 0 0.5rem 8rem rgba(3, 29, 54, 0.7),
+        inset 0 0.5rem 1rem rgba(6, 14, 102, 0.9),
+        inset 0 -0.5rem 1rem rgba(60, 28, 166, 0.8);
+    @media (hover: hover) and (pointer: fine) and (pointer: fine) {
+        &:hover {
+            background-color: $c-green;
+            box-shadow: inset 0 0.5rem 8rem rgba(10, 138, 83, 0.7),
+                inset 0 0.5rem 1rem rgba(5, 77, 46, 0.9),
+                inset 0 -0.5rem 1rem rgba(8, 66, 19, 0.8);
+            transform: scale(1.1);
+        }
+    }
+
+    &.dark {
+        color: $c-gray-800;
+        background-color: $c-white-100;
+        box-shadow: inset 0 0.1rem 1rem #0e0e0edc;
+        @media (hover: hover) and (pointer: fine) and (pointer: fine) {
+            &:hover {
+                background-color: $c-aqua-800;
+                box-shadow: inset 0 0.1rem 1rem #4724bbdc;
+            }
+        }
+    }
+    &.active {
+        background-color: $c-aqua-500;
+        box-shadow: inset 0 0.5rem 8rem rgba(11, 11, 11, 0.7);
+    }
+}
+
+.scoreboard {
+    max-width: 70rem;
+    &__rows {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        place-items: center;
+        gap: 2rem;
+        padding: 1.5rem;
+
+        &:first-child {
+            padding: 0;
+        }
+    }
+
+    &__time__date {
+        color: $c-green;
+
+        &.dark {
+            color: $c-aqua-800;
+        }
+    }
+
+    &__theme-toggle {
+        width: 3rem;
+        height: 3rem;
+        background: url('../assets/img/sun.svg') center/cover no-repeat;
+        cursor: pointer;
+
+        &.dark {
+            background: url('../assets/img/moon.svg') center/cover no-repeat;
+        }
+    }
+
+    &__mike {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: url('../assets/img/sound-light.svg') center/cover no-repeat;
+        cursor: pointer;
+
+        &.dark {
+            background: url('../assets/img/sound-dark.svg') center/cover
+                no-repeat;
+        }
+
+        &.off {
+            background: url('../assets/img/mute-light.svg') center/cover
+                no-repeat;
+
+            &.dark {
+                background: url('../assets/img/mute-dark.svg') center/cover
+                    no-repeat;
+            }
+        }
+    }
+}
+
+.blocks {
+    display: flex;
+    gap: 1rem;
+}
+
+.select {
+    padding: 0.5rem;
+    color: $c-green;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+
+    &.dark {
+        color: $c-gray-800;
+    }
+
+    &:focus {
+        outline: none;
+        border: none;
+        color: $c-blue;
+    }
+}
+
+//burger-menu-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@media screen and (max-width: 768px) {
+    .scoreboard__burger {
+        width: 3rem;
+        height: 3rem;
+        position: absolute;
+        left: 90vw;
+        background-color: $c-aqua-800;
+        border-radius: 10rem;
+        z-index: 1001;
+
+        &::before {
+            @include burger-line();
+        }
+
+        &::after {
+            @include burger-line();
+        }
+
+        &::before {
+            content: '';
+        }
+
+        &::after {
+            content: '';
+        }
+
+        &::before {
+            top: 40%;
+        }
+
+        &::after {
+            bottom: 40%;
+        }
+
+        &.active::before {
+            top: 50%;
+            transform: rotate(-45deg) translate(0, -50%);
+        }
+
+        &.active::after {
+            bottom: 48%;
+            transform: rotate(45deg) translate(0, 50%);
+        }
+    }
+
+    .scoreboard {
+        &__nav {
+            width: 32rem;
+            height: 100%;
+            position: fixed;
+            padding-top: 5rem;
+            top: 0;
+            right: -32rem;
+            background-color: $c-aqua-300;
+            transform: translateX(0%);
+            transition: transform 0.5s ease-out, right 0.5s ease-out;
+            z-index: 1000;
+            &.active {
+                transform: translateX(0%);
+                right: 0;
+            }
+
+            &.dark {
+                background-color: $c-gray-300;
+            }
+        }
+
+        &__item {
+            @include position(column);
+            align-content: space-between;
+            gap: 5rem;
+            font-size: 2.5rem;
+        }
+    }
+}
+
+//main ---------------------------------------------------------------------------------------------
+.main {
+    padding-top: 1rem;
+}
+
+#game {
+    background-color: $c-aqua-300;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border: 0.1rem solid $c-black;
+    user-select: none;
+
+    &.dark {
+        color: $c-aqua-800;
+        background-color: $c-white-500;
+    }
+
+    td,
+    th {
+        width: 3rem;
+        height: 3rem;
+        padding: 0.4rem;
+        font-size: 1.3rem;
+        white-space: nowrap;
+
+        &:nth-child(5n + 1) {
+            border-right: 0.2rem solid $c-gray-800;
+        }
+    }
+
+    tr {
+        &:nth-child(5n + 1) {
+            td,
+            th {
+                border-bottom: 0.2rem solid $c-gray-800;
+            }
+        }
+    }
+
+    th {
+        background-color: $c-white-100;
+        font-family: 'salina trial';
+        @include borderDot($c-gray-800);
+
+        &.highlight {
+            background-color: $c-white-500;
+        }
+    }
+
+    td {
+        @include borderDot($c-gray-300);
+        cursor: pointer;
+        @media (hover: hover) and (pointer: fine) and (pointer: fine) {
+            &:hover {
+                background-color: $c-gray-100;
+            }
+        }
+
+        &.off {
+            background: url('../assets/img/cross.svg') center no-repeat
+                transparent;
+        }
+
+        &.on {
+            background-color: $c-black;
+            background-image: none;
+        }
+
+        &.off-solution {
+            background: url('../assets/img/cross.svg') center no-repeat
+                transparent;
+        }
+
+        &.on-solution {
+            background-color: $c-black;
+            background-image: none;
+        }
+    }
+}
+
+//popup----------------------------------------------------------------------------------------------
+.popup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(37, 34, 34, 0.7);
+    opacity: 1;
+    visibility: visible;
+
+    &__body {
+        min-height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem 1rem;
+    }
+
+    &__content {
+        @include position(column);
+        padding: 2rem;
+        position: relative;
+        text-align: center;
+        color: $c-green;
+        background-color: $c-aqua-500;
+        border-radius: 1rem;
+
+        &.dark {
+            color: $c-white-100;
+            background-color: $c-gray-800;
+        }
+    }
+
+    &__text {
+        padding: 2rem 1rem;
+    }
+
+    &__span-word {
+        color: $c-blue;
+    }
+}
+
+.target {
+    opacity: 0;
+    visibility: hidden;
+}
