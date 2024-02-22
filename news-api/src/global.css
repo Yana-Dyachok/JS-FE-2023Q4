@@ -53,23 +53,36 @@ h3 {
     font-weight: 400;
 }
 
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
 body {
     color: #fff;
     background: #17181c;
+    background: linear-gradient(to right,#17181c,#2f021f);
     font-family: sans-serif;
 }
 
 header {
+    min-height: 10vh;
     padding: 10px 30px;
 }
 
-header h1 {
+.header__title {
     font-size: 40px;
     font-weight: 800;
+    text-align: center;
+}
+
+.main {
+    padding: 0 20px;
+    min-height: 80vh;
 }
 
 footer {
-    height: 100px;
+    min-height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,11 +103,15 @@ footer {
 .footer__item-copyright {
     color: #f5e8e8;
 }
-.footer__item-copyright:hover {
-    color: #f5e8e8;
-}
+
 .footer__item-copyright:before {
     content: '©';
+}
+
+.footer__item:not(.footer__item-copyright):hover,
+.footer__item:not(.footer__item-copyright):focus  {
+    filter: drop-shadow(0.3rem 0.3rem 1.3rem white);
+    transform: scale(1.1);
 }
 
 .footer__logo-rss {
