@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const DotenvWebpackPlugin = require('dotenv-webpack');
 
 const baseConfig = {
-    entry: path.resolve(__dirname, './src/index.js'),
+    entry: path.resolve(__dirname, 'src', 'index.ts'),
     mode: 'development',
     module: {
         rules: [
@@ -25,20 +25,19 @@ const baseConfig = {
     },
     output: {
         filename: 'index.js',
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
         new DotenvWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
-            filename: 'index.html',
+            template: path.resolve(__dirname, 'src', 'index.html'),
         }),
         new CleanWebpackPlugin(),
     ],
 };
 
-module.exports = ({ mode }) => {
-    const isProductionMode = mode === 'production';
+module.exports = (env, argv) => {
+    const isProductionMode = argv.mode === 'production';
     const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
 
     return merge(baseConfig, envConfig);
