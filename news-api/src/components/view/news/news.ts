@@ -1,18 +1,21 @@
 import './news.css';
 
-import {NewsItem} from '../../types/interfaces';
+import { INewsItem } from '../../types/interfaces';
 
 class News {
-    draw(data: NewsItem[]): void {
+    draw(data: INewsItem[]): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
-        const newsItemTemp = document.querySelector<HTMLTemplateElement>('#newsItemTemp');
+        const newsItemTemp: HTMLTemplateElement | null = document.querySelector('#newsItemTemp');
         if (newsItemTemp) {
             news.forEach((item, idx) => {
                 const newsClone = newsItemTemp.content.cloneNode(true) as DocumentFragment;
+
                 if (idx % 2) newsClone.querySelector('.news__item')?.classList.add('alt');
+
                 const metaPhoto: HTMLElement | null = newsClone.querySelector('.news__meta-photo');
+
                 if (metaPhoto) {
                     metaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
                 }
@@ -53,7 +56,7 @@ class News {
             console.error("Element with id 'newsItemTemp' not found.");
         }
 
-        const newsContainer = document.querySelector<HTMLElement>('.news');
+        const newsContainer: HTMLElement | null = document.querySelector('.news');
         if (newsContainer) {
             newsContainer.innerHTML = '';
             newsContainer.appendChild(fragment);

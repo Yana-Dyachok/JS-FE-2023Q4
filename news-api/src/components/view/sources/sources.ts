@@ -1,10 +1,10 @@
 import './sources.css';
-import {Source} from '../../types/interfaces';
+import { ISource } from '../../types/interfaces';
 
 class Sources {
-    draw(data: Source[]): void {
+    draw(data: ISource[]): void {
         const fragment = document.createDocumentFragment();
-        const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
+        const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
 
         if (sourceItemTemp) {
             data.forEach((item) => {
@@ -24,7 +24,7 @@ class Sources {
                 fragment.append(sourceClone);
             });
 
-            const sourcesContainer = document.querySelector<HTMLElement>('.sources');
+            const sourcesContainer: HTMLElement | null = document.querySelector('.sources');
 
             if (sourcesContainer) {
                 sourcesContainer.append(fragment);

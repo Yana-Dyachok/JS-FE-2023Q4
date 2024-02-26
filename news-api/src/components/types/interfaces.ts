@@ -1,4 +1,4 @@
-export interface Source {
+export interface ISource {
     id: string;
     name: string;
     category: string;
@@ -8,12 +8,12 @@ export interface Source {
     url: string;
 }
 
-export interface SourcesData {
-    sources: Source[];
+export interface ISourcesData {
+    sources: ISource[];
     status: string;
 }
 
-export interface NewsItem {
+export interface INewsItem {
     author: string;
     title: string;
     description: string;
@@ -25,8 +25,8 @@ export interface NewsItem {
     url: string;
 }
 
-export interface NewsData {
+export interface INewsData {
     status: string;
     totalResults: number;
-    articles: NewsItem[];
+    articles: INewsItem[];
 }

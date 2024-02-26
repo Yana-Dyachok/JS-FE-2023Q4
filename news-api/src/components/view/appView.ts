@@ -1,6 +1,6 @@
 import News from './news/news';
 import Sources from './sources/sources';
-import { SourcesData, NewsData } from '../types/interfaces';
+import { ISourcesData, INewsData } from '../types/interfaces';
 
 export class AppView {
     private news: News;
@@ -11,12 +11,12 @@ export class AppView {
         this.sources = new Sources();
     }
 
-    drawNews(data: NewsData): void {
+    drawNews(data: INewsData): void {
         const values = data?.articles ? data?.articles : [];
         this.news.draw(values);
     }
 
-    drawSources(data: SourcesData): void {
+    drawSources(data: ISourcesData): void {
         const values = data?.sources ? data?.sources : [];
         this.sources.draw(values);
     }
