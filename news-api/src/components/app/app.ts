@@ -1,8 +1,7 @@
 import AppController from '../controller/controller';
 
-import { AppView, NewsData, SourcesData } from '../view/appView';
-import { NewsItem } from '../view/news/news';
-import { Source } from '../view/sources/sources';
+import { AppView} from '../view/appView';
+import { NewsData, SourcesData} from '../types/interfaces';
 
 class App {
     private controller: AppController;
@@ -17,16 +16,14 @@ class App {
         const sourcesElement = document.querySelector('.sources');
         if (sourcesElement) {
             sourcesElement.addEventListener('click', (e: Event) => {
-                this.controller.getNews(e, (data: NewsItem[]) => {
-                    const newsData: NewsData = { articles: data };
-                    this.view.drawNews(newsData);
+                this.controller.getNews(e, (data: NewsData) => {
+                    this.view.drawNews(data);
                 });
             });
         }
 
-        this.controller.getSources((data: Source[]) => {
-            const sourcesData: SourcesData = { sources: data };
-            this.view.drawSources(sourcesData);
+        this.controller.getSources((data: SourcesData) => {
+            this.view.drawSources(data);
         });
     }
 }
