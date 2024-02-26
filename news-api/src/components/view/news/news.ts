@@ -1,16 +1,6 @@
 import './news.css';
 
-export interface NewsItem {
-    author: string;
-    title: string;
-    description: string;
-    urlToImage: string;
-    publishedAt: string;
-    source: {
-        name: string;
-    };
-    url: string;
-}
+import {NewsItem} from '../../types/interfaces';
 
 class News {
     draw(data: NewsItem[]): void {
