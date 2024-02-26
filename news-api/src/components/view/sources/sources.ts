@@ -1,42 +1,34 @@
 import './sources.css';
-
-export interface Source {
-    id: string;
-    name: string;
-}
+import {Source} from '../../types/interfaces';
 
 class Sources {
+    draw(data: Source[]): void {
+        const fragment = document.createDocumentFragment();
+        const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
 
-    draw(data: Source | Source[]): void {
-        const dataArray = Array.isArray(data) ? data : [data];
-        for (const source of dataArray) {
-            const fragment = document.createDocumentFragment();
-            const sourceItemTemp = document.querySelector<HTMLTemplateElement>('#sourceItemTemp');
-            
-            if (!sourceItemTemp) {
-                return;
-            }
+        if (sourceItemTemp) {
+            data.forEach((item) => {
+                const sourceClone = sourceItemTemp.content.cloneNode(true) as DocumentFragment;
+                const sourceItemName = sourceClone.querySelector('.source__item-name');
 
-            const sourceClone = sourceItemTemp.content.cloneNode(true) as DocumentFragment;
+                if (sourceItemName) {
+                    sourceItemName.textContent = item.name;
+                }
 
-            const sourceName = sourceClone.querySelector('.source__item-name');
-            if (sourceName) {
-                sourceName.textContent = source.name;
-            }
+                const sourceItem = sourceClone.querySelector('.source__item');
 
-            const sourceItem = sourceClone.querySelector('.source__item');
-            if (sourceItem) {
-                sourceItem.setAttribute('data-source-id', source.id);
-            }
+                if (sourceItem) {
+                    sourceItem.setAttribute('data-source-id', item.id);
+                }
 
-            fragment.append(sourceClone);
+                fragment.append(sourceClone);
+            });
 
             const sourcesContainer = document.querySelector<HTMLElement>('.sources');
-            if (!sourcesContainer) {
-                return;
-            }
 
-            sourcesContainer.append(fragment);
+            if (sourcesContainer) {
+                sourcesContainer.append(fragment);
+            }
         }
     }
 }
