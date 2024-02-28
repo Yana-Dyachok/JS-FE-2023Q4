@@ -1,7 +1,6 @@
 import AppController from '../controller/controller';
 
 import { AppView} from '../view/appView';
-import { INewsData, ISourcesData} from '../types/interfaces';
 
 class App {
     private controller: AppController;
@@ -15,14 +14,14 @@ class App {
     start(): void {
         const sourcesElement = document.querySelector('.sources');
         if (sourcesElement) {
-            sourcesElement.addEventListener('click', (e: Event) => {
-                this.controller.getNews(e, (data: INewsData) => {
+            sourcesElement.addEventListener('click', (e) => {
+                this.controller.getNews(e, (data) => {
                     this.view.drawNews(data);
                 });
             });
         }
 
-        this.controller.getSources((data: ISourcesData) => {
+        this.controller.getSources((data) => {
             this.view.drawSources(data);
         });
     }
