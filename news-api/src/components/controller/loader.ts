@@ -1,6 +1,4 @@
-type Options = {
-    [key: string]: string;
-};
+import { Options } from '../types/types';
 
 type Callback<T> = (data: T) => void;
 
