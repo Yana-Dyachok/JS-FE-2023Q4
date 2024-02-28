@@ -1,9 +1,10 @@
 import AppLoader from './appLoader';
 import { ISourcesData, INewsData } from '../types/interfaces';
+import { Endpoint } from '../types/enum';
 
 class AppController extends AppLoader {
     getSources(callback: (data: ISourcesData) => void): void {
-        super.getResp({ endpoint: 'sources' }, callback);
+        super.getResp({ endpoint: Endpoint.Sources }, callback);
     }
 
     getNews(e: Event, callback: (data: INewsData) => void): void {
@@ -17,7 +18,7 @@ class AppController extends AppLoader {
                     newsContainer.setAttribute('data-source', sourceId);
                     super.getResp(
                         {
-                            endpoint: 'everything',
+                            endpoint: Endpoint.Everything,
                             options: {
                                 sources: sourceId,
                             },
