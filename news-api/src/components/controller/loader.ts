@@ -5,8 +5,8 @@ type Options = {
 type Callback<T> = (data: T) => void;
 
 class Loader {
-    baseLink: string;
-    options: Options;
+    private baseLink: string;
+    private options: Options;
 
     constructor(baseLink: string, options: Options) {
         this.baseLink = baseLink;
