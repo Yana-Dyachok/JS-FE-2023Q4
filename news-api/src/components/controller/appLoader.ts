@@ -1,6 +1,6 @@
 import Loader from './loader';
 
-type Options = Record<string, string>
+type Options = Record<string, string>;
 
 class AppLoader extends Loader {
     constructor() {
