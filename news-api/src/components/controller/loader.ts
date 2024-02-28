@@ -1,6 +1,4 @@
-import { Options } from '../types/types';
-
-type Callback<T> = (data: T) => void;
+import { Options, Callback } from '../types/types';
 
 class Loader {
     private baseLink: string;
