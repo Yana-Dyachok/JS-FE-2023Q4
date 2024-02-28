@@ -1,8 +1,6 @@
 import Loader from './loader';
 
-type Options = {
-    apiKey: string;
-};
+type Options = Record<string, string>
 
 class AppLoader extends Loader {
     constructor() {
