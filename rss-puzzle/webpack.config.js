@@ -15,8 +15,8 @@ const baseConfig = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
         ],
     },
@@ -38,7 +38,9 @@ const baseConfig = {
 
 module.exports = (env, argv) => {
     const isProductionMode = argv.mode === 'production';
-    const config = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
+    const config = isProductionMode
+        ? require('./webpack.prod.config')
+        : require('./webpack.dev.config');
 
     return merge(baseConfig, config);
 };
