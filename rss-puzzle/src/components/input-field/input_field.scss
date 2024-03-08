@@ -1,0 +1,30 @@
+@import '../../styles/colors.scss';
+.login_form {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 3rem;
+
+    & > label {
+        text-align: left;
+    }
+}
+
+.login_input {
+    width: 100%;
+    padding: 1rem 3rem;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 3rem;
+    color: $c-blue-500;
+    background-color: $c-white;
+    border: 2px solid $c-brown-100;
+    border-radius: 1rem;
+
+    &:focus {
+        border: 3px solid $c-blue-500;
+    }
+
+    &.error {
+        border: 3px solid red;
+    }
+}
