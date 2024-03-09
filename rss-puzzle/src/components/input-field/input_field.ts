@@ -1,39 +1,31 @@
 import './input_field.scss';
+
 class CreateInputField {
     private form: HTMLFormElement;
 
     constructor() {
         this.form = document.createElement('form');
+        this.form.classList.add('login_form');
         this.createFormElements();
     }
 
     private createFormElements() {
-        this.form.classList.add('login_form');
-        const firstNameLabel = this.createLabel('firstname', 'First name:');
-        this.form.append(firstNameLabel);
-        const firstNameInput = this.createInput('text', 'fname');
-        this.form.append(firstNameInput);
-        const surnameLabel = this.createLabel('surname', 'Surname:');
-        this.form.append(surnameLabel);
-        const surnameInput = this.createInput('text', 'sname');
-        this.form.append(surnameInput);
+        this.appendElements([
+            this.createLabel('firstname', 'First name:'),
+            this.createInput('text', 'fname'),
+            this.createLabel('surname', 'Surname:'),
+            this.createInput('text', 'sname')
+        ]);
     }
 
-    private createInput(type: string, id: string): HTMLInputElement {
-        const input = document.createElement('input');
-        input.setAttribute('type', type);
-        input.setAttribute('id', id);
-        input.classList.add('login_input');
-        input.required = true;
-        return input;
-    }
+    private createInput = (type: string, id: string): HTMLInputElement => 
+    Object.assign(document.createElement('input'), { type, id, classList: ['login_input'], required: true });
 
-    private createLabel(forLabel: string, text: string): HTMLLabelElement {
-        const label = document.createElement('label');
-        label.setAttribute('for', forLabel);
-        label.textContent = text;
-        return label;
-    }
+    private createLabel = (forLabel: string, text: string): HTMLLabelElement => 
+    Object.assign(document.createElement('label'), { htmlFor: forLabel, textContent: text });
+
+    private appendElements = (elements: HTMLElement[]) => 
+    elements.forEach(element => this.form.appendChild(element));
 
     getRootElement(): HTMLFormElement {
         return this.form;
