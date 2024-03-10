@@ -1,5 +1,5 @@
 import './input_field.scss';
-
+import './error.scss';
 class CreateInputField {
     private form: HTMLFormElement;
 
@@ -12,9 +12,11 @@ class CreateInputField {
     private createFormElements() {
         this.appendElements([
             this.createLabel('firstname', 'First name:'),
-            this.createInput('text', 'fname'),
+            this.createInput('text', 'firstname'),
+            (Object.assign(document.createElement('div'), { classList: ['login_error first-name_error'] })),
             this.createLabel('surname', 'Surname:'),
-            this.createInput('text', 'sname')
+            this.createInput('text', 'surname'),
+            (Object.assign(document.createElement('div'), { classList: ['login_error surname_error'] })),
         ]);
     }
 
@@ -25,7 +27,7 @@ class CreateInputField {
     Object.assign(document.createElement('label'), { htmlFor: forLabel, textContent: text });
 
     private appendElements = (elements: HTMLElement[]) => 
-    elements.forEach(element => this.form.appendChild(element));
+    elements.forEach(element => this.form.append(element));
 
     getRootElement(): HTMLFormElement {
         return this.form;
