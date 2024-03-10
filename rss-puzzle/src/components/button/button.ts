@@ -18,6 +18,10 @@ class Button {
             ? this.button.setAttribute('disabled', 'disabled')
             : this.button.removeAttribute('disabled');
     }
+
+    onClick(callback: () => void): void {
+        this.button.addEventListener('click', callback);
+    }
 }
 
 export default Button;
