@@ -4,10 +4,11 @@ import LoginButton from '../login-button/login_button';
 class FormValidation extends ResultValidation {
     private isValidFirstName: boolean = false;
     private isValidSurname: boolean = false;
-    private loginButton: LoginButton;
-    constructor(button: LoginButton) {
+    firstName:string = '';
+    surname:string = '';
+
+    constructor(private loginButton: LoginButton) {
         super();
-        this.loginButton = button;
     }
 
     setupValidation(): void {
@@ -19,10 +20,9 @@ class FormValidation extends ResultValidation {
             firstNameInput.addEventListener('input', () => {
                 const value = firstNameInput!.value;
                 this.isValidFirstName = /^[A-Z][a-zA-Z-]{2,}$/.test(value);
-                this.isValidFirstName
-                    ? this.validityIsTrue(firstNameInput, errorFirstName!)
-                    : this.validityIsFalse(firstNameInput, errorFirstName!, value, 3);
+                this.isValidFirstName ? this.validityIsTrue(firstNameInput, errorFirstName!) : this.validityIsFalse(firstNameInput, errorFirstName!, value, 3);
                 this.loginButton.setDisabled(!this.updateValidity(this.isValidFirstName, this.isValidSurname));
+                this.firstName = value; 
             });
         }
 
@@ -30,10 +30,9 @@ class FormValidation extends ResultValidation {
             surnameInput.addEventListener('input', () => {
                 const value = surnameInput!.value;
                 this.isValidSurname = /^[A-Z][a-zA-Z-]{3,}$/.test(value);
-                this.isValidSurname
-                    ? this.validityIsTrue(surnameInput, errorSurname!)
-                    : this.validityIsFalse(surnameInput, errorSurname!, value, 4);
+                this.isValidSurname ? this.validityIsTrue(surnameInput, errorSurname!): this.validityIsFalse(surnameInput, errorSurname!, value, 4);
                 this.loginButton.setDisabled(!this.updateValidity(this.isValidFirstName, this.isValidSurname));
+                this.surname = value;
             });
         }
     }
