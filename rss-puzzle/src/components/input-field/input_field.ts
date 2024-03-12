@@ -1,12 +1,12 @@
 import './input_field.scss';
 import './error.scss';
+
 class CreateInputField {
     private form: HTMLFormElement;
 
     constructor() {
         this.form = document.createElement('form');
         this.form.classList.add('login_form');
-        this.createFormElements();
     }
 
     private createFormElements() {
@@ -30,6 +30,7 @@ class CreateInputField {
     elements.forEach(element => this.form.append(element));
 
     getRootElement(): HTMLFormElement {
+        this.createFormElements();
         return this.form;
     }
 }

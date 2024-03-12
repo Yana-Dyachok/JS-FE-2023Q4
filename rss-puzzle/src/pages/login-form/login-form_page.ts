@@ -20,7 +20,7 @@ class LoginFormPage {
         this.saveToLocalStorage = new SaveToLocalStorage();
         this.startScreen = new StartScreenPage();
         this.container = document.createElement('div');
-        this.container.classList.add('login_container');
+        this.container.classList.add('container');
         document.body.append(this.container);
     }
 

@@ -1,6 +1,6 @@
-@import "./reset.scss";
-@import "./fons.scss";
-@import "./colors.scss";
+@import './reset.scss';
+@import './fons.scss';
+@import './colors.scss';
 
 html {
     scroll-behavior: smooth;
@@ -9,7 +9,7 @@ html {
 
 body {
     height: 100vh;
-    font-family: "salina trial", serif;
+    font-family: 'salina trial', serif;
     font-size: 4rem;
     text-align: center;
     color: $c-brown-600;
