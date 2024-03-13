@@ -13,7 +13,7 @@ class CreateStartScreen {
     private puzzleAnimation: PuzzleAnimation;
     private localStorage: SaveToLocalStorage;
 
-    constructor() {
+    constructor(localStorage: SaveToLocalStorage) {
         this.localStorage = localStorage;
         this.startScreen = document.createElement('div');
         this.startScreen.classList.add('start-screen_content');

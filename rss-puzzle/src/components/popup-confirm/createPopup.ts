@@ -17,7 +17,7 @@ class CreatePopup {
         document.body.append(this.popup);
     }
 
-    private createPopupElements() {
+    private createPopupElements(): void {
         const popupText = document.createElement('h3');
         popupText.textContent = 'Are you sure you want to log out?';
         const popupButtons = document.createElement('div');

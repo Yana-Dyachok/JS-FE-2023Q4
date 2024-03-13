@@ -22,13 +22,14 @@ class YesButton extends Button {
 
     private initLoginForm(): void {
         if (!this.loginForm) {
-            this.loginForm = new LoginFormPage();
+            this.loginForm = new LoginFormPage(this.saveToLocalStorage);
             this.loginForm.drawLoginForm();
         }
     }
 
     private removeElement(elementClass: string): void {
-        const element: HTMLDivElement | null = document.querySelector(elementClass);
+        const element: HTMLDivElement | null =
+            document.querySelector(elementClass);
         if (element) {
             element.remove();
         }
