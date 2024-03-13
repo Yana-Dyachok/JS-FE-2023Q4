@@ -15,9 +15,20 @@ class App {
     }
 
     start(): void {
-        localStorage.length === 0
-            ? this.loginForm.drawLoginForm()
-            : this.startScreen.drawStartScreenPage();
+        const firstName: string | null =
+            this.localStorage.getValue('firstName');
+        const surname: string | null = this.localStorage.getValue('surname');
+
+        if (
+            firstName === null ||
+            surname === null ||
+            typeof firstName === 'undefined' ||
+            typeof surname === 'undefined'
+        ) {
+            this.loginForm.drawLoginForm();
+        } else {
+            this.startScreen.drawStartScreenPage();
+        }
     }
 }
 
