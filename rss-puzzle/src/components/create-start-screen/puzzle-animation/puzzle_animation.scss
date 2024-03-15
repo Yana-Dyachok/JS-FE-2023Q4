@@ -45,10 +45,25 @@
 @keyframes puzzleAnimation {
     0% {
         transform: translateY(-150%);
+        opacity: 1;
+    }
+
+    98% {
+        transform: translateY(180%);
+        opacity: 0.7;
     }
 
     100% {
-        transform: translateY(500%);
+        transform: translateY(200%);
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 1260px) {
+    .start-screen_puzzle {
+        width: 15rem;
+        height: 15rem;
+        background-size: 14rem;
     }
 }
 
@@ -57,6 +72,6 @@
         width: 10rem;
         height: 10rem;
         padding-top: 4rem;
-        background-size: 8rem;
+        background-size: 9rem;
     }
 }
