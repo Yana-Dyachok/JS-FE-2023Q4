@@ -1,0 +1,24 @@
+$r: 1.2rem;
+
+@mixin puzzle-background($c) {
+    background:
+        radial-gradient($r at calc(100% - $r) calc(50% + $r / 2), #0000 98%, $c)
+            $r calc(-1 * $r) no-repeat,
+        radial-gradient($r at $r calc(50% - $r / 2), $c 98%, #0000);
+}
+
+@mixin puzzle-background-first($c) {
+    background: radial-gradient(
+            $r at calc(100% - $r) calc(50% + $r / 2),
+            #0000 98%,
+            $c
+        )
+        $r calc(-1 * $r) no-repeat;
+}
+
+@mixin puzzle-background-last($c) {
+    background:
+        radial-gradient($r at calc(100%) calc(100%), #0000 98%, $c) $r
+            calc(-1 * $r) no-repeat,
+        radial-gradient($r at $r calc(50% - $r / 2), $c 98%, #0000);
+}

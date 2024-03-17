@@ -1,0 +1,51 @@
+@import '../../../styles/colors.scss';
+@import '../mixin_source_block.scss';
+@import '../card_animations.scss';
+
+.play-field_source {
+    min-width: 100%;
+    width: fit-content;
+    min-height: 10rem;
+    display: flex;
+    gap: 0.05rem;
+    padding: 0.5rem;
+    font-size: 3rem;
+    color: $c-white;
+    border: 0.1rem solid $c-white;
+    border-radius: 1rem;
+
+    &-card {
+        padding: 2rem 2rem 3rem;
+        margin: 0 -0.5rem -1rem;
+        display: inline-block;
+        overflow-x: hidden;
+        transition: transform 0.6s ease; 
+        animation: cardSourceAnimation 0.6s ease-out;
+        cursor: pointer;
+        @include puzzle-background($c-brown-100);
+
+        &:hover,
+        &:focus {
+            @include puzzle-background($c-brown-600);
+        }
+    }
+
+    &-card[data-source='0'] {
+        @include puzzle-background-first($c-brown-100);
+
+        &:hover,
+        &:focus {
+            @include puzzle-background-first($c-brown-600);
+        }
+    }
+
+    &-card[data-source='last'] {
+        margin-right: 0.5rem;
+        @include puzzle-background-last($c-brown-100);
+
+        &:hover,
+        &:focus {
+            @include puzzle-background-last($c-brown-600);
+        }
+    }
+}
