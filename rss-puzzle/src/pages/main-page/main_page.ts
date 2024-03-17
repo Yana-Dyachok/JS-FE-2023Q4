@@ -1,6 +1,9 @@
-class MainPage {    
+import PlayField from "../../components/play-field/play_field";
+
+class MainPage {
+    private playField: PlayField;
     constructor() {
- 
+        this.playField = new PlayField();
     }
 
     drawMainPage = (): void => {
@@ -9,6 +12,7 @@ class MainPage {
         if (container !== null) {
             container.innerHTML = '';
             container.classList.remove('start-screen_container');
+            container.append(this.playField.getRootElement());
         }
     };
 }
