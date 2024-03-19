@@ -1,4 +1,4 @@
-import PlayField from "../../components/play-field/play_field";
+import PlayField from '../../components/play-field/play_field';
 
 class MainPage {
     private playField: PlayField;
