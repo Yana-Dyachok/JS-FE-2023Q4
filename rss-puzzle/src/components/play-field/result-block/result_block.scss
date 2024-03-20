@@ -2,10 +2,10 @@
 @import '../mixin_source_block.scss';
 @import '../card_animations.scss';
 
-.play-field_result {
+.play-field_result  {
     min-width: 100%;
     width: fit-content;
-    min-height: 100%;
+    min-height: 10rem;
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -15,7 +15,7 @@
     border: 0.1rem solid $c-white;
     border-radius: 1rem;
 
-    &-level {
+    &-round {
         width: fit-content;
         display: flex;
         padding: 0.1rem 0.5rem;
@@ -31,6 +31,10 @@
         cursor: pointer;
         @include puzzle-background($c-blue-500);
 
+        &.correct {
+            @include puzzle-background(green);
+        }
+
         &:hover,
         &:focus {
             @include puzzle-background($c-brown-600);
@@ -39,6 +43,10 @@
 
     &-card[data-result='0'] {
         @include puzzle-background-first($c-blue-500);
+
+        &.correct {
+            @include puzzle-background-first(green);
+        }
 
         &:hover,
         &:focus {
@@ -49,6 +57,10 @@
     &-card[data-result='last'] {
         margin-right: 0.5rem;
         @include puzzle-background-last($c-blue-500);
+
+        &.correct {
+            @include puzzle-background-last(green);
+        }
 
         &:hover,
         &:focus {

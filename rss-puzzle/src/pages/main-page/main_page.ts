@@ -1,18 +1,20 @@
 import PlayField from '../../components/play-field/play_field';
+import ButtonsPlayField from '../../components/play-field/buttons-play-field/buttons_play_field';
 
 class MainPage {
     private playField: PlayField;
+    private btnsPlayField: ButtonsPlayField;
     constructor() {
-        this.playField = new PlayField();
+        this.btnsPlayField = new ButtonsPlayField();
+        this.playField = new PlayField(this.btnsPlayField.continueBtn);
     }
 
     drawMainPage = (): void => {
-        const container: HTMLDivElement | null =
-            document.querySelector('.container');
+        const container: HTMLDivElement | null = document.querySelector('.container');
         if (container !== null) {
             container.innerHTML = '';
             container.classList.remove('start-screen_container');
-            container.append(this.playField.getRootElement());
+            container.append(this.playField.getRootElement(), this.btnsPlayField.getRootElement());
         }
     };
 }
