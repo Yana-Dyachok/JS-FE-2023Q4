@@ -25,15 +25,21 @@ class CorrectWord {
             this.checkBtn.onClick(()=>this.checkCorrectPuzzle(resultCards[round-1]))
             if (this.checkCorrectAnswer(resultCards[round-1])) {
                 this.continueBtn.setDisabled(false);
+                this.continueBtn.showBtn(true);
+                this.checkBtn.showBtn(false);
             } else {
                 Array.from(resultElements).forEach((el) =>
                     el.classList.remove('correct')
                 );
                 this.continueBtn.setDisabled(true);
+                this.continueBtn.showBtn(false);
+                this.checkBtn.showBtn(true);
             }
         } else {
             this.continueBtn.setDisabled(true);
             this.checkBtn.setDisabled(true);
+            this.continueBtn.showBtn(false);
+            this.checkBtn.showBtn(true);
         }
         this.sourceBlock.removeChild(card);
     }

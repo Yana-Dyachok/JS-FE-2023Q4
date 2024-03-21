@@ -52,7 +52,10 @@ class PlayField {
               this.playFieldElements.resultBlock.append(this.resultBlock.getRootElement());
             }
         });
-        this.continueBtn.setDisabled(true);      
+        this.continueBtn.setDisabled(true); 
+        this.checkBtn.setDisabled(true); 
+        this.continueBtn.showBtn(false);
+        this.checkBtn.showBtn(true);     
     }
 
     getRootElement(): HTMLDivElement {

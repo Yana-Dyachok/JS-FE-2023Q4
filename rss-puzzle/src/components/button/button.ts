@@ -22,6 +22,10 @@ class Button {
     onClick(callback: () => void): void {
         this.button.addEventListener('click', callback);
     }
+
+    showBtn(visible: boolean): void {
+        this.button.style.display = visible ? 'block' : 'none';
+    }
 }
 
 export default Button;
