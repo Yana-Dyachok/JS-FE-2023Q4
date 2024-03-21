@@ -6,7 +6,7 @@ class MainPage {
     private btnsPlayField: ButtonsPlayField;
     constructor() {
         this.btnsPlayField = new ButtonsPlayField();
-        this.playField = new PlayField(this.btnsPlayField.continueBtn);
+        this.playField = new PlayField(this.btnsPlayField.continueBtn, this.btnsPlayField.checkBtn);
     }
 
     drawMainPage = (): void => {

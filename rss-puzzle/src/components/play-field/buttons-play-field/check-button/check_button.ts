@@ -1,10 +1,10 @@
 import Button from '../../../button/button';
 
-class ContinueButton extends Button {
+class CheckButton extends Button {
     constructor() {
-        super('continue_btn', 'Continue');
+        super('check_btn', 'Check');
         this.setDisabled(true);
     }   
 }
 
-export default ContinueButton;
+export default CheckButton;

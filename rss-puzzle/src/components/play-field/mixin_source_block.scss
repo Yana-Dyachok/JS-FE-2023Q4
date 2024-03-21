@@ -22,3 +22,13 @@ $r: 1.2rem;
             calc(-1 * $r) no-repeat,
         radial-gradient($r at $r calc(50% - $r / 2), $c 98%, #0000);
 }
+
+@mixin btn-styles() {
+    position: relative;
+    padding: 1rem;
+    font-size: 3rem;
+    color: $c-white;
+    background-color: $c-blue-500;
+    border: 2px solid $c-white;
+    box-shadow: 0 0.5rem 0.5rem -0.4rem $c-white;
+}

@@ -1,13 +1,15 @@
 import { ILevelData } from '../../../interfaces/interfaces';
 import ContinueButton from '../buttons-play-field/continue-button/continue_btn';
+import CheckButton from '../buttons-play-field/check-button/check_button';
 import './result_block.scss';
 
 class ResultBlock {
     private roundElement: HTMLDivElement;
     constructor(
-        private levelData: ILevelData, public continueBtn: ContinueButton, public round: number ) {
+        private levelData: ILevelData, public continueBtn: ContinueButton, public checkBtn: CheckButton, public round: number ) {
         this.levelData = levelData;
         this.continueBtn = continueBtn;
+        this.checkBtn = checkBtn;
         this.round = round;
         this.roundElement = document.createElement('div');
         this.roundElement.classList.add('play-field_result-round');
@@ -43,6 +45,7 @@ class ResultBlock {
         ).forEach((el) => el.classList.remove('correct'));
         card.parentElement!.removeChild(card);
         this.continueBtn.setDisabled(true);
+        this.checkBtn.setDisabled(true);
     }
 
     getRootElement(): HTMLDivElement {

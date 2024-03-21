@@ -1,11 +1,14 @@
 import ContinueButton from '../buttons-play-field/continue-button/continue_btn';
-
+import CheckButton from '../buttons-play-field/check-button/check_button';
 class CorrectWord {
-    constructor( public round: number, public wordsLength: number, public continueBtn: ContinueButton, private sourceBlock: HTMLDivElement ) {
+    constructor( public round: number, public words: string[], public continueBtn: ContinueButton, 
+        private sourceBlock: HTMLDivElement, public checkBtn: CheckButton ) {
         this.round = round;
-        this.wordsLength = wordsLength;
+        this.words = words;
         this.continueBtn = continueBtn;
+        this.checkBtn=checkBtn;
         this.sourceBlock = sourceBlock;
+        
     }
 
     onClick(card: HTMLDivElement, round: number): void {
@@ -17,7 +20,9 @@ class CorrectWord {
         newResultCard.textContent = card.textContent || '';
         resultCards[round-1].append(newResultCard);
         const resultElements = resultCards[round-1].children;
-        if (this.wordsLength === resultElements.length) {
+        if (this.words.length === resultElements.length) {
+            this.checkBtn.setDisabled(false);
+            this.checkBtn.onClick(()=>this.checkCorrectPuzzle(resultCards[round-1]))
             if (this.checkCorrectAnswer(resultCards[round-1])) {
                 this.continueBtn.setDisabled(false);
             } else {
@@ -28,26 +33,25 @@ class CorrectWord {
             }
         } else {
             this.continueBtn.setDisabled(true);
+            this.checkBtn.setDisabled(true);
         }
         this.sourceBlock.removeChild(card);
     }
 
     private checkCorrectAnswer(resultElements: HTMLDivElement): boolean {
         const wordsArray = Array.from( resultElements.children ) as HTMLDivElement[];
-        for (let i = 0; i < wordsArray.length; i++) {
-            const element = wordsArray[i];
-            if (element.dataset.result === i.toString())
-                element.classList.add('correct');
-            else {
-                element.classList.remove('correct');
-            }
-            wordsArray[wordsArray.length - 1].dataset.result === 'last'
-                ? wordsArray[wordsArray.length - 1].classList.add('correct')
-                : wordsArray[wordsArray.length - 1].classList.remove('correct');
-        }
+        this.checkCorrectPuzzle(resultElements);
         return wordsArray.every((el) => {
             return el.classList.contains('correct');
         });
+    }
+
+    checkCorrectPuzzle(resultElements: HTMLDivElement):void {
+        const wordsArray = Array.from( resultElements.children ) as HTMLDivElement[];
+        for (let i = 0; i < wordsArray.length; i++) {
+            const element = wordsArray[i];
+        (element.textContent === this.words[i])?element.classList.add('correct'):element.classList.remove('correct');
+        }
     }
 }
 

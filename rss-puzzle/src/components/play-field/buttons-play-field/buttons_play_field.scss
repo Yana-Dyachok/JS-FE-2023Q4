@@ -1,5 +1,56 @@
+@import '../../../styles/colors.scss';
+@import '../mixin_source_block.scss';
+
 .play-field_buttons {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     padding-top: 5rem;
+    gap: 5rem;
+}
+
+.continue_btn {
+   @include btn-styles;
+
+    &:not([disabled])::after {
+        content: ''; 
+        position: absolute;
+        top: 20%;
+        left: 100%; 
+        width: 12rem;
+        height: 4rem;
+        background-image: url('../../../assets/img/svg/start_arrow.svg'); 
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0; 
+        transition: opacity 0.5s ease-in-out; 
+    }
+    
+    &:hover::after,
+    &:focus::after {
+        opacity: 1; 
+    }
+}
+
+.check_btn { 
+     @include btn-styles;
+
+    &:not([disabled])::after {
+        content: ''; 
+        position: absolute;
+        bottom: 165%;
+        right: 3%; 
+        width: 10rem;
+        height: 3rem;
+        background-image: url('../../../assets/img/svg/start_arrow.svg'); 
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 0; 
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; 
+        transform: rotate(-90deg);
+    }
+
+    &:hover::after,
+    &:focus::after {
+        opacity: 1; 
+    }
 }
