@@ -2,7 +2,7 @@ import DescriptionStartScreen from './description/description_start-screen';
 import StartScreenName from './name/name_start-screen';
 import StartButton from './start-button/start_button';
 import PuzzleAnimation from './puzzle-animation/puzzle_animation';
-import SaveToLocalStorage from '../local-storage/local_storage';
+import SaveToLocalStorage from '../../utils/local-storage/local_storage';
 import './create_start_screen.scss';
 
 class CreateStartScreen {

@@ -32,7 +32,11 @@
         @include puzzle-background($c-blue-500);
 
         &.correct {
-            @include puzzle-background(green);
+            @include puzzle-background($c-green);
+        }
+
+        &.done {
+            @include puzzle-background($c-gray);
         }
 
         &:hover,
@@ -45,7 +49,11 @@
         @include puzzle-background-first($c-blue-500);
 
         &.correct {
-            @include puzzle-background-first(green);
+            @include puzzle-background-first($c-green);
+        }
+
+        &.done {
+            @include puzzle-background-first($c-gray);
         }
 
         &:hover,
@@ -59,7 +67,11 @@
         @include puzzle-background-last($c-blue-500);
 
         &.correct {
-            @include puzzle-background-last(green);
+            @include puzzle-background-last($c-green);
+        }
+
+        &.done {
+            @include puzzle-background-last($c-gray);
         }
 
         &:hover,

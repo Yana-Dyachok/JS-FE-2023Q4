@@ -1,14 +1,14 @@
 import LogoutButton from '../../components/logout-button/logout_button';
 import CreateStartScreen from '../../components/create-start-screen/create_start_screen';
-import SaveToLocalStorage from '../../components/local-storage/local_storage';
+import SaveToLocalStorage from '../../utils/local-storage/local_storage';
 
 class StartScreenPage {
     private logout: LogoutButton;
     private createStart: CreateStartScreen;
-    
+
     constructor(localStorage: SaveToLocalStorage) {
         this.logout = new LogoutButton();
-        this.createStart = new CreateStartScreen(localStorage); 
+        this.createStart = new CreateStartScreen(localStorage);
     }
 
     drawStartScreenPage = (): void => {

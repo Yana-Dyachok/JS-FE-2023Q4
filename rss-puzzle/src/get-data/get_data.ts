@@ -1,4 +1,4 @@
-import {IGameData} from '../../interfaces/interfaces';
+import { IGameData } from '../interfaces/interfaces';
 
 class GetData {
     constructor(private level: number) {

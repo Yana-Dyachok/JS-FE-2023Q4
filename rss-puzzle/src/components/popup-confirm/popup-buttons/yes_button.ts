@@ -1,5 +1,5 @@
 import Button from '../../button/button';
-import SaveToLocalStorage from '../../local-storage/local_storage';
+import SaveToLocalStorage from '../../../utils/local-storage/local_storage';
 import LoginFormPage from '../../../pages/login-form/login-form_page';
 
 import './popup_button.scss';

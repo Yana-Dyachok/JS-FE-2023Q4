@@ -21,19 +21,12 @@ class ResultBlock {
     
     private onClickHandler = (event: MouseEvent) => {
         const target: HTMLDivElement | null = event.target as HTMLDivElement;
-        if (target?.classList.contains('play-field_result-card')) {
+        if (target?.classList.contains('play-field_result-card')&& !target?.classList.contains('done')) {
             this.onClick(target);
         }
     };
 
-    private removeClickEvent(): void {
-        if (this.roundElement) {
-            this.roundElement.removeEventListener('click', this.onClickHandler);
-        }
-    }
-
     private onClick(card: HTMLDivElement): void {
-        // this.removeClickEvent();
         const sourceCards: HTMLDivElement | null = document.querySelector('.play-field_source');
         const newSourceCard = document.createElement('div');
         newSourceCard.classList.add('play-field_source-card');
@@ -46,6 +39,13 @@ class ResultBlock {
         card.parentElement!.removeChild(card);
         this.continueBtn.setDisabled(true);
         this.checkBtn.setDisabled(true);
+    }
+
+    toggleResultClasses() {
+        Array.from(document.querySelectorAll('.play-field_result-card')).forEach((el)=>{
+            el.classList.remove('correct');
+            el.classList.add('done');
+        })
     }
 
     getRootElement(): HTMLDivElement {

@@ -1,4 +1,4 @@
-import GetData from '../get-data/get_data';
+import GetData from '../../get-data/get_data';
 import CreatePlayFieldElements from './create_play_fields_elements';
 import ResultBlock from './result-block/result_block';
 import SourceBlock from './source-block/source-block';
@@ -36,6 +36,7 @@ class PlayField {
     }
    
     getNextData(): void {
+        this.resultBlock.toggleResultClasses();
         PlayField.round += 1;
         if( PlayField.round > 3) {
             PlayField.level += 1; 

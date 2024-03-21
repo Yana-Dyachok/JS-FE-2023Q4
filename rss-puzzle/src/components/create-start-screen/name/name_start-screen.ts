@@ -1,4 +1,4 @@
-import SaveToLocalStorage from '../../local-storage/local_storage';
+import SaveToLocalStorage from '../../../utils/local-storage/local_storage';
 
 class StartScreenName {
     private greeting: HTMLDivElement;

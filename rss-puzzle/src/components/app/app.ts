@@ -1,6 +1,6 @@
 import LoginFormPage from '../../pages/login-form/login-form_page';
 import StartScreenPage from '../../pages/start-screen/start-screen_page';
-import SaveToLocalStorage from '../local-storage/local_storage';
+import SaveToLocalStorage from '../../utils/local-storage/local_storage';
 
 class App {
     private root: HTMLElement = document.body;

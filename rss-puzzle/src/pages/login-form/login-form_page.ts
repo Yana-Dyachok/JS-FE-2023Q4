@@ -1,7 +1,7 @@
 import CreateInputField from '../../components/input-field/input_field';
 import LoginButton from '../../components/login-button/login_button';
 import FormValidation from '../../components/form-validation/form_validation';
-import SaveToLocalStorage from '../../components/local-storage/local_storage';
+import SaveToLocalStorage from '../../utils/local-storage/local_storage';
 import StartScreenPage from '../start-screen/start-screen_page';
 
 import './login-form_page.scss';
@@ -25,16 +25,19 @@ class LoginFormPage {
 
     drawLoginForm = (): void => {
         const { inputField, loginButton, formValidation, container } = this;
-        container.append(inputField.getRootElement(), loginButton.getRootElement());
+        container.append(
+            inputField.getRootElement(),
+            loginButton.getRootElement()
+        );
         formValidation.setupValidation();
         loginButton.onClick(() => {
             const { firstName, surname } = formValidation;
             this.localStorage.setValue('firstName', firstName);
             this.localStorage.setValue('surname', surname);
             const startScreen = new StartScreenPage(this.localStorage);
-            startScreen.drawStartScreenPage()
+            startScreen.drawStartScreenPage();
         });
-    }
+    };
 }
 
 export default LoginFormPage;
