@@ -1,18 +1,12 @@
 @import "../../styles/colors.scss";
 
 .logout_btn {
-    position: fixed;
-    top: 2%;
+    position: absolute;
+    top: 0;
     right: 2%;
     padding: 1rem;
     font-size: 2rem;
     color: $c-white;
     background-color: $c-blue-500;
     border: 0.2rem solid $c-white;
-}
-
-@media (max-width: 1200px) {
-    .logout_btn {
-        right: 10%;
-    }
 }
