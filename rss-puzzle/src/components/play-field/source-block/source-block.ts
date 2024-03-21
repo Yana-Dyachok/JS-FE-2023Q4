@@ -6,12 +6,13 @@ import './source_block.scss';
 class SourceBlock  {
     private wordForSource: WordsForSourceBlock;
     wordCards: string[];
-    constructor(public words: IWord[], public round: number, public continueBtn: ContinueButton, public checkBtn: CheckButton) {
+    constructor(public words: IWord[], public round: number, public continueBtn: ContinueButton, public checkBtn: CheckButton, public transleteWords: HTMLDivElement) {
         this.words = words;
         this.round = round;
         this.wordCards=[];
         this.continueBtn = continueBtn;
-        this.checkBtn=checkBtn;
+        this.checkBtn = checkBtn;
+        this.transleteWords = transleteWords;
         this.wordForSource = new WordsForSourceBlock(this.round, this.continueBtn, this.wordCards, this.checkBtn);
     }
 
@@ -19,14 +20,7 @@ class SourceBlock  {
         const randomWord = Math.floor(Math.random() * this.words.length);
         const word = this.words[randomWord];
         this.wordCards=word.textExample.split(' ');
-        return  this.wordCards;
-    }
-
-    
-    getRandom(): string[] {
-        const randomWord = Math.floor(Math.random() * this.words.length);
-        const word = this.words[randomWord];
-        this.wordCards=word.textExample.split(' ');
+        this.transleteWords.textContent = word.textExampleTranslate;
         return  this.wordCards;
     }
 

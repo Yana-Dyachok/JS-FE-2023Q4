@@ -23,11 +23,11 @@ class PlayField {
         this.checkBtn = checkBtn;
         this.getData = new GetData(PlayField.level);
         this.resultBlock = new ResultBlock({} as ILevelData, this.continueBtn, this.checkBtn, PlayField.round);
-        this.sourceBlock = new SourceBlock([], PlayField.round, this.continueBtn, this.checkBtn);        
+        this.sourceBlock = new SourceBlock([], PlayField.round, this.continueBtn, this.checkBtn, this.playFieldElements.translationHint);        
         this.getData.getData().then((data) => {
             if (data) {
                 this.resultBlock = new ResultBlock(data.rounds[PlayField.round].levelData, this.continueBtn, this.checkBtn, PlayField.round);
-                this.sourceBlock = new SourceBlock(data.rounds[PlayField.round].words, 1, this.continueBtn, this.checkBtn);
+                this.sourceBlock = new SourceBlock(data.rounds[PlayField.round].words, PlayField.round, this.continueBtn, this.checkBtn, this.playFieldElements.translationHint);
                 this.playField.append(this.sourceBlock.getRootElement());
                 this.playFieldElements.resultBlock.append(this.resultBlock.getRootElement());
             }
@@ -43,14 +43,14 @@ class PlayField {
         if( PlayField.round > 10) {
             PlayField.level += 1; 
             PlayField.round = 1;
-            this.playField.children[0].innerHTML='';
+            this.playField.children[1].innerHTML='';
         }
-        if (this.playField.children[1]) this.playField.children[1].remove();
+        if (this.playField.children[2]) this.playField.children[2].remove();
         this.getData = new GetData(PlayField.level);
         this.getData.getData().then((data) => {
             if (data) {
               this.resultBlock = new ResultBlock(data.rounds[PlayField.round].levelData, this.continueBtn, this.checkBtn, PlayField.round);
-              this.sourceBlock = new SourceBlock(data.rounds[PlayField.round].words, PlayField.round, this.continueBtn, this.checkBtn);
+              this.sourceBlock = new SourceBlock(data.rounds[PlayField.round].words, PlayField.round, this.continueBtn, this.checkBtn, this.playFieldElements.translationHint);
               this.playField.append(this.sourceBlock.getRootElement());
               this.playFieldElements.resultBlock.append(this.resultBlock.getRootElement());
             }
