@@ -8,7 +8,6 @@ class CorrectWord {
         this.continueBtn = continueBtn;
         this.checkBtn=checkBtn;
         this.sourceBlock = sourceBlock;
-        
     }
 
     onClick(card: HTMLDivElement, round: number): void {

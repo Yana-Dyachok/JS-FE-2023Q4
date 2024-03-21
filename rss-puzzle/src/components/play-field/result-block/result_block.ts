@@ -39,6 +39,8 @@ class ResultBlock {
         card.parentElement!.removeChild(card);
         this.continueBtn.setDisabled(true);
         this.checkBtn.setDisabled(true);
+        this.continueBtn.showBtn(false);
+        this.checkBtn.showBtn(true);
     }
 
     toggleResultClasses() {
