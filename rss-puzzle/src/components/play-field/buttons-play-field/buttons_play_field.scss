@@ -71,3 +71,22 @@
     background-color: $c-green;
     } 
 }
+
+@media (max-width: 1200px) {
+    .auto-complete_btn {
+        left: 25%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .play-field_buttons {
+        padding-top: 3rem;
+        font-size: 2rem;
+    }
+
+    .auto-complete_btn {
+        font-size: 1.7rem;
+        width: 10rem;
+        left: 20%;
+    }
+}

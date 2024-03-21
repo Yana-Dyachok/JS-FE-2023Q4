@@ -24,4 +24,12 @@ body {
     margin: 0 auto;
     overflow: hidden;
   }
+
+  @media (max-width: 920px) {
+    body {
+      font-size: 2rem;
+    }
+}
+
+
   

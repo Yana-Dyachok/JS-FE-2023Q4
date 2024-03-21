@@ -10,3 +10,9 @@
     background-color: $c-blue-500;
     border: 0.2rem solid $c-white;
 }
+
+@media (max-width: 1200px) {
+    .logout_btn {
+        right: 10%;
+    }
+}
