@@ -3,7 +3,6 @@ import StartScreenPage from '../../pages/start-screen/start-screen_page';
 import SaveToLocalStorage from '../../utils/local-storage/local_storage';
 
 class App {
-    private root: HTMLElement = document.body;
     private loginForm: LoginFormPage;
     private startScreen: StartScreenPage;
     private localStorage: SaveToLocalStorage;

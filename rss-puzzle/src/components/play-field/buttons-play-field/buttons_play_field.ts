@@ -17,7 +17,7 @@ class ButtonsPlayField {
         this.autoCompleteBtn= new AutoCompleteButton();
     }
 
-    private createBtnPlayField() {
+    private createBtnPlayField(): void {
         this.buttonsPlayField.append(this.checkBtn.getRootElement(), this.continueBtn.getRootElement(), this.autoCompleteBtn.getRootElement())  
     }
 

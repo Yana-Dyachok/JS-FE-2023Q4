@@ -24,7 +24,7 @@ class SourceBlock  {
         return  this.wordCards;
     }
 
-    createCorrectCards():void {
+    createCorrectCards(): void {
         const resultRound: NodeListOf<HTMLDivElement> = document.querySelectorAll('.play-field_result-round');
         const resultCards = resultRound[this.round-1];
         const sourceCards: HTMLDivElement | null = document.querySelector('.play-field_source');

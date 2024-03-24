@@ -51,7 +51,7 @@ class CorrectWord {
         });
     }
 
-    checkCorrectPuzzle(resultElements: HTMLDivElement):void {
+    checkCorrectPuzzle(resultElements: HTMLDivElement): void {
         const wordsArray = Array.from( resultElements.children ) as HTMLDivElement[];
         for (let i = 0; i < wordsArray.length; i++) {
             const element = wordsArray[i];

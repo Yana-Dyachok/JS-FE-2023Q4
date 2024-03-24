@@ -43,7 +43,7 @@ class ResultBlock {
         this.checkBtn.showBtn(true);
     }
 
-    toggleResultClasses() {
+    toggleResultClasses(): void {
         Array.from(document.querySelectorAll('.play-field_result-card')).forEach((el)=>{
             el.classList.remove('correct');
             el.classList.add('done');
