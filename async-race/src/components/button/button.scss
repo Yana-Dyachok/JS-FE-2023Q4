@@ -1,0 +1,21 @@
+@import '../../styles/colors.scss';
+
+button {
+    border-radius: 1rem;
+    cursor: pointer;
+
+    &:disabled {
+        border: none;
+        background-color: $c-gray;
+        cursor: not-allowed;
+    }
+
+    @media (hover: hover) and (pointer: fine) and (pointer: fine) {
+        &:hover {
+            color: $c-violet-100;
+            border-color:$c-violet-100;
+            box-shadow: 0 0.5em 0.5em -0.4em $c-violet-100;
+            transform: translateY(-0.25em);
+        }
+    }
+}
