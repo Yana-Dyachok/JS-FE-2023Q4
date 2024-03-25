@@ -7,18 +7,15 @@ html {
 }
 
 body {
+    max-width: 131rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
     font-family: 'salina trial';
-    -webkit-font-smoothing: auto;
-    -webkit-text-size-adjust: 100%;
-    background-image: linear-gradient(to right,  $c-black, $c-violet-800);
-    line-height: 1.5;
     font-size: 1.8rem;
     font-weight: 400;
+    -webkit-font-smoothing: auto;
+    -webkit-text-size-adjust: 100%;
+    line-height: 1.5;
     color: $c-white;
-  }
-    
-  .container {
-    margin: 0 auto;
-    max-width: 131rem;
-    padding: 0 1.5rem;
-  }
+    background-image: linear-gradient(to right, $c-black, $c-violet-800);
+}
