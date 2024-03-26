@@ -1,4 +1,4 @@
-import App from "./app/app";
+import App from "./app/app.ts";
 import "./styles/style.scss";
 
 const app = new App();

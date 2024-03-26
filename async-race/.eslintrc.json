@@ -5,7 +5,8 @@
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
       "plugin:prettier/recommended",
-      "airbnb-base"
+      "airbnb-base",
+      "prettier"
     ],
     "parserOptions": {
       "ecmaVersion": 2020,
@@ -21,7 +22,9 @@
       "no-console": 0,
       "class-methods-use-this": "off",
       "@typescript-eslint/no-explicit-any": "error",
-      "no-unused-vars": "error"
+      "no-unused-vars": "error",
+      "max-lines-per-function": ["error", 40],
+      "react/jsx-filename-extension": "off",
+      "import/prefer-default-export": 0
     }
   }
-  

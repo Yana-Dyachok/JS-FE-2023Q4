@@ -1,6 +1,4 @@
 class WinnersPage {
-  constructor() {}
-
   drawWinnersPage = (): void => {};
 }
 

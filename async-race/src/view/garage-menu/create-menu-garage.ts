@@ -1,5 +1,5 @@
-import CreateButtonsMenu from "./create-btns-menu";
-import CreateInputGarage from "./create-input-garage";
+import CreateButtonsMenu from "./create-btns-menu.ts";
+import CreateInputGarage from "./create-input-garage.ts";
 import "./garage-menu.scss";
 
 class CreateMenuGarage {
@@ -31,7 +31,7 @@ class CreateMenuGarage {
       this.createInputs.createInputUpdateColor(),
       this.menuBtns.updateBtn.getRootElement(),
     );
-    const menuBtns: HTMLDivElement = document.createElement("div");
+
     this.menu.append(createCar, updateCar, this.menuBtns.createButtons());
     return this.menu;
   }
