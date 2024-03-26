@@ -1,5 +1,5 @@
-import CreateButtonsMenu from "./create-btns-menu.ts";
-import CreateInputGarage from "./create-input-garage.ts";
+import CreateButtonsMenu from "./create-btns-menu";
+import CreateInputGarage from "./create-input-garage";
 import "./garage-menu.scss";
 
 class CreateMenuGarage {

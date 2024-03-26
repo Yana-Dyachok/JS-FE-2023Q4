@@ -1,4 +1,4 @@
-import Button from "../../../components/button/button.ts";
+import Button from "../../../components/button/button";
 
 class GarageButton extends Button {
   constructor() {

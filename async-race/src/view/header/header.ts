@@ -1,5 +1,5 @@
-import GarageButton from "./garage-button/garage-button.ts";
-import WinnersButton from "./winners-button/winners-button.ts";
+import GarageButton from "./garage-button/garage-button";
+import WinnersButton from "./winners-button/winners-button";
 import "./header.scss";
 
 class Header {

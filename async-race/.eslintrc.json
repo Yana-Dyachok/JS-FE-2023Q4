@@ -25,6 +25,8 @@
       "no-unused-vars": "error",
       "max-lines-per-function": ["error", 40],
       "react/jsx-filename-extension": "off",
-      "import/prefer-default-export": 0
+      "import/prefer-default-export": 0,
+      "import/extensions": "off",
+      "import/no-unresolved": "off"
     }
   }

@@ -1,4 +1,4 @@
-import CreateMenuGarage from "../../view/garage-menu/create-menu-garage.ts";
+import CreateMenuGarage from "../../view/garage-menu/create-menu-garage";
 
 class GaragePage {
   private garagePage: HTMLDivElement;

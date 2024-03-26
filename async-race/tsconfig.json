@@ -6,10 +6,7 @@
         "forceConsistentCasingInFileNames": true,
         "strict": true,
         "noImplicitAny": true,
-        "skipLibCheck": true,
-        "composite": true,
-        "emitDeclarationOnly": true,
-        "allowImportingTsExtensions": true,
+        "skipLibCheck": true
     },
     "include": ["src/**/*.ts"]
 }

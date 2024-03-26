@@ -1,5 +1,5 @@
-import Header from "../view/header/header.ts";
-import GaragePage from "../pages/garage/garage-page.ts";
+import Header from "../view/header/header";
+import GaragePage from "../pages/garage/garage-page";
 
 class App {
   private header: Header;
