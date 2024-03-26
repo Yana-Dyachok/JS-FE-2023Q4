@@ -3,7 +3,7 @@ import CreateInputGarage from "./create-input-garage";
 import "./garage-menu.scss";
 
 class CreateMenuGarage {
-  private menu: HTMLElement;
+  private menu: HTMLDivElement;
 
   private menuBtns: CreateButtonsMenu;
 
@@ -12,7 +12,7 @@ class CreateMenuGarage {
   constructor() {
     this.createInputs = new CreateInputGarage();
     this.menuBtns = new CreateButtonsMenu();
-    this.menu = document.createElement("section");
+    this.menu = document.createElement("div");
     this.menu.classList.add("garage__menu");
   }
 
@@ -36,7 +36,7 @@ class CreateMenuGarage {
     return this.menu;
   }
 
-  getRootElement(): HTMLElement {
+  getRootElement(): HTMLDivElement {
     return this.menu;
   }
 }
