@@ -1,0 +1,45 @@
+@import '../../styles/colors.scss';
+.garage__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+}
+
+.menu__update-car,
+.menu__create-car {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+}
+
+.input__color,
+.input__update-color {
+    width: 4rem;
+    cursor: pointer;
+    border: 0.1rem solid  $c-violet-100;
+}
+
+.input__text,
+.input__update-text {
+    width: 17rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    border: 0.1rem solid  $c-violet-100;
+}
+
+.menu__buttons {
+    display: flex;
+    gap: 3rem;
+}
+
+.race__btn,
+.reset__btn,
+.generate-car__btn,
+.update__btn,
+.create__btn {
+    padding: 0.2rem 1rem;
+    display: inline-block;
+    color: $c-black;
+    background-color: $c-white;
+}

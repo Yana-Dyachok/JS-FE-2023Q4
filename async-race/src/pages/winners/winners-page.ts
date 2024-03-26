@@ -1,13 +1,7 @@
+class WinnersPage {
+  constructor() {}
 
-class  WinnersPage {
-
-
-    constructor() {
-
-    }
-
-    drawWinnersPage = (): void => {
-    };
+  drawWinnersPage = (): void => {};
 }
 
 export default WinnersPage;
