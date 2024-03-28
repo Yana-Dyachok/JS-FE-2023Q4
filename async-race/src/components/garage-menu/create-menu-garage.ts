@@ -16,7 +16,7 @@ class CreateMenuGarage {
     this.menu.classList.add("garage__menu");
   }
 
-  createMenu(): HTMLElement {
+  createMenu(): HTMLDivElement {
     const createCar: HTMLDivElement = document.createElement("div");
     createCar.classList.add("menu__create-car");
     createCar.append(
@@ -33,10 +33,6 @@ class CreateMenuGarage {
     );
 
     this.menu.append(createCar, updateCar, this.menuBtns.createButtons());
-    return this.menu;
-  }
-
-  getRootElement(): HTMLDivElement {
     return this.menu;
   }
 }

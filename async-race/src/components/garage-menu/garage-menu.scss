@@ -32,14 +32,3 @@
     display: flex;
     gap: 3rem;
 }
-
-.race__btn,
-.reset__btn,
-.generate-car__btn,
-.update__btn,
-.create__btn {
-    padding: 0.2rem 1rem;
-    display: inline-block;
-    color: $c-black;
-    background-color: $c-white;
-}

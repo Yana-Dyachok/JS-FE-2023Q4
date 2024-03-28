@@ -1,0 +1,28 @@
+@import '../../styles/colors.scss';
+
+.garage__controls {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.control-hang,
+.control-motion {
+display: flex;
+flex-direction: column;
+gap: 0.8rem;
+}
+
+.control__car-name {
+ font-size: 1.5rem;
+}
+
+.start__btn {
+    background-color: green;
+    color: $c-white;
+}
+
+.stop__btn {
+    background-color: red;
+    color: $c-white;
+}

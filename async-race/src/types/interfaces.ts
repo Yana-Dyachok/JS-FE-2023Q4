@@ -15,3 +15,8 @@ export interface IWinner {
   wins: number;
   time: number;
 }
+
+export interface ICarsResponse {
+  items: ICar[];
+  count: string;
+}

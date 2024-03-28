@@ -3,9 +3,10 @@ import "./button.scss";
 class Button {
   private button: HTMLButtonElement;
 
-  constructor(className: string, text: string) {
+  constructor(className: string, commonClassName: string, text: string) {
     this.button = document.createElement("button");
     this.button.classList.add(className);
+    this.button.classList.add(commonClassName);
     this.button.textContent = text;
   }
 

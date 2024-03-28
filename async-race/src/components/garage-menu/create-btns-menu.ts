@@ -1,4 +1,4 @@
-import Button from "../../components/button/button";
+import Button from "../button/button";
 
 class CreateButtonsMenu {
   updateBtn: Button;
@@ -12,11 +12,15 @@ class CreateButtonsMenu {
   generateCarsBtn: Button;
 
   constructor() {
-    this.createBtn = new Button("create__btn", "Create");
-    this.updateBtn = new Button("update__btn", "Update");
-    this.raceBtn = new Button("race__btn", "Race");
-    this.resetBtn = new Button("reset__btn", "Reset");
-    this.generateCarsBtn = new Button("generate-car__btn", "Generate Car");
+    this.createBtn = new Button("create__btn", "btn", "Create");
+    this.updateBtn = new Button("update__btn", "btn", "Update");
+    this.raceBtn = new Button("race__btn", "btn", "Race");
+    this.resetBtn = new Button("reset__btn", "btn", "Reset");
+    this.generateCarsBtn = new Button(
+      "generate-car__btn",
+      "btn",
+      "Generate Car",
+    );
   }
 
   createButtons(): HTMLDivElement {
