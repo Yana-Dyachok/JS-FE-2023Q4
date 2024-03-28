@@ -20,3 +20,8 @@ export interface ICarsResponse {
   items: ICar[];
   count: string;
 }
+
+export interface IEngineResponse {
+  velocity: number;
+  distance: number;
+}
