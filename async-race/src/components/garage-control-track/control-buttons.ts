@@ -17,11 +17,19 @@ class ControlTrackButtons {
     this.removeBtn = new Button("remove__btn", "btn", "Remove");
   }
 
-  getValueControlBtns(value: ICar): void {
-    this.stopBtn.getRootElement().value = `${value.id}`;
-    this.startBtn.getRootElement().value = `${value.id}`;
-    this.selectBtn.getRootElement().value = `${value.id}`;
-    this.removeBtn.getRootElement().value = `${value.id}`;
+  getValueControlBtns(car: ICar): void {
+    this.stopBtn
+      .getRootElement()
+      .setAttribute("data-stop-btn", `stop-${car.id}`);
+    this.startBtn
+      .getRootElement()
+      .setAttribute("data-start-btn", `start-${car.id}`);
+    this.selectBtn
+      .getRootElement()
+      .setAttribute("data-select-btn", `select-${car.id}`);
+    this.removeBtn
+      .getRootElement()
+      .setAttribute("data-remove-btn", `remove-${car.id}`);
   }
 }
 

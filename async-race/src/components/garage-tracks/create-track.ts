@@ -17,14 +17,14 @@ class CreateTrack {
   private createFlag(data: ICar): HTMLDivElement {
     const flag: HTMLDivElement | null = document.createElement("div");
     flag.classList.add("garage__flag");
-    flag.id = `flag-${data.id}`;
+    flag.setAttribute("data-flag", `${data.id}`);
     return flag;
   }
 
   createTrack(car: ICar): HTMLDivElement {
     const garageContent: HTMLDivElement | null = document.createElement("div");
     garageContent.classList.add("garage__content");
-    garageContent.innerHTML = createCarSVG(car.color, {
+    garageContent.innerHTML = createCarSVG(car, {
       width: "120px",
       height: "50px",
     });

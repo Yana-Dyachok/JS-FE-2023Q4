@@ -22,6 +22,7 @@ class GaragePage {
 
   drawGaragePage(page: string, carResponse: ICarsResponse): HTMLDivElement {
     const pageOrder: HTMLSpanElement | null = document.createElement("span");
+    pageOrder.textContent = "Page #1";
     this.garagePage.append(
       this.menu.createMenu(),
       this.pageName.createPageName(page, carResponse),

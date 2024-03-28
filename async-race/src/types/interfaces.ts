@@ -34,3 +34,7 @@ export interface IWinnersResponse {
   items: IWinnerCars[];
   count: string;
 }
+
+export interface IDriveResponse {
+  success: true | false;
+}

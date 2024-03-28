@@ -3,7 +3,7 @@ import { ICar, ICarsResponse } from "../types/interfaces";
 class GetCarsAPI {
   async getCarById(id: number): Promise<ICar> {
     try {
-      const response = await fetch(
+      const response: Response = await fetch(
         `https://async-race.adaptable.app/garage/${id}`,
       );
       if (!response.ok) {
@@ -17,7 +17,7 @@ class GetCarsAPI {
 
   async getAllCars(pageNumber: number): Promise<ICarsResponse> {
     try {
-      const response = await fetch(
+      const response: Response = await fetch(
         `https://async-race.adaptable.app/garage?_page=${pageNumber}&_limit=7`,
       );
       if (!response.ok) {
