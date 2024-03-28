@@ -25,3 +25,12 @@ export interface IEngineResponse {
   velocity: number;
   distance: number;
 }
+
+export interface IWinnerCars extends IWinner {
+  car: ICar;
+}
+
+export interface IWinnersResponse {
+  items: IWinnerCars[];
+  count: string;
+}

@@ -1,6 +1,7 @@
 import CreateMenuGarage from "../../components/garage-menu/create-menu-garage";
-import CreateAllTrack from "../../view/garage-tracks/create-all-tracks";
-import MakeAPICar from "../../api/make-car";
+import CreateAllTrack from "../../components/garage-tracks/create-all-tracks";
+import PageName from "../../utils/create-page-number";
+import { ICarsResponse } from "../../types/interfaces";
 
 class GaragePage {
   private garagePage: HTMLDivElement;
@@ -9,18 +10,24 @@ class GaragePage {
 
   private trackBlock: CreateAllTrack;
 
-  private makeAPICar: MakeAPICar;
+  private pageName: PageName;
 
   constructor() {
     this.garagePage = document.createElement("div");
     this.garagePage.classList.add("garage__page");
     this.menu = new CreateMenuGarage();
     this.trackBlock = new CreateAllTrack();
-    this.makeAPICar = new MakeAPICar();
+    this.pageName = new PageName();
   }
 
-  drawGaragePage(): HTMLDivElement {
-    this.garagePage.append(this.menu.createMenu());
+  drawGaragePage(page: string, carResponse: ICarsResponse): HTMLDivElement {
+    const pageOrder: HTMLSpanElement | null = document.createElement("span");
+    this.garagePage.append(
+      this.menu.createMenu(),
+      this.pageName.createPageName(page, carResponse),
+      pageOrder,
+      this.trackBlock.createAllTrackBlock(carResponse),
+    );
     return this.garagePage;
   }
 }

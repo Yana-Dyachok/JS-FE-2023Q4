@@ -1,18 +1,15 @@
-import CreateTrackControls from "../../components/garage-control-track/create-control-tracks";
-import CreateSVG from "../../utils/create-svg";
+import CreateTrackControls from "../garage-control-track/create-control-tracks";
+import createCarSVG from "../../utils/create-svg";
 import { ICar } from "../../types/interfaces";
 import "./garage-track.scss";
 
 class CreateTrack {
   private createTrackControls: CreateTrackControls;
 
-  private createSVG: CreateSVG;
-
   private track: HTMLDivElement;
 
   constructor() {
     this.createTrackControls = new CreateTrackControls();
-    this.createSVG = new CreateSVG();
     this.track = document.createElement("div");
     this.track.classList.add("garage__track");
   }
@@ -27,10 +24,11 @@ class CreateTrack {
   createTrack(car: ICar): HTMLDivElement {
     const garageContent: HTMLDivElement | null = document.createElement("div");
     garageContent.classList.add("garage__content");
-    garageContent.append(
-      this.createSVG.createSVG(car, { width: `${120}px`, height: `${40}px` }),
-      this.createFlag(car),
-    );
+    garageContent.innerHTML = createCarSVG(car.color, {
+      width: "120px",
+      height: "50px",
+    });
+    garageContent.append(this.createFlag(car));
     this.track.append(
       this.createTrackControls.createTrackControls(car),
       garageContent,

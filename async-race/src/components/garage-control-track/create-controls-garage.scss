@@ -3,7 +3,7 @@
 .garage__controls {
     display: flex;
     gap: 1rem;
-    padding: 1rem;
+    padding: 0.4rem 1rem;
 }
 
 .control-hang,
@@ -15,6 +15,13 @@ gap: 0.8rem;
 
 .control__car-name {
  font-size: 1.5rem;
+}
+
+.stop__btn,
+.start__btn,
+.remove__btn,
+.select__btn {
+font-size: 1.4rem;
 }
 
 .start__btn {

@@ -14,9 +14,9 @@ class CreateAllTrack {
   }
 
   createAllTrackBlock(carsResponse: ICarsResponse): HTMLDivElement {
-    this.track = new CreateTrack();
     const cars: ICarsResponse = carsResponse;
     cars.items.forEach((item: ICar): void => {
+      this.track = new CreateTrack();
       this.trackBlock.append(this.track.createTrack(item));
     });
     return this.trackBlock;

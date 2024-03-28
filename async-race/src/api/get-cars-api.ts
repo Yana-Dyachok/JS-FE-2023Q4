@@ -1,26 +1,39 @@
 import { ICar, ICarsResponse } from "../types/interfaces";
 
 class GetCarsAPI {
-  async getCarAPi(id: number): Promise<ICar> {
-    const response = await fetch(
-      `https://async-race.adaptable.app/garage/${id}`,
-    );
-    return response.json();
+  async getCarById(id: number): Promise<ICar> {
+    try {
+      const response = await fetch(
+        `https://async-race.adaptable.app/garage/${id}`,
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch car by ID");
+      }
+      return response.json();
+    } catch (error) {
+      throw new Error("Error fetching car by ID");
+    }
   }
 
-  async getAllCarsAPi(pageNumber: number): Promise<ICarsResponse> {
-    const response: Response = await fetch(
-      `https://async-race.adaptable.app/garage?_page=${pageNumber}&_limit=7`,
-    );
-    const count: string | null = response.headers.get("X-Total-Count");
-
-    if (!count) {
-      throw new Error("X-Total-Count is null");
+  async getAllCars(pageNumber: number): Promise<ICarsResponse> {
+    try {
+      const response = await fetch(
+        `https://async-race.adaptable.app/garage?_page=${pageNumber}&_limit=7`,
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch all cars");
+      }
+      const count: string | null = response.headers.get("X-Total-Count");
+      if (!count) {
+        throw new Error("X-Total-Count is null");
+      }
+      return {
+        items: await response.json(),
+        count,
+      };
+    } catch (error) {
+      throw new Error("Error fetching all cars");
     }
-    return {
-      items: await response.json(),
-      count,
-    };
   }
 }
 
