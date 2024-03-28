@@ -1,5 +1,5 @@
 import CreateMenuGarage from "../../components/garage-menu/create-menu-garage";
-import CreateTrackBlock from "../../view/garage-tracks/create-all-tracks";
+import CreateAllTrack from "../../view/garage-tracks/create-all-tracks";
 import MakeAPICar from "../../api/make-car";
 
 class GaragePage {
@@ -7,7 +7,7 @@ class GaragePage {
 
   private menu: CreateMenuGarage;
 
-  private trackBlock: CreateTrackBlock;
+  private trackBlock: CreateAllTrack;
 
   private makeAPICar: MakeAPICar;
 
@@ -15,11 +15,12 @@ class GaragePage {
     this.garagePage = document.createElement("div");
     this.garagePage.classList.add("garage__page");
     this.menu = new CreateMenuGarage();
-    this.trackBlock = new CreateTrackBlock();
+    this.trackBlock = new CreateAllTrack();
     this.makeAPICar = new MakeAPICar();
   }
 
   drawGaragePage(): HTMLDivElement {
+    this.garagePage.append(this.menu.createMenu());
     return this.garagePage;
   }
 }

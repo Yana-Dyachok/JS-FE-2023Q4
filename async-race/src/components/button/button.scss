@@ -12,7 +12,8 @@ button {
     }
 
     @media (hover: hover) and (pointer: fine) and (pointer: fine) {
-        &:hover:not([disabled]) {
+        &:hover:not([disabled]),
+        &:focus {
             color: $c-white;
             background-color: $c-violet-800;
             border-color: 0.1rem $c-violet-100;

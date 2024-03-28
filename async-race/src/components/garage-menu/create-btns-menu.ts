@@ -14,8 +14,10 @@ class CreateButtonsMenu {
   constructor() {
     this.createBtn = new Button("create__btn", "btn", "Create");
     this.updateBtn = new Button("update__btn", "btn", "Update");
+    this.updateBtn.setDisabled(true);
     this.raceBtn = new Button("race__btn", "btn", "Race");
     this.resetBtn = new Button("reset__btn", "btn", "Reset");
+    this.resetBtn.setDisabled(true);
     this.generateCarsBtn = new Button(
       "generate-car__btn",
       "btn",
