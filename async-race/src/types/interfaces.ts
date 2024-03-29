@@ -38,3 +38,16 @@ export interface IWinnersResponse {
 export interface IDriveResponse {
   success: true | false;
 }
+
+export interface IButtonEvents {
+  target: HTMLButtonElement;
+  carId: number;
+}
+
+export interface IUpdateData {
+  inputText: HTMLInputElement;
+  inputColor: HTMLInputElement;
+  updateBtn: HTMLButtonElement;
+  name: CarName;
+  color: CarColor;
+}

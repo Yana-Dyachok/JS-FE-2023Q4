@@ -37,4 +37,4 @@ class CreateButtonsMenu {
   }
 }
 
-export default CreateButtonsMenu;
+export const createButtonsMenu = new CreateButtonsMenu();
