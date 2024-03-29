@@ -10,3 +10,7 @@ type HEX = `#${string}`;
 export type CarColor = RGB | RGBA | HEX;
 
 export type SizesSVG = { width: `${number}px`; height: `${number}px` };
+
+export type Sort = "id" | "wins" | "time";
+
+export type Order = "ASC" | "DESC";

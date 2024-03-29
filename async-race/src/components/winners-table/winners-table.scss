@@ -1,0 +1,19 @@
+@import '../../styles/colors.scss';
+.table {
+    max-width: 70rem;
+    margin-top: 2rem;
+    color: $c-white;
+    border-radius: 0.2rem;
+    text-align: center;
+    white-space: wrap;
+}
+
+.th {
+    background-color: $c-violet-500;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+.td {
+    padding: 1rem;
+    text-align: center;
+}

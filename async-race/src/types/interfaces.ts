@@ -1,4 +1,4 @@
-import { CarName, CarColor } from "./types";
+import { CarName, CarColor, Sort, Order } from "./types";
 
 export interface ICar {
   name: CarName;
@@ -33,6 +33,12 @@ export interface IWinnerCars extends IWinner {
 export interface IWinnersResponse {
   items: IWinnerCars[];
   count: string;
+}
+
+export interface IWinnerSort {
+  pageNumber: number;
+  sort: Sort;
+  order: Order;
 }
 
 export interface IDriveResponse {
