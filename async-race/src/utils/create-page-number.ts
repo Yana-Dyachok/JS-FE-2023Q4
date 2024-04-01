@@ -10,7 +10,7 @@ class PageName {
     );
 
     if (pageName) {
-      pageName.textContent = `${page.toLocaleUpperCase()} (${response.count})`;
+      pageName.textContent = `${page} (${response.count})`;
     } else {
       pageName = document.createElement("h1");
       pageName.classList.add("page__name");

@@ -31,11 +31,12 @@ class AllPages {
 
     try {
       carResponse = await this.getCars.getAllCars(startPage);
-      winnersResponse = await this.getWinners.getWinnersAPI(startPage);
+      // winnersResponse = await this.getWinners.getWinnersAPI(startPage);
       document.body.append(
         this.header.getRootElement(),
         this.garagePage.drawGaragePage("Garage", carResponse),
-        this.winnersPage.drawWinnersPage("Winners", winnersResponse),
+        // this.winnersPage.drawWinnersPage("Winners", winnersResponse),
+        this.winnersPage.drawWinnersPage("Winners"),
       );
     } catch (error) {
       throw new Error("error");

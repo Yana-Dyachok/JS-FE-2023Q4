@@ -34,6 +34,7 @@ class UpdateGaragePages {
       this.getRandomCar.generateHundredCars();
       const carResponse: ICarsResponse = await this.getCars.getAllCars(1);
       this.createAllTrack.createGeneratedCars(carResponse);
+      this.changePageName(carResponse);
     });
   }
 
@@ -48,6 +49,7 @@ class UpdateGaragePages {
       if (trackBlock && createdCar.name.length !== 0) {
         trackBlock?.append(this.createTrack.createTrack(createdCar));
       }
+      this.changePageName(await this.getCars.getAllCars(1));
     });
   }
 
@@ -62,6 +64,7 @@ class UpdateGaragePages {
           `[data-track="${carId}"]`,
         );
         if (track) track.parentNode?.removeChild(track);
+        this.changePageName(await this.getCars.getAllCars(1));
       });
     });
   }
@@ -98,6 +101,14 @@ class UpdateGaragePages {
     createButtonsMenu.updateBtn.handleUpdateButtonClick(
       handleUpdateButtonClick,
     );
+  }
+
+  private changePageName(response: ICarsResponse): void {
+    const pageName: HTMLElement | null = document.querySelector(
+      `[data-page-name="Garage"]`,
+    );
+    const { count } = response;
+    if (pageName) pageName.textContent = `Garage (${count})`;
   }
 }
 
