@@ -6,12 +6,8 @@ import "./garage-track.scss";
 class CreateTrack {
   private createTrackControls: CreateTrackControls;
 
-  private track: HTMLDivElement;
-
   constructor() {
     this.createTrackControls = new CreateTrackControls();
-    this.track = document.createElement("div");
-    this.track.classList.add("garage__track");
   }
 
   private createFlag(data: ICar): HTMLDivElement {
@@ -22,31 +18,35 @@ class CreateTrack {
   }
 
   createTrack(car: ICar): HTMLDivElement {
-    this.track.setAttribute("data-track", `${car.id}`);
+    this.createTrackControls = new CreateTrackControls();
+    const track = document.createElement("div");
+    track.classList.add("garage__track");
+    track.setAttribute("data-track", `${car.id}`);
     const garageContent: HTMLDivElement | null = document.createElement("div");
     garageContent.classList.add("garage__content");
-    garageContent.setAttribute("data-track-img", `${car.id}`);
-    garageContent.innerHTML = createCarSVG(car, {
+    const garageImg: HTMLDivElement | null = document.createElement("div");
+    garageImg.setAttribute("data-track-img", `${car.id}`);
+    garageImg.innerHTML = createCarSVG(car, {
       width: "120px",
       height: "50px",
     });
-    garageContent.append(this.createFlag(car));
-    this.track.append(
+    garageContent.append(garageImg, this.createFlag(car));
+    track.append(
       this.createTrackControls.createTrackControls(car),
       garageContent,
     );
-    return this.track;
+    return track;
   }
 
   updateTrack(car: ICar): void {
-    const garageContent: HTMLElement | null = document.querySelector(
+    const garageImg: HTMLElement | null = document.querySelector(
       `[data-track-img="${car.id}"]`,
     );
     const carName: HTMLSpanElement | null = document.querySelector(
       `[data-name="${car.id}"]`,
     );
-    if (garageContent)
-      garageContent.innerHTML = createCarSVG(car, {
+    if (garageImg)
+      garageImg.innerHTML = createCarSVG(car, {
         width: "120px",
         height: "50px",
       });

@@ -1,19 +1,17 @@
 import { allPages } from "../view/create-all-pages-api";
-import UpdateGaragePages from "../view/update-garage-page";
+import EventBtns from "../components/update/event-btns";
 
 class App {
-  private update: UpdateGaragePages;
+  private eventBtns: EventBtns;
 
   constructor() {
-    this.update = new UpdateGaragePages();
+    this.eventBtns = new EventBtns();
   }
 
   async start(): Promise<void> {
     await allPages.createAllPages();
     await new Promise((resolve) => setTimeout(resolve, 100));
-    this.update.removeCar();
-    this.update.createCar();
-    this.update.selectCar();
+    this.eventBtns.getBtnsEvents();
   }
 }
 

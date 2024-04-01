@@ -26,6 +26,14 @@ class Button {
     this.button.addEventListener("click", callback);
   }
 
+  handleUpdateButtonClick(callback: () => void): void {
+    this.button.addEventListener("click", callback);
+  }
+
+  removeEventListener(eventType: string, callback: () => void): void {
+    this.button.removeEventListener(eventType, callback);
+  }
+
   togglePages(page: string): void {
     const garagePage = document.querySelector(".garage__page") as HTMLElement;
     const winnersPage = document.querySelector(".winners__page") as HTMLElement;

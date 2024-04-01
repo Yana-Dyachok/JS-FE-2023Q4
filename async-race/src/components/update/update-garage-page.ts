@@ -1,18 +1,18 @@
-import GetCarsAPI from "../api/get-cars-api";
-import DeleteAPI from "../api/delete-api";
-import { ICarsResponse, ICar, IBody } from "../types/interfaces";
-import { createButtonsMenu } from "../components/garage-menu/create-btns-menu";
-import GaragePage from "../pages/garage/garage-page";
-import GetRandomCar from "../utils/car-random";
-import { GetElements } from "../utils/get-elements";
-import CreateTrack from "../components/garage-tracks/create-track";
+import GetCarsAPI from "../../api/get-cars-api";
+import DeleteAPI from "../../api/delete-api";
+import { ICarsResponse, ICar, IBody } from "../../types/interfaces";
+import { createButtonsMenu } from "../garage-menu/create-btns-menu";
+import CreateAllTrack from "../garage-tracks/create-all-tracks";
+import GetRandomCar from "../../utils/car-random";
+import { GetElements } from "../../utils/get-elements";
+import CreateTrack from "../garage-tracks/create-track";
 
 class UpdateGaragePages {
   private getCars: GetCarsAPI;
 
   private getRandomCar: GetRandomCar;
 
-  private garagePage: GaragePage;
+  private createAllTrack: CreateAllTrack;
 
   private getElements: GetElements;
 
@@ -21,22 +21,19 @@ class UpdateGaragePages {
   private deleteAPI: DeleteAPI;
 
   constructor() {
-    this.garagePage = new GaragePage();
+    this.createAllTrack = new CreateAllTrack();
     this.deleteAPI = new DeleteAPI();
     this.getRandomCar = new GetRandomCar();
     this.getCars = new GetCarsAPI();
     this.getElements = new GetElements();
     this.createTrack = new CreateTrack();
-    this.generateAllCars();
   }
 
   generateAllCars(): void {
     createButtonsMenu.generateCarsBtn.onClick(async () => {
       this.getRandomCar.generateHundredCars();
       const carResponse: ICarsResponse = await this.getCars.getAllCars(1);
-      this.garagePage.garagePage.append(
-        this.garagePage.drawGarageBody("Garage", carResponse),
-      );
+      this.createAllTrack.createGeneratedCars(carResponse);
     });
   }
 
@@ -48,21 +45,9 @@ class UpdateGaragePages {
       const trackBlock: HTMLElement | null = document.querySelector(
         ".garage__track-block",
       );
-      if (trackBlock) {
+      if (trackBlock && createdCar.name.length !== 0) {
         trackBlock?.append(this.createTrack.createTrack(createdCar));
       }
-    });
-  }
-
-  updateCar(id: number): void {
-    createButtonsMenu.updateBtn.onClick(async () => {
-      const updateData: IBody = this.getElements.getUpdateElements();
-      const updatedCar: ICar = await this.getRandomCar.generateUpdatedCar(
-        id,
-        updateData,
-      );
-      this.createTrack.updateTrack(updatedCar);
-      createButtonsMenu.updateBtn.setDisabled(true);
     });
   }
 
@@ -91,6 +76,28 @@ class UpdateGaragePages {
         this.updateCar(carId);
       });
     });
+  }
+
+  updateCar(id: number): void {
+    const handleUpdateButtonClick = async () => {
+      const updateData: IBody = this.getElements.getUpdateElements();
+      if (updateData.name.length !== 0) {
+        const updatedCar: ICar = await this.getRandomCar.generateUpdatedCar(
+          id,
+          updateData,
+        );
+        this.createTrack.updateTrack(updatedCar);
+        createButtonsMenu.updateBtn.setDisabled(true);
+        createButtonsMenu.updateBtn.removeEventListener(
+          "click",
+          handleUpdateButtonClick,
+        );
+      }
+    };
+
+    createButtonsMenu.updateBtn.handleUpdateButtonClick(
+      handleUpdateButtonClick,
+    );
   }
 }
 
