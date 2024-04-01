@@ -52,10 +52,7 @@ class CreateWinnersTable {
     const car: HTMLTableCellElement = this.createTH("Car");
     const name: HTMLTableCellElement = this.createTH("Name");
     const wins: HTMLTableCellElement = this.createTH("Wins", "wins");
-    const lessTime: HTMLTableCellElement = this.createTH(
-      "Less time (s)",
-      "Less-time",
-    );
+    const lessTime: HTMLTableCellElement = this.createTH("Time (s)", "time");
     const tr: HTMLTableRowElement = this.createTR("table-head");
 
     tr.append(number, car, name, wins, lessTime);

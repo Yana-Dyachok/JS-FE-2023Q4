@@ -22,8 +22,10 @@ class CreateTrack {
   }
 
   createTrack(car: ICar): HTMLDivElement {
+    this.track.setAttribute("data-track", `${car.id}`);
     const garageContent: HTMLDivElement | null = document.createElement("div");
     garageContent.classList.add("garage__content");
+    garageContent.setAttribute("data-track-img", `${car.id}`);
     garageContent.innerHTML = createCarSVG(car, {
       width: "120px",
       height: "50px",
@@ -34,6 +36,21 @@ class CreateTrack {
       garageContent,
     );
     return this.track;
+  }
+
+  updateTrack(car: ICar): void {
+    const garageContent: HTMLElement | null = document.querySelector(
+      `[data-track-img="${car.id}"]`,
+    );
+    const carName: HTMLSpanElement | null = document.querySelector(
+      `[data-name="${car.id}"]`,
+    );
+    if (garageContent)
+      garageContent.innerHTML = createCarSVG(car, {
+        width: "120px",
+        height: "50px",
+      });
+    if (carName) carName.textContent = car.name;
   }
 }
 

@@ -1,4 +1,11 @@
 .winners__page {
     display: none;
+    padding: 1rem;
     font-size: 2rem;
+}
+
+@media (max-width: 720px) {
+    .winners__page {
+        font-size: 1.4rem;
+    }
 }

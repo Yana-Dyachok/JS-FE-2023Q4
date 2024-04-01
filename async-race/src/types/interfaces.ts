@@ -1,4 +1,4 @@
-import { CarName, CarColor, Sort, Order } from "./types";
+import { CarName, CarColor } from "./types";
 
 export interface ICar {
   name: CarName;
@@ -35,11 +35,11 @@ export interface IWinnersResponse {
   count: string;
 }
 
-export interface IWinnerSort {
-  pageNumber: number;
-  sort: Sort;
-  order: Order;
-}
+// export interface IWinnerSort {
+//   pageNumber: number;
+//   sort: Sort;
+//   order: Order;
+// }
 
 export interface IDriveResponse {
   success: true | false;
@@ -48,12 +48,4 @@ export interface IDriveResponse {
 export interface IButtonEvents {
   target: HTMLButtonElement;
   carId: number;
-}
-
-export interface IUpdateData {
-  inputText: HTMLInputElement;
-  inputColor: HTMLInputElement;
-  updateBtn: HTMLButtonElement;
-  name: CarName;
-  color: CarColor;
 }

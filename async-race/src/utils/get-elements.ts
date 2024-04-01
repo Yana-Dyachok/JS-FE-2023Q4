@@ -1,5 +1,5 @@
 import { CarName, CarColor } from "../types/types";
-import { IButtonEvents, IUpdateData } from "../types/interfaces";
+import { IBody, IButtonEvents } from "../types/interfaces";
 
 export class GetElements {
   getButton(event: Event): IButtonEvents {
@@ -27,22 +27,19 @@ export class GetElements {
     return { name, color };
   }
 
-  getUpdateElements(): IUpdateData {
+  getUpdateElements(): IBody {
     const inputText: HTMLInputElement | null = document.getElementById(
       "input-update-text",
     ) as HTMLInputElement | null;
     const inputColor: HTMLInputElement | null = document.getElementById(
       "input-update-color",
     ) as HTMLInputElement | null;
-    const updateBtn: HTMLButtonElement | null = document.getElementById(
-      "update__btn",
-    ) as HTMLButtonElement | null;
-    if (!inputText || !inputColor || !updateBtn) {
+    if (!inputText || !inputColor) {
       throw new Error("Data doesn't exist");
     }
     const name: CarName = inputText.value as CarName;
     const color: CarColor = inputColor.value as CarColor;
 
-    return { inputText, inputColor, updateBtn, name, color };
+    return { name, color };
   }
 }

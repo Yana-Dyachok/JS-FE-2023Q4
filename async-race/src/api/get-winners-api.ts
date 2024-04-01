@@ -1,9 +1,4 @@
-import {
-  IWinner,
-  IWinnersResponse,
-  IWinnerCars,
-  IWinnerSort,
-} from "../types/interfaces";
+import { IWinner, IWinnersResponse, IWinnerCars } from "../types/interfaces";
 import GetCarsAPI from "./get-cars-api";
 
 class GetWinnersAPI {

@@ -35,8 +35,7 @@ class CreateAllTrack {
   generateAllCars() {
     createButtonsMenu.generateCarsBtn.onClick(async () => {
       this.getRandomCar.generateHundredCars();
-      let carResponse: ICarsResponse;
-      carResponse = await this.getCars.getAllCars(1);
+      await this.getCars.getAllCars(1);
     });
   }
 }

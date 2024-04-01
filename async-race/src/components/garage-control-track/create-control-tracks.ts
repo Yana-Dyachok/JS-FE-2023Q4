@@ -14,10 +14,11 @@ class CreateTrackControls {
     this.controlsBlock.classList.add("garage__controls");
   }
 
-  createCarName(carName: ICar): HTMLSpanElement {
+  createCarName(car: ICar): HTMLSpanElement {
     const controlCarName: HTMLElement = document.createElement("span");
     controlCarName.classList.add("control__car-name");
-    controlCarName.textContent = `${carName.name}`;
+    controlCarName.setAttribute("data-name", `${car.id}`);
+    controlCarName.textContent = `${car.name}`;
     return controlCarName;
   }
 

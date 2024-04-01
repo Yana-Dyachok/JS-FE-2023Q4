@@ -18,18 +18,14 @@ class ControlTrackButtons {
   }
 
   getValueControlBtns(car: ICar): void {
-    this.stopBtn
-      .getRootElement()
-      .setAttribute("data-stop-btn", `stop-${car.id}`);
-    this.startBtn
-      .getRootElement()
-      .setAttribute("data-start-btn", `start-${car.id}`);
+    this.stopBtn.getRootElement().setAttribute("data-stop-btn", `${car.id}`);
+    this.startBtn.getRootElement().setAttribute("data-start-btn", `${car.id}`);
     this.selectBtn
       .getRootElement()
-      .setAttribute("data-select-btn", `select-${car.id}`);
+      .setAttribute("data-select-btn", `${car.id}`);
     this.removeBtn
       .getRootElement()
-      .setAttribute("data-remove-btn", `remove-${car.id}`);
+      .setAttribute("data-remove-btn", `${car.id}`);
   }
 }
 
