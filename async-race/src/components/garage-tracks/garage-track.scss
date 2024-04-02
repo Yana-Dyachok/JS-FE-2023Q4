@@ -35,6 +35,12 @@
     }
 
     100% {
-            transform: translateX(calc(96vw - 120px));
+        transform: translateX(calc(95vw - 120px));
     }
+}
+
+@media (max-width: 960px) {
+.garage__car-img > svg {
+    width: 90px;
+}
 }

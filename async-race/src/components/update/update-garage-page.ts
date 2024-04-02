@@ -87,6 +87,7 @@ class UpdateGaragePages {
     createButtonsMenu.raceBtn.onClick(async () => {
       this.btnMethods.toggleDriveAllCars(true);
       createButtonsMenu.resetBtn.setDisabled(false);
+      createButtonsMenu.raceBtn.setDisabled(true);
       this.btnMethods.toggleDisabledAllBtn(false, true);
     });
   }
@@ -95,6 +96,7 @@ class UpdateGaragePages {
     createButtonsMenu.resetBtn.onClick(async () => {
       this.btnMethods.toggleDriveAllCars(false);
       createButtonsMenu.resetBtn.setDisabled(true);
+      createButtonsMenu.raceBtn.setDisabled(false);
       this.btnMethods.toggleDisabledAllBtn(true, false);
     });
   }
