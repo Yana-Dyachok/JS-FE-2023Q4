@@ -3,6 +3,8 @@ import DeleteAPI from "../../api/delete-api";
 import { createButtonsMenu } from "../garage-menu/create-btns-menu";
 import PageName from "../../utils/create-page-number";
 import UpdateGaragePages from "./update-garage-page";
+import BtnMethods from "./btn-methods";
+import { ICar } from "../../types/interfaces";
 
 class EventsEachTracksBtn {
   private getCars: GetCarsAPI;
@@ -13,11 +15,14 @@ class EventsEachTracksBtn {
 
   private pageName: PageName;
 
+  private btnMethods: BtnMethods;
+
   constructor() {
     this.deleteAPI = new DeleteAPI();
     this.getCars = new GetCarsAPI();
     this.pageName = new PageName();
     this.updateGaragePages = new UpdateGaragePages();
+    this.btnMethods = new BtnMethods();
   }
 
   removeCar(): void {
@@ -46,7 +51,37 @@ class EventsEachTracksBtn {
       element.addEventListener("click", async () => {
         createButtonsMenu.updateBtn.setDisabled(false);
         const carId = +Object.values(element.dataset);
+        const car: ICar = await this.getCars.getCarById(carId);
+        this.btnMethods.setSelectedElements({
+          name: car.name,
+          color: car.color,
+        });
         this.updateGaragePages.updateCar(carId);
+      });
+    });
+  }
+
+  stopCar(): void {
+    const selectBtns: NodeListOf<HTMLButtonElement> =
+      document.querySelectorAll(".stop__btn");
+    selectBtns.forEach((element: HTMLButtonElement) => {
+      element.addEventListener("click", async () => {
+        const carId = +Object.values(element.dataset);
+        this.btnMethods.stopOneCar(carId);
+        this.btnMethods.toggleDisabledOneBtn(true, element);
+        this.btnMethods.removeDisabledOneBtn(carId, "start");
+      });
+    });
+  }
+
+  startCar(): void {
+    const selectBtns: NodeListOf<HTMLButtonElement> =
+      document.querySelectorAll(".start__btn");
+    selectBtns.forEach((element: HTMLButtonElement) => {
+      element.addEventListener("click", async () => {
+        const carId = +Object.values(element.dataset);
+        this.btnMethods.toggleDisabledOneBtn(true, element);
+        this.btnMethods.removeDisabledOneBtn(carId, "stop");
       });
     });
   }

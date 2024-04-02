@@ -5,6 +5,7 @@ import GetRandomCar from "../../utils/car-random";
 import { GetElements } from "../../utils/get-elements";
 import CreateTrack from "../garage-tracks/create-track";
 import PageName from "../../utils/create-page-number";
+import BtnMethods from "./btn-methods";
 
 class UpdateGaragePages {
   private getCars: GetCarsAPI;
@@ -17,12 +18,15 @@ class UpdateGaragePages {
 
   private pageName: PageName;
 
+  private btnMethods: BtnMethods;
+
   constructor() {
     this.getRandomCar = new GetRandomCar();
     this.getCars = new GetCarsAPI();
     this.getElements = new GetElements();
     this.createTrack = new CreateTrack();
     this.pageName = new PageName();
+    this.btnMethods = new BtnMethods();
   }
 
   generateAllCars(): void {
@@ -81,27 +85,17 @@ class UpdateGaragePages {
 
   raceCars(): void {
     createButtonsMenu.raceBtn.onClick(async () => {
-      this.toggleDriveAllCars(true);
+      this.btnMethods.toggleDriveAllCars(true);
       createButtonsMenu.resetBtn.setDisabled(false);
+      this.btnMethods.toggleDisabledAllBtn(false, true);
     });
   }
 
   resetCars(): void {
     createButtonsMenu.resetBtn.onClick(async () => {
-      this.toggleDriveAllCars(false);
+      this.btnMethods.toggleDriveAllCars(false);
       createButtonsMenu.resetBtn.setDisabled(true);
-    });
-  }
-
-  toggleDriveAllCars(flag: boolean): void {
-    const carImgs = document.querySelectorAll(".garage__car-img");
-
-    carImgs.forEach((carImg) => {
-      if (carImg instanceof HTMLElement) {
-        carImg.style.animation = flag
-          ? "carsAnimation 4s ease-out forwards"
-          : "none";
-      }
+      this.btnMethods.toggleDisabledAllBtn(true, false);
     });
   }
 }

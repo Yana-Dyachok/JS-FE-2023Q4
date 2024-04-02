@@ -19,6 +19,7 @@ class ControlTrackButtons {
 
   getValueControlBtns(car: ICar): void {
     this.stopBtn.getRootElement().setAttribute("data-stop-btn", `${car.id}`);
+    this.stopBtn.setDisabled(true);
     this.startBtn.getRootElement().setAttribute("data-start-btn", `${car.id}`);
     this.selectBtn
       .getRootElement()

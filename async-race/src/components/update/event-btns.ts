@@ -18,6 +18,8 @@ class EventBtns {
     this.eventsEachTracksBtn.removeCar();
     this.updateGaragePages.raceCars();
     this.updateGaragePages.resetCars();
+    this.eventsEachTracksBtn.stopCar();
+    this.eventsEachTracksBtn.startCar();
   }
 }
 
