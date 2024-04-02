@@ -1,11 +1,31 @@
 import { IBody } from "../../types/interfaces";
+import { CarName } from "../../types/types";
+import DriveOrStopCars from "../drive-cars/get-drive-stop-car";
+import CreatePopup from "../popup/create-popup";
 
 class BtnMethods {
+  private driveOrStop: DriveOrStopCars;
+
+  private popup: CreatePopup;
+
+  constructor() {
+    this.driveOrStop = new DriveOrStopCars();
+    this.popup = new CreatePopup();
+  }
+
   stopOneCar(id: number): void {
     const carImg: HTMLButtonElement | null = document.querySelector(
       `[data-track-img="${id}"]`,
     );
     if (carImg) carImg.style.animation = "none";
+  }
+
+  startOneCar(id: number, duration: number): void {
+    const carImg: HTMLButtonElement | null = document.querySelector(
+      `[data-track-img="${id}"]`,
+    );
+    if (carImg)
+      carImg.style.animation = `carsAnimation ${duration}s ease-out forwards`;
   }
 
   toggleDisabledAllBtn(stop: boolean, start: boolean): void {
@@ -36,17 +56,23 @@ class BtnMethods {
     if (btn instanceof HTMLElement) btn.removeAttribute("disabled");
   }
 
-  toggleDriveAllCars(flag: boolean): void {
+  async toggleDriveAllCars(flag: boolean): Promise<void> {
     const carImgs: NodeListOf<HTMLButtonElement> =
       document.querySelectorAll(".garage__car-img");
+    const allDurations: number[] = [];
 
-    carImgs.forEach((carImg: HTMLButtonElement) => {
-      if (carImg instanceof HTMLElement) {
-        carImg.style.animation = flag
-          ? "carsAnimation 4s ease-out forwards"
-          : "none";
+    for (const carImg of carImgs) {
+      if (!flag) {
+        carImg.style.animation = "none";
+      } else {
+        const carId = +Object.values(carImg.dataset);
+        const duration = await this.driveOrStop.makeDrive(carImg, carId);
+        allDurations.push(duration);
+        this.startOneCar(carId, duration);
       }
-    });
+    }
+    // setTimeout(()=>this.popup.createPopupWinners(duration, name), Math.min(...allDurations));
+    // console.log(allDurations);
   }
 
   setSelectedElements(body: IBody): void {

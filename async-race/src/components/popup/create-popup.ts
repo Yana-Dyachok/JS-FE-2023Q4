@@ -1,3 +1,4 @@
+import { CarName } from "../../types/types";
 import Button from "../button/button";
 
 import "./popup.scss";
@@ -24,6 +25,17 @@ class CreatePopup {
     popup.append(popupBody);
     document.body.append(popup);
     this.closePopup();
+  }
+
+  createPopupWinners(duration: number, carName: CarName): void {
+    const popup = document.createElement("div");
+    popup.classList.add("popup");
+    const popupText = document.createElement("h3");
+    popupText.classList.add("popup__text-winners");
+    popupText.textContent = `The winners is "${carName}" with time-${duration.toFixed(2)}s`;
+    popup.append(popupText);
+    document.body.append(popup);
+    setTimeout(() => document.body.removeChild(popup), 1000);
   }
 
   closePopup(): void {
