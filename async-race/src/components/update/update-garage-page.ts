@@ -78,6 +78,32 @@ class UpdateGaragePages {
       handleUpdateButtonClick,
     );
   }
+
+  raceCars(): void {
+    createButtonsMenu.raceBtn.onClick(async () => {
+      this.toggleDriveAllCars(true);
+      createButtonsMenu.resetBtn.setDisabled(false);
+    });
+  }
+
+  resetCars(): void {
+    createButtonsMenu.resetBtn.onClick(async () => {
+      this.toggleDriveAllCars(false);
+      createButtonsMenu.resetBtn.setDisabled(true);
+    });
+  }
+
+  toggleDriveAllCars(flag: boolean): void {
+    const carImgs = document.querySelectorAll(".garage__car-img");
+
+    carImgs.forEach((carImg) => {
+      if (carImg instanceof HTMLElement) {
+        carImg.style.animation = flag
+          ? "carsAnimation 4s ease-out forwards"
+          : "none";
+      }
+    });
+  }
 }
 
 export default UpdateGaragePages;

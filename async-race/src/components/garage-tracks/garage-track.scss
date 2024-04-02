@@ -15,10 +15,26 @@
     justify-content: space-between;
     padding: 0.7rem 4rem 0.1rem 0;
 }
+
 .garage__flag {
     width: 8rem;
     height: 5rem;
     background-image: url('../../assets/svg/flag.svg');
     background-repeat: no-repeat;
     background-size: 100% 130%;
+    z-index: 2;
+}
+
+.garage__car-img {
+    z-index: 1;
+}
+
+@keyframes carsAnimation {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+            transform: translateX(calc(96vw - 120px));
+    }
 }

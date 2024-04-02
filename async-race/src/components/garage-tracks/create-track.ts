@@ -25,6 +25,7 @@ class CreateTrack {
     const garageContent: HTMLDivElement | null = document.createElement("div");
     garageContent.classList.add("garage__content");
     const garageImg: HTMLDivElement | null = document.createElement("div");
+    garageImg.classList.add("garage__car-img");
     garageImg.setAttribute("data-track-img", `${car.id}`);
     garageImg.innerHTML = createCarSVG(car, {
       width: "120px",

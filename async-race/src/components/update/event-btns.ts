@@ -16,6 +16,8 @@ class EventBtns {
     this.updateGaragePages.generateAllCars();
     this.eventsEachTracksBtn.selectCar();
     this.eventsEachTracksBtn.removeCar();
+    this.updateGaragePages.raceCars();
+    this.updateGaragePages.resetCars();
   }
 }
 
