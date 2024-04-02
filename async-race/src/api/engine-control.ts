@@ -1,9 +1,10 @@
 import { IEngineResponse } from "../types/interfaces";
+import { ENGINE__LINK } from "../types/const-var";
 
 class EngineControl {
   async engineControlAPI(id: number, status: string): Promise<IEngineResponse> {
     const response: Response = await fetch(
-      `https://async-race.adaptable.app/engine?id=${id}&status=${status}`,
+      `${ENGINE__LINK}?id=${id}&status=${status}`,
       {
         method: "PATCH",
       },

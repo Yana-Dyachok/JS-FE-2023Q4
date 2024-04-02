@@ -23,17 +23,16 @@ class WinnersPage {
 
   drawWinnersPage(
     page: string,
-    // winnResponse: IWinnersResponse,
+    winnResponse: IWinnersResponse,
   ): HTMLDivElement {
     const pageOrder: HTMLSpanElement | null = document.createElement("span");
     pageOrder.classList.add(`${page.toLocaleLowerCase()}__page-order`);
     pageOrder.textContent = "Page #1";
     this.winnersPage.append(
-      // this.pageName.createPageName(page, winnResponse),
-      // this.pageName.createPageName(page),
+      this.pageName.createPageName(page, winnResponse),
       pageOrder,
-      // this.createWinnersTable.createTable(winnResponse),
-      // this.pagination.createPagination(page, winnResponse),
+      this.createWinnersTable.createTable(winnResponse),
+      this.pagination.createPagination(page, winnResponse),
     );
     return this.winnersPage;
   }

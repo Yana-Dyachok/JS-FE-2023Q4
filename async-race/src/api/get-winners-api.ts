@@ -1,5 +1,6 @@
 import { IWinner, IWinnersResponse, IWinnerCars } from "../types/interfaces";
 import GetCarsAPI from "./get-cars-api";
+import { WINNERS__LINK } from "../types/const-var";
 
 class GetWinnersAPI {
   private getCar: GetCarsAPI;
@@ -10,7 +11,7 @@ class GetWinnersAPI {
 
   async getWinnersAPI(pageNumber: number): Promise<IWinnersResponse> {
     const response: Response = await fetch(
-      `https://async-race.adaptable.app/winners?_page=${pageNumber}&_limit=${10}`,
+      `${WINNERS__LINK}?_page=${pageNumber}&_limit=${10}`,
     );
     const items: IWinner[] = await response.json();
     const count: string | null = response.headers.get("X-Total-Count");

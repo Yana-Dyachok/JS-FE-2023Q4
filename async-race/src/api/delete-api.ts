@@ -1,6 +1,8 @@
+import { GARAGE__LINK } from "../types/const-var";
+
 class DeleteAPI {
   async deleteCarAPi(id: number): Promise<void> {
-    await fetch(`https://async-race.adaptable.app/garage/${id}`, {
+    await fetch(`${GARAGE__LINK}/${id}`, {
       method: "DELETE",
     });
   }

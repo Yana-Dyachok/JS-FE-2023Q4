@@ -1,18 +1,16 @@
 import { IWinner } from "../types/interfaces";
+import { WINNERS__LINK } from "../types/const-var";
 
 class MakeAPIWinner {
   async makeWinner(body: IWinner): Promise<IWinner> {
     try {
-      const response: Response = await fetch(
-        "https://async-race.adaptable.app/winners",
-        {
-          method: "POST",
-          body: JSON.stringify(body),
-          headers: {
-            "Content-Type": "application/json",
-          },
+      const response: Response = await fetch(WINNERS__LINK, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       if (!response.ok) {
         throw new Error("Failed to post winner");

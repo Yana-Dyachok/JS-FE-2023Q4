@@ -1,9 +1,10 @@
 import { IDriveResponse } from "../types/interfaces";
+import { ENGINE__LINK } from "../types/const-var";
 
 class DriveAPI {
   async driveAPI(id: number): Promise<IDriveResponse> {
     const response: Response = await fetch(
-      `https://async-race.adaptable.app/engine?id=${id}&status=drive`,
+      `${ENGINE__LINK}?id=${id}&status=drive`,
       {
         method: "PATCH",
       },
