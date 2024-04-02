@@ -1,40 +1,44 @@
 import GetCarsAPI from "../../api/get-cars-api";
-import DeleteAPI from "../../api/delete-api";
 import { ICarsResponse, ICar, IBody } from "../../types/interfaces";
 import { createButtonsMenu } from "../garage-menu/create-btns-menu";
-import CreateAllTrack from "../garage-tracks/create-all-tracks";
 import GetRandomCar from "../../utils/car-random";
 import { GetElements } from "../../utils/get-elements";
 import CreateTrack from "../garage-tracks/create-track";
+import PageName from "../../utils/create-page-number";
 
 class UpdateGaragePages {
   private getCars: GetCarsAPI;
 
   private getRandomCar: GetRandomCar;
 
-  private createAllTrack: CreateAllTrack;
-
   private getElements: GetElements;
 
   private createTrack: CreateTrack;
 
-  private deleteAPI: DeleteAPI;
+  private pageName: PageName;
 
   constructor() {
-    this.createAllTrack = new CreateAllTrack();
-    this.deleteAPI = new DeleteAPI();
     this.getRandomCar = new GetRandomCar();
     this.getCars = new GetCarsAPI();
     this.getElements = new GetElements();
     this.createTrack = new CreateTrack();
+    this.pageName = new PageName();
   }
 
   generateAllCars(): void {
     createButtonsMenu.generateCarsBtn.onClick(async () => {
       this.getRandomCar.generateHundredCars();
       const carResponse: ICarsResponse = await this.getCars.getAllCars(1);
-      this.createAllTrack.createGeneratedCars(carResponse);
-      this.changePageName(carResponse);
+      const trackBlock: HTMLElement | null = document.querySelector(
+        ".garage__track-block",
+      );
+      if (trackBlock) {
+        carResponse.items.forEach((item: ICar): void => {
+          this.createTrack = new CreateTrack();
+          trackBlock?.append(this.createTrack.createTrack(item));
+        });
+      }
+      this.pageName.createPageName("Garage", carResponse);
     });
   }
 
@@ -49,35 +53,7 @@ class UpdateGaragePages {
       if (trackBlock && createdCar.name.length !== 0) {
         trackBlock?.append(this.createTrack.createTrack(createdCar));
       }
-      this.changePageName(await this.getCars.getAllCars(1));
-    });
-  }
-
-  removeCar(): void {
-    const removeBtns: NodeListOf<HTMLButtonElement> =
-      document.querySelectorAll(".remove__btn");
-    removeBtns.forEach((element: HTMLButtonElement) => {
-      element.addEventListener("click", async () => {
-        const carId = +Object.values(element.dataset);
-        await this.deleteAPI.deleteCarAPi(carId);
-        const track: HTMLElement | null = document.querySelector(
-          `[data-track="${carId}"]`,
-        );
-        if (track) track.parentNode?.removeChild(track);
-        this.changePageName(await this.getCars.getAllCars(1));
-      });
-    });
-  }
-
-  selectCar(): void {
-    const selectBtns: NodeListOf<HTMLButtonElement> =
-      document.querySelectorAll(".select__btn");
-    selectBtns.forEach((element: HTMLButtonElement) => {
-      element.addEventListener("click", async () => {
-        createButtonsMenu.updateBtn.setDisabled(false);
-        const carId = +Object.values(element.dataset);
-        this.updateCar(carId);
-      });
+      this.pageName.createPageName("Garage", await this.getCars.getAllCars(1));
     });
   }
 
@@ -101,14 +77,6 @@ class UpdateGaragePages {
     createButtonsMenu.updateBtn.handleUpdateButtonClick(
       handleUpdateButtonClick,
     );
-  }
-
-  private changePageName(response: ICarsResponse): void {
-    const pageName: HTMLElement | null = document.querySelector(
-      `[data-page-name="Garage"]`,
-    );
-    const { count } = response;
-    if (pageName) pageName.textContent = `Garage (${count})`;
   }
 }
 

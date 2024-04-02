@@ -1,17 +1,21 @@
 import UpdateGaragePages from "./update-garage-page";
+import EventsEachTracksBtn from "./events-each-track";
 
 class EventBtns {
   private updateGaragePages: UpdateGaragePages;
 
+  private eventsEachTracksBtn: EventsEachTracksBtn;
+
   constructor() {
     this.updateGaragePages = new UpdateGaragePages();
+    this.eventsEachTracksBtn = new EventsEachTracksBtn();
   }
 
   getBtnsEvents(): void {
     this.updateGaragePages.createCar();
     this.updateGaragePages.generateAllCars();
-    this.updateGaragePages.selectCar();
-    this.updateGaragePages.removeCar();
+    this.eventsEachTracksBtn.selectCar();
+    this.eventsEachTracksBtn.removeCar();
   }
 }
 

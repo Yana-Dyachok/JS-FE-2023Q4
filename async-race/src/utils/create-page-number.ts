@@ -6,7 +6,7 @@ class PageName {
     response: ICarsResponse | IWinnersResponse,
   ): HTMLSpanElement {
     let pageName: HTMLElement | null = document.querySelector(
-      `[data-page-name="${page.toLocaleLowerCase()}"]`,
+      `[data-page-name="${page}"]`,
     );
 
     if (pageName) {

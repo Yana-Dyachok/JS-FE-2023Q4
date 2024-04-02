@@ -29,14 +29,6 @@ class CreateAllTrack {
     });
     return this.trackBlock;
   }
-
-  createGeneratedCars(carsResponse: ICarsResponse): void {
-    const cars: ICarsResponse = carsResponse;
-    cars.items.forEach((item: ICar): void => {
-      this.track = new CreateTrack();
-      this.trackBlock.append(this.track.createTrack(item));
-    });
-  }
 }
 
 export default CreateAllTrack;
