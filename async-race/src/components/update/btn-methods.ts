@@ -1,16 +1,20 @@
-import { IBody } from "../../types/interfaces";
-import { CarName } from "../../types/types";
+import { IBody, ICar } from "../../types/interfaces";
+import GetCarsAPI from "../../api/get-cars-api";
 import DriveOrStopCars from "../drive-cars/get-drive-stop-car";
 import CreatePopup from "../popup/create-popup";
+import { driveAPI } from "../../api/drive-api";
 
 class BtnMethods {
   private driveOrStop: DriveOrStopCars;
 
   private popup: CreatePopup;
 
+  private getCar: GetCarsAPI;
+
   constructor() {
     this.driveOrStop = new DriveOrStopCars();
     this.popup = new CreatePopup();
+    this.getCar = new GetCarsAPI();
   }
 
   stopOneCar(id: number): void {
@@ -27,6 +31,17 @@ class BtnMethods {
     if (carImg)
       carImg.style.animation = `carsAnimation ${duration}s ease-out forwards`;
   }
+  // async startOneCar(id: number, duration: number) {
+  //   const carImg: HTMLButtonElement | null = document.querySelector(
+  //    `[data-track-img="${id}"]`,
+  //   );
+  //   if (carImg){
+  //     carImg.style.animation = `carsAnimation ${duration}s ease-out forwards`;
+
+  //     const {success} = await driveAPI(id);
+  //     if (!success) carImg.style.animationPlayState = 'paused';
+  //   }
+  // }
 
   toggleDisabledAllBtn(stop: boolean, start: boolean): void {
     const stopBtns: NodeListOf<HTMLButtonElement> =
@@ -59,20 +74,37 @@ class BtnMethods {
   async toggleDriveAllCars(flag: boolean): Promise<void> {
     const carImgs: NodeListOf<HTMLButtonElement> =
       document.querySelectorAll(".garage__car-img");
-    const allDurations: number[] = [];
+    const allPromises: Promise<number>[] = [];
 
     for (const carImg of carImgs) {
       if (!flag) {
         carImg.style.animation = "none";
       } else {
         const carId = +Object.values(carImg.dataset);
-        const duration = await this.driveOrStop.makeDrive(carImg, carId);
-        allDurations.push(duration);
-        this.startOneCar(carId, duration);
+        const promise = this.driveOrStop.makeDrive(carImg, carId);
+        allPromises.push(promise);
       }
     }
-    // setTimeout(()=>this.popup.createPopupWinners(duration, name), Math.min(...allDurations));
-    // console.log(allDurations);
+    const allDurations = await Promise.all(allPromises);
+    const minTime: number = Math.min(...allDurations);
+    let winnerId: number = 0;
+    for (let i = 0; i < carImgs.length; i++) {
+      const carImg = carImgs[i];
+      const duration = allDurations[i];
+      const carId = +Object.values(carImg.dataset);
+      if (allDurations[i] === minTime) winnerId = carId;
+      this.startOneCar(carId, duration);
+    }
+
+    const winner: HTMLElement | null = document.querySelector(
+      `[data-name="${winnerId}"]`,
+    );
+    if (winner) {
+      setTimeout(
+        () => this.popup.createPopupWinners(minTime, winner.innerText),
+        500 + minTime,
+      );
+    }
   }
 
   setSelectedElements(body: IBody): void {
