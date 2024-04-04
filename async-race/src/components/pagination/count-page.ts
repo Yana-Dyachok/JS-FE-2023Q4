@@ -23,9 +23,11 @@ class GetPageCount {
     if (action === "+") {
       currentCount =
         page === "Garage" ? (this.contGarage += 1) : (this.contWinners += 1);
+       this.toggleDisabledPaginBtn(currentCount, page);
     } else {
       currentCount =
         page === "Garage" ? (this.contGarage -= 1) : (this.contWinners -= 1);
+        this.toggleDisabledPaginBtn(currentCount, page);
     }
     return currentCount;
   }
@@ -53,6 +55,28 @@ class GetPageCount {
     }
 
     return count;
+  }
+
+  toggleDisabledPaginBtn(currentCount:number, page: string):void {
+    const prevBtn: HTMLButtonElement | null = document.querySelector(
+      `[data-prev-btn="${page.toLocaleLowerCase()}"]`,
+    );
+    const nextBtn: HTMLButtonElement | null = document.querySelector(
+      `[data-next-btn="${page.toLocaleLowerCase()}"]`,
+    );
+    const pageCount: HTMLButtonElement | null = document.querySelector(
+      `[data-page-count="${page.toLocaleLowerCase()}"]`,
+    );
+    let lastPage: number= 1;
+    if(pageCount) lastPage = +pageCount?.innerText.split('/')[1];
+    console.log(pageCount?.innerText.split('/')[1])
+    if(prevBtn){
+      (currentCount===1)? prevBtn.setAttribute("disabled", "disabled"):prevBtn.removeAttribute("disabled");
+    }
+
+    if(nextBtn){
+      (currentCount>=lastPage && lastPage>1)? nextBtn.setAttribute("disabled", "disabled"):nextBtn.removeAttribute("disabled");
+    }
   }
 }
 export default GetPageCount;

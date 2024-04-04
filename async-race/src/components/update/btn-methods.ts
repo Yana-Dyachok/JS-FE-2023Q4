@@ -102,7 +102,7 @@ class BtnMethods {
     if (winner) {
       setTimeout(
         () => this.popup.createPopupWinners(minTime, winner.innerText),
-        500 + minTime,
+        2000 + minTime,
       );
     }
   }

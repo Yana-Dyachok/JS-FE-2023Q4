@@ -27,6 +27,7 @@ class Pagination {
     this.prevBtn
       .getRootElement()
       .setAttribute("data-prev-btn", `${page.toLocaleLowerCase()}`);
+      this.prevBtn.setDisabled(true);
     this.nextBtn
       .getRootElement()
       .setAttribute("data-next-btn", `${page.toLocaleLowerCase()}`);
@@ -36,24 +37,6 @@ class Pagination {
       this.nextBtn.getRootElement(),
     );
     return this.pagination;
-  }
-
-  toggleDisablePaginBtn(
-    page: string,
-    value: ICarsResponse | IWinnersResponse,
-  ): void {
-    const currentPage = this.getPageCount.getCurrentPage(page);
-    const lastPage = this.getPageCount.getLastPage(page, value);
-    if (currentPage >= lastPage) {
-      this.nextBtn.setDisabled(true);
-    } else {
-      this.nextBtn.setDisabled(false);
-    }
-    if (currentPage <= 1) {
-      this.prevBtn.setDisabled(true);
-    } else {
-      this.prevBtn.setDisabled(false);
-    }
   }
 }
 
