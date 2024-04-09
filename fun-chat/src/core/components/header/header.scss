@@ -1,0 +1,10 @@
+@import '../../../styles/colors.scss';
+
+.header {
+    display: flex;
+  
+    &__article {
+        display: flex;
+        justify-content: space-between;
+    }
+}

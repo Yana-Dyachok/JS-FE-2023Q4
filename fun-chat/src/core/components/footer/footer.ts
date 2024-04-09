@@ -1,6 +1,6 @@
 import "./footer.scss";
 
-export const createFooterElements = (): void => {
+export const createFooterElements = (): HTMLElement => {
   const footer = document.createElement("footer");
   footer.classList.add("footer");
 
@@ -50,6 +50,5 @@ export const createFooterElements = (): void => {
   list.append(rssItem);
 
   footer.append(list);
-
-  document.body.append(footer);
+  return footer;
 };
