@@ -1,0 +1,45 @@
+.footer {
+    min-height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    &__span {
+        display: flex;
+        justify-content: center;
+        font-family: "tenpounds regular";
+    }
+
+    &__copyright {
+        text-align: center;
+
+        &:before {
+            content: '©';
+        }
+    }
+
+    &__item:not(&__description):hover,
+    &__item:not(&__description):focus {
+        filter: drop-shadow(0.3rem 0.3rem 1.3rem black);
+        transform: scale(1.05);
+    }
+
+    &__logo-rss {
+        width: 10rem;
+        height: 4rem;
+        background: url("../../../assets/svg/rs-school.svg") no-repeat center;
+    }
+
+    &__logo-github {
+        width: 5rem;
+        height: 4.6rem;
+        background: url("../../../assets/svg/icon-github.svg") no-repeat center;
+    }
+}
