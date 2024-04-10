@@ -3,6 +3,7 @@ import MainPage from "../../pages/main-page/main-page";
 import Page from "../components/page/page";
 import LoginPage from "../../pages/login-page/login-page";
 import FormValidation from "../components/form-validation/form-validation";
+import ErrorPage from "../../pages/error-page/error-page";
 
 class App {
   private static container: HTMLElement = document.body;
@@ -24,6 +25,8 @@ class App {
       page = new InfoPage(idPage);
     } else if (idPage === "login") {
       page = new LoginPage(idPage);
+    } else {
+      page = new ErrorPage(idPage);
     }
 
     if (page) {
