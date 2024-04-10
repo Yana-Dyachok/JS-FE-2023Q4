@@ -16,20 +16,21 @@ const createLabel = (forLabel: string, text: string): HTMLLabelElement => {
   return label;
 };
 
+const createErrorElements = (classError: string): HTMLDivElement =>
+  Object.assign(document.createElement("div"), {
+    className: `login__error ${classError}`,
+  });
+
 export const createInputField = (): HTMLFormElement => {
   const form = document.createElement("form");
   form.classList.add("login__form");
   form.append(
-    createLabel("username", "Name:"),
-    createInput("text", "username"),
-    Object.assign(document.createElement("div"), {
-      className: "login_error user-name_error",
-    }),
+    createLabel("user-name", "Name:"),
+    createInput("text", "user-name"),
+    createErrorElements("user-name__error"),
     createLabel("password", "Password:"),
     createInput("password", "password"),
-    Object.assign(document.createElement("div"), {
-      className: "login_error password_error",
-    }),
+    createErrorElements("password__error"),
   );
   return form;
 };

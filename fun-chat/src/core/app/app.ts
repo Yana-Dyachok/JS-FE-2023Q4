@@ -2,11 +2,14 @@ import InfoPage from "../../pages/info-page/info-page";
 import MainPage from "../../pages/main-page/main-page";
 import Page from "../components/page/page";
 import LoginPage from "../../pages/login-page/login-page";
+import FormValidation from "../components/form-validation/form-validation";
 
 class App {
   private static container: HTMLElement = document.body;
 
   private static defaultPageId: string = "current-page";
+
+  private formValidation: FormValidation;
 
   static renderNewPage(idPage: string) {
     const currentPageHTML = document.querySelector(`#${App.defaultPageId}`);
@@ -37,10 +40,18 @@ class App {
     });
   }
 
+  constructor() {
+    this.formValidation = new FormValidation();
+  }
+
   run() {
     App.renderNewPage("login");
     this.enableRouteChange();
     window.location.hash = "login";
+    this.formValidation.setupValidation();
+    window.addEventListener("hashchange", () => {
+      this.formValidation.setupValidation();
+    });
   }
 }
 

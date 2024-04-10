@@ -1,50 +1,62 @@
 @import '../../../styles/colors.scss';
-.login{
+.login {
     &__form {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 3rem;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 3rem;
 
-    & > label {
+        & > label {
+            text-align: left;
+            font-size: 2rem;
+            color: $c-pink-800;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        padding: 1rem 2rem;
+        margin: 0.8rem 0;
+        box-sizing: border-box;
+        font-size: 2.5rem;
+        color: $c-pink-900;
+        background-color: $c-white;
+        border: 0.2rem solid $c-green-cyan-100;
+        border-radius: 1rem;
+
+        &:focus {
+            border: 0.5rem solid $c-yellow;
+        }
+
+        &.error {
+            border: 0.3rem solid red;
+        }
+
+        &.valid {
+            border: 0.3rem solid $c-green-cyan-800;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        gap: 3rem;
+    }
+
+    &__error {
+        padding: 0.5rem 1rem;
+        font-size: 1.6rem;
         text-align: left;
-        font-size: 2rem;
-        color: $c-pink-800;
+        color: #bf1d1d;
     }
 }
 
-&__input {
-    width: 100%;
-    padding: 1rem 2rem;
-    margin: 0.8rem 0;
-    box-sizing: border-box;
-    font-size: 2.5rem;
-    color: $c-pink-900;
-    background-color: $c-white;
-    border: 0.2rem solid $c-green-cyan-100;
-    border-radius: 1rem;
-
-    &:focus {
-        border: 0.5rem solid $c-yellow;
-    }
-
-    &.error {
-        border: 0.3rem solid red;
-    }
-
-    &.valid {
-        border: 0.3rem solid $c-green-cyan-800;
+@media (max-width: 500px) {
+    .login {        
+        &__input {
+            padding: 1rem;
+            font-size: 1.8rem;
+    
+        &__error {
+            font-size: 1.3rem;        }
     }
 }
-
-&__buttons {
-    display: flex;
-    gap: 3rem;
 }
-
-&__error {
-    padding: 0.5rem 1rem;
-    font-size: 2rem;
-    text-align: left;
-    color: #bf1d1d;
-}
-    }
