@@ -33,18 +33,6 @@ class Button {
   removeEventListener(eventType: string, callback: () => void): void {
     this.button.removeEventListener(eventType, callback);
   }
-
-  togglePages(page: string): void {
-    const garagePage = document.querySelector(".garage__page") as HTMLElement;
-    const winnersPage = document.querySelector(".winners__page") as HTMLElement;
-    if (page === "winners") {
-      winnersPage.style.display = "block";
-      garagePage.style.display = "none";
-    } else {
-      winnersPage.style.display = "none";
-      garagePage.style.display = "block";
-    }
-  }
 }
 
 export default Button;

@@ -1,12 +1,13 @@
-import Button from '../button/button';
+import Button from "../button/button";
 
 class InfoButton extends Button {
-    constructor() {
-        super('info__btn', 'btn','Info');
+  constructor() {
+    super("info__btn", "btn", "Info");
 
-        this.onClick(() => {
-        });
-    }
+    this.onClick(() => {
+      window.location.hash = "info";
+    });
+  }
 }
 
 export default InfoButton;

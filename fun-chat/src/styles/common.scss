@@ -18,3 +18,11 @@ body {
     color: $c-black;
     background-image: linear-gradient(to right, $c-green-cyan-100, $c-yellow, $c-pink-800);
 }
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -43,3 +43,22 @@
         background: url("../../../assets/svg/icon-github.svg") no-repeat center;
     }
 }
+
+
+@media (max-width: 500px) {
+    .footer {
+    
+        &__list {
+           font-size: 1.2rem;
+        }
+    
+        &__logo-rss {
+           background-size: 6rem;
+        }
+    
+        &__logo-github {
+            background-size: 3rem;
+        }
+    }
+    
+}

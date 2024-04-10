@@ -1,12 +1,13 @@
-import Button from '../../button/button';
+import Button from "../../button/button";
 
 class LogoutButton extends Button {
-    constructor() {
-        super('logout__btn', 'btn','Log out');
+  constructor() {
+    super("logout__btn", "btn", "Log out");
 
-        this.onClick(() => {
-        });
-    }
+    this.onClick(() => {
+      window.location.hash = "login";
+    });
+  }
 }
 
 export default LogoutButton;

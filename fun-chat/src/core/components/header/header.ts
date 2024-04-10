@@ -3,35 +3,40 @@ import InfoButton from "../info-btn/info-btn";
 import "./header.scss";
 
 class Header {
-    private header: HTMLElement;
-    private logoutButton: LogoutButton;
-    private infoButton: InfoButton;
+  private header: HTMLElement;
 
-    constructor() {
-        this.header = document.createElement("header");
-        this.header.classList.add("header");
-        this.logoutButton = new LogoutButton();
-        this.infoButton = new InfoButton();
-    }
+  private logoutButton: LogoutButton;
 
-    private createHeaderElements():void {
-        const article = document.createElement("article");
-        article.classList.add("header__article");
-        const userName = document.createElement("label");
-       userName.classList.add("header__label", "header__user-name");
-       userName.textContent=`User:`;
-       const title = document.createElement("label");
-       title.classList.add("header__label", "header__title");
-       title.textContent="Fun Chat";
-       article.append(userName, title);
-       this.header.append(article, this.infoButton.getRootElement(), this.logoutButton.getRootElement());
-    }
+  private infoButton: InfoButton;
 
+  constructor() {
+    this.header = document.createElement("header");
+    this.header.classList.add("header");
+    this.logoutButton = new LogoutButton();
+    this.infoButton = new InfoButton();
+  }
 
-    getRootElement(): HTMLElement {
-        this.createHeaderElements();
-        return this.header;
-    }
+  private createHeaderElements(): void {
+    const article = document.createElement("article");
+    article.classList.add("header__article");
+    const userName = document.createElement("label");
+    userName.classList.add("header__label", "header__user-name");
+    userName.textContent = `User:`;
+    const title = document.createElement("label");
+    title.classList.add("header__label", "header__title");
+    title.textContent = "Fun Chat";
+    article.append(userName, title);
+    this.header.append(
+      article,
+      this.infoButton.getRootElement(),
+      this.logoutButton.getRootElement(),
+    );
+  }
+
+  getRootElement(): HTMLElement {
+    this.createHeaderElements();
+    return this.header;
+  }
 }
 
 export default Header;

@@ -1,10 +1,12 @@
-import { createFooterElements } from "../components/footer/footer";
-import MainPage from "../components/page/main/main-page";
+import InfoPage from "../../pages/info-page/info-page";
+import MainPage from "../../pages/main-page/main-page";
 import Page from "../components/page/page";
+import LoginPage from "../../pages/login-page/login-page";
 
 class App {
   private static container: HTMLElement = document.body;
-  private static defaultPageId: string = 'current-page';
+
+  private static defaultPageId: string = "current-page";
 
   static renderNewPage(idPage: string) {
     const currentPageHTML = document.querySelector(`#${App.defaultPageId}`);
@@ -15,6 +17,10 @@ class App {
 
     if (idPage === "main") {
       page = new MainPage(idPage);
+    } else if (idPage === "info") {
+      page = new InfoPage(idPage);
+    } else if (idPage === "login") {
+      page = new LoginPage(idPage);
     }
 
     if (page) {
@@ -23,19 +29,18 @@ class App {
       App.container.append(pageHTML);
     }
   }
+
   private enableRouteChange(): void {
     window.addEventListener("hashchange", () => {
       const hash = window.location.hash.slice(1);
       App.renderNewPage(hash);
     });
   }
- constructor() {
 
- }
   run() {
-    App.renderNewPage('main');
+    App.renderNewPage("login");
     this.enableRouteChange();
-    window.location.hash = "main";
+    window.location.hash = "login";
   }
 }
 
