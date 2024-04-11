@@ -6,10 +6,6 @@ class ErrorPage extends Page {
     "404": "Error! The page was not found.",
   };
 
-  constructor(id: string) {
-    super(id);
-  }
-
   render() {
     const error = document.createElement("div");
     error.classList.add("error__block");

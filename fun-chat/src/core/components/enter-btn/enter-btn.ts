@@ -7,6 +7,12 @@ class EnterButton extends Button {
     this.onClick(() => {
       window.location.hash = "main";
     });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !this.getRootElement().disabled) {
+        window.location.hash = "main";
+      }
+    });
   }
 }
 
