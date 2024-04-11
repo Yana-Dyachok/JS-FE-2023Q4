@@ -1,4 +1,4 @@
-import Page from "../../core/components/page/page";
+import Page from "../../utils/page/page";
 import InfoButton from "../../core/components/info-btn/info-btn";
 import EnterButton from "../../core/components/enter-btn/enter-btn";
 import { createInputField } from "../../core/components/create-login-input/input-field-create";
@@ -19,13 +19,16 @@ class LoginPage extends Page {
   }
 
   render() {
+    const wrapper: HTMLDivElement = document.createElement("div");
+    wrapper.classList.add("wrapper");
     const buttons: HTMLDivElement = document.createElement("div");
     buttons.classList.add("login__buttons");
     buttons.append(
       this.enterBtn.getRootElement(),
       this.infoBtn.getRootElement(),
     );
-    this.container.append(createInputField(), buttons);
+    wrapper.append(createInputField(), buttons);
+    this.container.append(wrapper);
     return this.container;
   }
 }

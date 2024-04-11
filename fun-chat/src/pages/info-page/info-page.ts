@@ -1,4 +1,4 @@
-import Page from "../../core/components/page/page";
+import Page from "../../utils/page/page";
 import Button from "../../core/components/button/button";
 import "./info-page.scss";
 
@@ -39,10 +39,10 @@ class InfoPage extends Page {
   }
 
   render() {
-    this.container.append(
-      this.createInfoElements(),
-      this.button.getRootElement(),
-    );
+    const wrapper: HTMLDivElement = document.createElement("div");
+    wrapper.classList.add("wrapper");
+    wrapper.append(this.createInfoElements(), this.button.getRootElement());
+    this.container.append(wrapper);
     return this.container;
   }
 }

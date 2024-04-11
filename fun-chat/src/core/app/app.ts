@@ -1,6 +1,6 @@
 import InfoPage from "../../pages/info-page/info-page";
 import MainPage from "../../pages/main-page/main-page";
-import Page from "../components/page/page";
+import Page from "../../utils/page/page";
 import LoginPage from "../../pages/login-page/login-page";
 import FormValidation from "../components/form-validation/form-validation";
 import ErrorPage from "../../pages/error-page/error-page";
