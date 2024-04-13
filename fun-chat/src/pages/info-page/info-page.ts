@@ -11,7 +11,7 @@ class InfoPage extends Page {
 
   constructor(id: string) {
     super(id);
-    this.button = new Button("back__btn", "btn", "Back");
+    this.button = new Button("back__btn", "btn", "Back", "button");
     this.button.onClick(() => {
       window.location.hash = "main";
     });

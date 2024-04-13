@@ -2,7 +2,7 @@ import Button from "../../button/button";
 
 class SendButton extends Button {
   constructor() {
-    super("send__btn", "btn", "Send");
+    super("send__btn", "btn", "Send", "button");
 
     // this.onClick(() => {
     // });

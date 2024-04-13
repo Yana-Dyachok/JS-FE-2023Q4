@@ -1,7 +1,11 @@
 import Page from "../../utils/page/page";
 import InfoButton from "../../core/components/info-btn/info-btn";
 import EnterButton from "../../core/components/enter-btn/enter-btn";
-import { createInputField } from "../../core/components/create-login-input/input-field-create";
+import {
+  createInput,
+  createLabel,
+  createErrorElements,
+} from "../../core/components/create-login-input/input-field-create";
 
 class LoginPage extends Page {
   static TextObject = {
@@ -21,13 +25,19 @@ class LoginPage extends Page {
   render() {
     const wrapper: HTMLDivElement = document.createElement("div");
     wrapper.classList.add("wrapper");
-    const buttons: HTMLDivElement = document.createElement("div");
-    buttons.classList.add("login__buttons");
-    buttons.append(
+    const form: HTMLFormElement = document.createElement("form");
+    form.classList.add("login__form");
+    form.append(
+      createLabel("user-name", "Name:"),
+      createInput("text", "user-name"),
+      createErrorElements("user-name__error"),
+      createLabel("password", "Password:"),
+      createInput("password", "password"),
+      createErrorElements("password__error"),
       this.enterBtn.getRootElement(),
-      this.infoBtn.getRootElement(),
     );
-    wrapper.append(createInputField(), buttons);
+
+    wrapper.append(form, this.infoBtn.getRootElement());
     this.container.append(wrapper);
     return this.container;
   }

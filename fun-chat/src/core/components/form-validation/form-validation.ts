@@ -5,9 +5,9 @@ class FormValidation extends ResultValidation {
 
   private isValidPassword: boolean = false;
 
-  userName: string = "";
+  static userName: string = "";
 
-  password: string = "";
+  static password: string = "";
 
   setupValidation(): void {
     const userNameInput: HTMLInputElement | null = document.getElementById(
@@ -26,11 +26,11 @@ class FormValidation extends ResultValidation {
         this.isValidUserName = /^[A-Z][a-zA-Z-]{2,}$/.test(value);
         if (this.isValidUserName) {
           this.validityIsTrue(userNameInput, errorUserName!);
+          FormValidation.userName = value;
         } else {
           this.validityNameIsFalse(userNameInput, errorUserName!, value, 3);
         }
         this.toggleBtnDisabled();
-        this.userName = value;
       });
     }
 
@@ -40,11 +40,11 @@ class FormValidation extends ResultValidation {
         this.isValidPassword = /^(?=.*\d)(?=.*[A-Z]).{4,}$/.test(value);
         if (this.isValidPassword) {
           this.validityIsTrue(passwordInput, errorPassword!);
+          FormValidation.password = value;
         } else {
           this.validityPasswordIsFalse(passwordInput, errorPassword!, value, 4);
         }
         this.toggleBtnDisabled();
-        this.password = value;
       });
     }
   }

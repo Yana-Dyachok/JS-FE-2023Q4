@@ -3,7 +3,10 @@
     &__form {
         display: flex;
         flex-direction: column;
-        padding-bottom: 3rem;
+        padding: 1rem 2rem;
+        margin-bottom: 2rem;
+        border: 0.1rem solid $c-green-cyan-100;
+        border-radius: 2rem;
 
         & > label {
             text-align: left;
@@ -14,7 +17,7 @@
 
     &__input {
         width: 100%;
-        padding: 1rem 2rem;
+        padding: 1rem;
         margin: 0.8rem 0;
         box-sizing: border-box;
         font-size: 2.5rem;
@@ -36,17 +39,16 @@
         }
     }
 
-    &__buttons {
-        display: flex;
-        gap: 3rem;
-    }
-
     &__error {
         padding: 0.5rem 1rem;
         font-size: 1.6rem;
         text-align: left;
         color: #bf1d1d;
     }
+}
+
+.enter__btn {
+    width: 100%;
 }
 
 @media (max-width: 500px) {

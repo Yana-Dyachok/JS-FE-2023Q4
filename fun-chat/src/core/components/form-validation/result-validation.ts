@@ -25,7 +25,7 @@ class ResultValidation {
     const errorMessages: string[] = [
       "* The first letter must be capitalized",
       "* Only English letters and hyphens are allowed",
-      `* The input field requires a minimum of ${validLength} characters.`,
+      `* At least ${validLength} characters long`,
     ];
 
     for (let i = errorElement.children.length; i < 3; i += 1) {
@@ -57,7 +57,7 @@ class ResultValidation {
     const errorMessagesPassword: string[] = [
       "* At least 1 number (0-9)",
       "* At least 1 uppercase letter",
-      `* The input field requires a minimum of ${validLength} characters.`,
+      `* At least ${validLength} characters long`,
     ];
 
     for (let i = errorElement.children.length; i < 3; i += 1) {
