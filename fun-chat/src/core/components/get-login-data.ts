@@ -4,8 +4,6 @@ import { IRequest, IResponseLogin } from "../../types/interfaces";
 import { MessageType } from "../../types/enum";
 
 class LoginData extends FormValidation {
-  static isLogin: boolean;
-
   enterEvent(): void {
     socketUrl.addEventListener("message", (event) => {
       const response: IResponseLogin = JSON.parse(event.data);
@@ -13,12 +11,10 @@ class LoginData extends FormValidation {
         const { payload } = response;
         const { user } = payload;
         const { login, isLogined } = user;
-        LoginData.isLogin = isLogined;
+        if (isLogined) window.location.hash = "main";
       } else if (response.type === MessageType.error) {
-        LoginData.isLogin = false;
         this.createWarningMessage();
       }
-      if (LoginData.isLogin) window.location.hash = "main";
     });
   }
 
@@ -33,7 +29,8 @@ class LoginData extends FormValidation {
   }
 
   submitForm(): void {
-    const loginForm = document.querySelector(".login__form");
+    const loginForm: HTMLFormElement | null =
+      document.querySelector(".login__form");
     if (loginForm) {
       loginForm.addEventListener("submit", (event) => {
         event.preventDefault();
