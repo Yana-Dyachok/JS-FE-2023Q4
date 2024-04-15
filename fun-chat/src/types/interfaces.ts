@@ -76,3 +76,14 @@ export interface IErrorPassword {
     error: "incorrect password";
   };
 }
+
+export interface IUser {
+  id: string;
+  login: string;
+  password: string;
+}
+
+export interface IUserIsLogined {
+  login: string;
+  isLogined: boolean;
+}

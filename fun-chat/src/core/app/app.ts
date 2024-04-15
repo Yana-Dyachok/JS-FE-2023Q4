@@ -4,7 +4,7 @@ import Page from "../../utils/page/page";
 import LoginPage from "../../pages/login-page/login-page";
 import FormValidation from "../components/form-validation/form-validation";
 import ErrorPage from "../../pages/error-page/error-page";
-import { loginData } from "../components/get-login-data";
+import { state } from "../../state/state";
 
 class App {
   private static container: HTMLElement = document.body;
@@ -20,7 +20,7 @@ class App {
     }
     let page: Page | null = null;
 
-    if (idPage === "main") {
+    if (idPage === "main" && state.getUser().isLogined) {
       page = new MainPage(idPage);
     } else if (idPage === "info") {
       page = new InfoPage(idPage);

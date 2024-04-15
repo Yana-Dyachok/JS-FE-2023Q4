@@ -1,3 +1,4 @@
+import { st } from "../../../utils/session-storage";
 import Button from "../button/button";
 
 class InfoButton extends Button {
@@ -5,6 +6,7 @@ class InfoButton extends Button {
     super("info__btn", "btn", "Info", "button");
 
     this.onClick(() => {
+      st.savePage(window.location.hash);
       window.location.hash = "info";
     });
   }

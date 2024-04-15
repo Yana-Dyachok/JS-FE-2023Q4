@@ -1,23 +1,7 @@
 import FormValidation from "./form-validation/form-validation";
-import { socketUrl } from "../../api/websocket-url";
-import { IRequest, IResponseLogin } from "../../types/interfaces";
-import { MessageType } from "../../types/enum";
+import { ws } from "../../api/websocket";
 
 class LoginData extends FormValidation {
-  enterEvent(): void {
-    socketUrl.addEventListener("message", (event) => {
-      const response: IResponseLogin = JSON.parse(event.data);
-      if (response.type === MessageType.login) {
-        const { payload } = response;
-        const { user } = payload;
-        const { login, isLogined } = user;
-        if (isLogined) window.location.hash = "main";
-      } else if (response.type === MessageType.error) {
-        this.createWarningMessage();
-      }
-    });
-  }
-
   createWarningMessage(): void {
     const errorPassword: HTMLDivElement | null =
       document.querySelector(".password__error");
@@ -36,17 +20,8 @@ class LoginData extends FormValidation {
         event.preventDefault();
         const login = FormValidation.userName;
         const { password } = FormValidation;
-        const request: IRequest = {
-          id: Date.now().toString(),
-          type: MessageType.login,
-          payload: {
-            user: {
-              login,
-              password,
-            },
-          },
-        };
-        socketUrl.send(JSON.stringify(request));
+
+        ws.logIn(login, password);
       });
     }
   }

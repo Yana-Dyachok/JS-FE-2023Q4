@@ -1,5 +1,6 @@
 import Page from "../../utils/page/page";
 import Button from "../../core/components/button/button";
+import { st } from "../../utils/session-storage";
 import "./info-page.scss";
 
 class InfoPage extends Page {
@@ -13,7 +14,7 @@ class InfoPage extends Page {
     super(id);
     this.button = new Button("back__btn", "btn", "Back", "button");
     this.button.onClick(() => {
-      window.location.hash = "main";
+      window.location.hash = st.getPage();
     });
   }
 

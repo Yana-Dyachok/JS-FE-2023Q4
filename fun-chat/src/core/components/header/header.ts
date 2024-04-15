@@ -1,6 +1,7 @@
 import LogoutButton from "./logout-button/logout_button";
 import InfoButton from "../info-btn/info-btn";
 import "./header.scss";
+import { state } from "../../../state/state";
 
 class Header {
   private header: HTMLElement;
@@ -21,7 +22,7 @@ class Header {
     article.classList.add("header__article");
     const userName = document.createElement("label");
     userName.classList.add("header__label", "header__user-name");
-    userName.textContent = `User:`;
+    userName.textContent = `User: ${state.getUser().login}`;
     const title = document.createElement("label");
     title.classList.add("header__label", "header__title");
     title.textContent = "Fun Chat";
