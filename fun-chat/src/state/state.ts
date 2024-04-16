@@ -5,10 +5,6 @@ class State {
 
   public users: IUserIsLogined[] = [];
 
-  public activeUsers: IUserIsLogined[] = [];
-
-  public inActiveUsers: IUserIsLogined[] = [];
-
   private messages = [];
 
   public setUser(user: IUserIsLogined): void {
@@ -24,11 +20,11 @@ class State {
   }
 
   public setActiveUsers(users: IUserIsLogined[]): void {
-    this.activeUsers = users;
+    this.users.push(...users);
   }
 
   public setInactiveUsers(users: IUserIsLogined[]): void {
-    this.inActiveUsers = users;
+    this.users.push(...users);
   }
 
   public getAllUsers(): IUserIsLogined[] {

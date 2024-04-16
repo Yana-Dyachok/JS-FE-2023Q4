@@ -53,13 +53,15 @@ class Websocket {
     }
     if (response.type === MessageType.inactive_user) {
       const { payload } = response;
-      state.setInactiveUsers(payload);
-      console.log(state.getAllUsers());
+      const { users } = payload;
+      state.setInactiveUsers(users);
+      // console.log(state.getAllUsers());
     }
 
     if (response.type === MessageType.active_user) {
       const { payload } = response;
-      state.setActiveUsers(payload);
+      const { users } = payload;
+      state.setActiveUsers(users);
     }
 
     if (response.type === MessageType.error) {
