@@ -20,14 +20,16 @@ class App {
     }
     let page: Page | null = null;
 
-    if (idPage === "main" && state.getUser().isLogined) {
-      page = new MainPage(idPage);
-    } else if (idPage === "main" && !state.getUser().isLogined) {
-      window.location.hash = "login";
+    if (idPage === "main") {
+      state.getUser().isLogined
+        ? (page = new MainPage(idPage))
+        : (window.location.hash = "login");
     } else if (idPage === "info") {
       page = new InfoPage(idPage);
     } else if (idPage === "login") {
-      page = new LoginPage(idPage);
+      state.getUser().isLogined
+        ? (window.location.hash = "main")
+        : (page = new LoginPage(idPage));
     } else {
       page = new ErrorPage(idPage);
     }
