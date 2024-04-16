@@ -1,8 +1,9 @@
 import { state } from "../state/state";
 import { SOCKET_URL } from "./const";
 import { MessageType } from "../types/enum";
-import { IRequest } from "../types/interfaces";
+import { getRequest } from "./request";
 import { st } from "../utils/session-storage";
+import { popup } from "../view/popup/popup";
 
 class Websocket {
   private socket: WebSocket;
@@ -40,32 +41,20 @@ class Websocket {
 
       if (isLogined) window.location.hash = "main";
     }
+
+    if (response.type === MessageType.error) {
+      const { payload } = response;
+      console.log(payload.error);
+      popup.createPopupElements(payload.error);
+    }
   };
 
   logIn(login: string, password: string): void {
     const id = Date.now().toString();
     st.saveUser({ id, login, password });
     this.socket.send(
-      JSON.stringify(this.request(id, login, password, MessageType.login)),
+      JSON.stringify(getRequest(id, login, password, MessageType.login)),
     );
-  }
-
-  request(
-    id: string,
-    login: string,
-    password: string,
-    messageType: string,
-  ): IRequest {
-    return {
-      id,
-      type: messageType,
-      payload: {
-        user: {
-          login,
-          password,
-        },
-      },
-    };
   }
 
   logOut(): void {

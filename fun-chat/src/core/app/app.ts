@@ -22,6 +22,8 @@ class App {
 
     if (idPage === "main" && state.getUser().isLogined) {
       page = new MainPage(idPage);
+    } else if (idPage === "main" && !state.getUser().isLogined) {
+      window.location.hash = "login";
     } else if (idPage === "info") {
       page = new InfoPage(idPage);
     } else if (idPage === "login") {
