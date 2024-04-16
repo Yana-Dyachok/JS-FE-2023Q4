@@ -16,6 +16,8 @@ class LoginPage extends Page {
 
   private enterBtn: EnterButton;
 
+  form: HTMLFormElement = document.createElement("form");
+
   constructor(id: string) {
     super(id);
     this.infoBtn = new InfoButton();
@@ -25,9 +27,8 @@ class LoginPage extends Page {
   render() {
     const wrapper: HTMLDivElement = document.createElement("div");
     wrapper.classList.add("wrapper");
-    const form: HTMLFormElement = document.createElement("form");
-    form.classList.add("login__form");
-    form.append(
+    this.form.classList.add("login__form");
+    this.form.append(
       createLabel("user-name", "Name:"),
       createInput("text", "user-name"),
       createErrorElements("user-name__error"),
@@ -37,7 +38,7 @@ class LoginPage extends Page {
       this.enterBtn.getRootElement(),
     );
 
-    wrapper.append(form, this.infoBtn.getRootElement());
+    wrapper.append(this.form, this.infoBtn.getRootElement());
     this.container.append(wrapper);
     return this.container;
   }

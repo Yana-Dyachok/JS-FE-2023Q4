@@ -1,5 +1,5 @@
-import FormValidation from "./form-validation/form-validation";
-import { ws } from "../../api/websocket";
+import FormValidation from "../core/components/form-validation/form-validation";
+import { ws } from "../api/websocket";
 
 class LoginData extends FormValidation {
   submitForm(): void {
@@ -12,6 +12,9 @@ class LoginData extends FormValidation {
         const { password } = FormValidation;
 
         ws.logIn(login, password);
+        ws.getActiveUsers();
+        ws.getInActiveUsers();
+        // ws.externalLogin(login, password)
       });
     }
   }

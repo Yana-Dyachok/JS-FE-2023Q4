@@ -65,15 +65,7 @@ export interface IErrorLogin {
   id: string;
   type: MessageType.error;
   payload: {
-    error: "a user with this login is already authorized";
-  };
-}
-
-export interface IErrorPassword {
-  id: string;
-  type: MessageType.error;
-  payload: {
-    error: "incorrect password";
+    error: string;
   };
 }
 

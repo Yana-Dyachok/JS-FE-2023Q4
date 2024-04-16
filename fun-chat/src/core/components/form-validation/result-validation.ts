@@ -56,7 +56,7 @@ class ResultValidation {
 
     const errorMessagesPassword: string[] = [
       "* At least 1 number (0-9)",
-      "* At least 1 uppercase letter",
+      "* At least 1 uppercase English letter",
       `* At least ${validLength} characters long`,
     ];
 

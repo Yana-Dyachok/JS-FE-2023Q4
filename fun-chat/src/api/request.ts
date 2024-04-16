@@ -1,4 +1,8 @@
-import { IRequest } from "../types/interfaces";
+import {
+  IRequest,
+  IRequestExternal,
+  IRequestActiveUsers,
+} from "../types/interfaces";
 
 export const getRequest = (
   id: string,
@@ -14,4 +18,29 @@ export const getRequest = (
       password,
     },
   },
+});
+
+export const getExternalRequest = (
+  login: string,
+  isLogined: boolean,
+  messageType: string,
+): IRequestExternal => ({
+  id: null,
+  type: messageType,
+  payload: {
+    user: {
+      login,
+      isLogined,
+    },
+  },
+});
+{
+}
+export const getUsersRequest = (
+  id: string,
+  messageType: string,
+): IRequestActiveUsers => ({
+  id,
+  type: messageType,
+  payload: null,
 });

@@ -1,7 +1,7 @@
 import { state } from "../state/state";
 import { SOCKET_URL } from "./const";
 import { MessageType } from "../types/enum";
-import { getRequest } from "./request";
+import { getExternalRequest, getRequest, getUsersRequest } from "./request";
 import { st } from "../utils/session-storage";
 import { popup } from "../view/popup/popup";
 
@@ -42,9 +42,29 @@ class Websocket {
       if (isLogined) window.location.hash = "main";
     }
 
+    if (response.type === MessageType.external_login) {
+      const { payload } = response;
+      const { user } = payload;
+      const { login, isLogined } = user;
+      state.setAllUsers(user);
+      // console.log(state.getAllUsers())
+      this.externalLogin(login, isLogined);
+      // if (isLogined) window.location.hash = 'main';
+    }
+    if (response.type === MessageType.inactive_user) {
+      const { payload } = response;
+      state.setInactiveUsers(payload);
+      console.log(state.getAllUsers());
+    }
+
+    if (response.type === MessageType.active_user) {
+      const { payload } = response;
+      state.setActiveUsers(payload);
+    }
+
     if (response.type === MessageType.error) {
       const { payload } = response;
-      console.log(payload.error);
+      window.location.hash = "login";
       popup.createPopupElements(payload.error);
     }
   };
@@ -72,7 +92,38 @@ class Websocket {
     };
 
     this.socket.send(JSON.stringify(request));
+    st.removeUser();
   }
+
+  externalLogin(login: string, isLogined: boolean): void {
+    this.socket.send(
+      JSON.stringify(
+        getExternalRequest(login, isLogined, MessageType.external_login),
+      ),
+    );
+  }
+
+  getActiveUsers(): void {
+    const id = Date.now().toString();
+    this.socket.send(
+      JSON.stringify(getUsersRequest(id, MessageType.active_user)),
+    );
+  }
+
+  getInActiveUsers(): void {
+    const id = Date.now().toString();
+    this.socket.send(
+      JSON.stringify(getUsersRequest(id, MessageType.inactive_user)),
+    );
+  }
+
+  //   externalLogOut(): void {
+  //     this.socket.send(
+  //         JSON.stringify(
+  //             getExternalRequest(login, isLogined, MessageType.external_logout)
+  //         )
+  //     );
+  // }
 }
 
 export const ws = new Websocket();

@@ -1,5 +1,5 @@
 import Button from "../button/button";
-import { loginData } from "../get-login-data";
+import { loginData } from "../../../utils/get-login-data";
 
 class EnterButton extends Button {
   constructor() {
