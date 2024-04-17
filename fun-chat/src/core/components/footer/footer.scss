@@ -1,14 +1,12 @@
 .footer {
     min-height: 10vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding-top: 1rem;
 
     &__list {
-        display: flex;
-        flex-direction: row;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 6fr 1fr; 
         align-items: center;
-        gap: 2rem;
     }
 
     &__span {
