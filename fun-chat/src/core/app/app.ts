@@ -21,10 +21,9 @@ class App {
     let page: Page | null = null;
 
     if (idPage === "main") {
-      page = new MainPage(idPage)
-      // state.getUser().isLogined
-      //   ? (page = new MainPage(idPage))
-      //   : (window.location.hash = "login");
+      state.getUser().isLogined
+        ? (page = new MainPage(idPage))
+        : (window.location.hash = "login");
     } else if (idPage === "info") {
       page = new InfoPage(idPage);
     } else if (idPage === "login") {
@@ -54,9 +53,9 @@ class App {
   }
 
   run() {
-    App.renderNewPage("main");
+    App.renderNewPage("login");
     this.enableRouteChange();
-    window.location.hash = "main";
+    window.location.hash = "login";
     this.formValidation.setupValidation();
     window.addEventListener("hashchange", () => {
       this.formValidation.setupValidation();

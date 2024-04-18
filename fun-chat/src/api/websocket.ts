@@ -46,16 +46,12 @@ class Websocket {
       const { payload } = response;
       const { user } = payload;
       const { login, isLogined } = user;
-      state.setAllUsers(user);
-      // console.log(state.getAllUsers())
       this.externalLogin(login, isLogined);
-      // if (isLogined) window.location.hash = 'main';
     }
     if (response.type === MessageType.inactive_user) {
       const { payload } = response;
       const { users } = payload;
       state.setInactiveUsers(users);
-      // console.log(state.getAllUsers());
     }
 
     if (response.type === MessageType.active_user) {
@@ -67,7 +63,8 @@ class Websocket {
     if (response.type === MessageType.error) {
       const { payload } = response;
       window.location.hash = "login";
-      popup.createPopupElements(payload.error);
+      if (payload.error === "incorrect password")
+        popup.createPopupElements(payload.error);
     }
   };
 

@@ -1,0 +1,92 @@
+@import '../../../styles/colors.scss';
+.dialog {
+    &__container {
+        display: grid;
+        grid-template-rows: 0.3fr 4fr 0.3fr;
+        padding: 0.5rem;
+        border: 0.2rem solid $c-green-cyan-500;
+        border-radius: 1rem;
+        color: $c-pink-900;
+        font-size: 2rem;
+    }
+
+    &__header {
+        padding: 0.5rem 1rem;
+        border-bottom: 0.2rem solid $c-green-cyan-500;
+    }
+
+    &__content {
+        overflow-y: scroll;
+        padding: 0 1rem;
+        height: 55vh;
+        &::-webkit-scrollbar {
+            padding: 1rem;
+            width: 1rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $c-green-cyan-100;
+            border-radius: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: $c-green-cyan-500;
+        }
+    }
+
+    &__label {
+        position: relative;
+        top: 50%;
+        left: 30%;
+        color: $c-pink-800;
+        z-index: -1;
+    }
+
+    &__form {
+        display: grid;
+        grid-template-columns: 3fr 0.5fr;
+        gap: 1rem;
+        padding: 0.5rem 1rem;
+        border-top: 0.2rem solid $c-green-cyan-500;
+    }
+
+    &__input {
+        padding: 0.5rem;
+        border: 0.2rem solid $c-green-cyan-500;
+        border-radius: 1rem;
+    }
+}
+
+.message {
+    &__block {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    &__container {
+        width: 50%;
+        display: grid;
+        grid-template-rows: 0.5fr 1fr 0.5fr;
+        margin-left: auto;
+        padding: 0.5rem;
+        background-color: $c-green-cyan-500;
+        border-radius: 1rem;
+    }
+
+    &__header,
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.1rem 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    &__text {
+        padding: 0  0.5rem;
+        background-color: $c-green-cyan-100;
+    }
+}
+
+.users-mesaage{
+    margin-right: auto;
+}

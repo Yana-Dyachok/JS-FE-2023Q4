@@ -1,6 +1,6 @@
 import Page from "../../utils/page/page";
 import Header from "../../core/components/header/header";
-import Content from "../../core/components/content-block/content";
+import { contentView } from "../../view/main-view/content-view";
 import { createFooterElements } from "../../core/components/footer/footer";
 
 class MainPage extends Page {
@@ -10,18 +10,15 @@ class MainPage extends Page {
 
   private header: Header;
 
-  private content: Content;
-
   constructor(id: string) {
     super(id);
     this.header = new Header();
-    this.content = new Content();
   }
 
   render() {
     this.container.append(
       this.header.getRootElement(),
-      this.content.getRootElement(),
+      contentView.getRootElement(),
       createFooterElements(),
     );
     return this.container;

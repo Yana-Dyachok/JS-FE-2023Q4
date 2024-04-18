@@ -15,9 +15,9 @@ class State {
     return this.user;
   }
 
-  public setAllUsers(user: IUserIsLogined): void {
-    this.users.push(user);
-  }
+  // public setAllUsers(user: IUserIsLogined): void {
+  //   this.users.push(user);
+  // }
 
   public setActiveUsers(users: IUserIsLogined[]): void {
     this.users.push(...users);
