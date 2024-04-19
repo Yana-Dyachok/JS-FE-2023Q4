@@ -54,6 +54,8 @@ class ContentView {
       this.dialogForm,
       this.inputMessage,
       this.dialogContent,
+      this.userHeaderName,
+      this.userHeaderStatus,
     );
   }
 
@@ -63,6 +65,7 @@ class ContentView {
   }
 
   private createUserDialogElements(): void {
+    this.contentClass.chooseUserToSend();
     this.contentClass.submitMessage();
     this.dialogHeader.append(this.userHeaderName, this.userHeaderStatus);
     this.dialogForm.append(this.inputMessage, this.sendButton.getRootElement());

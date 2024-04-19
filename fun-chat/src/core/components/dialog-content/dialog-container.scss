@@ -11,7 +11,10 @@
     }
 
     &__header {
+        display: flex;
+        justify-content: space-around;
         padding: 0.5rem 1rem;
+        font-family: "tenpounds regular";
         border-bottom: 0.2rem solid $c-green-cyan-500;
     }
 
@@ -40,6 +43,10 @@
         left: 30%;
         color: $c-pink-800;
         z-index: -1;
+    }
+
+    &__status {
+        color: $c-green;
     }
 
     &__form {
@@ -89,4 +96,8 @@
 
 .users-mesaage{
     margin-right: auto;
+}
+
+.off {
+    color: $c-pink-800;
 }

@@ -6,6 +6,8 @@ import {
   createLabel,
 } from "../dialog-content/create-dialog-elements";
 import { formatDate } from "../../../utils/format-date";
+import { st } from "../../../utils/session-storage";
+import { ws } from "../../../api/websocket";
 
 class Content {
   private users: IUserIsLogined[] = [];
@@ -20,18 +22,26 @@ class Content {
 
   private dialogForm: HTMLFormElement;
 
+  private userHeaderName: HTMLElement;
+
+  private userHeaderStatus: HTMLElement;
+
   constructor(
     userSearch: HTMLInputElement,
     userList: HTMLElement,
     dialogForm: HTMLFormElement,
     inputMessage: HTMLInputElement,
     dialogContent: HTMLElement,
+    userHeaderName: HTMLElement,
+    userHeaderStatus: HTMLElement,
   ) {
     this.userSearch = userSearch;
     this.userList = userList;
     this.dialogForm = dialogForm;
     this.inputMessage = inputMessage;
     this.dialogContent = dialogContent;
+    this.userHeaderName = userHeaderName;
+    this.userHeaderStatus = userHeaderStatus;
   }
 
   searchUser(): void {
@@ -59,12 +69,13 @@ class Content {
     this.dialogForm.addEventListener("submit", (event) => {
       event.preventDefault();
       const text = this.inputMessage.value;
-      if (text.length > 0) {
+      if (text.length > 0 && this.userHeaderName.textContent !== "") {
         const labelToRemove: HTMLElement | null =
           document.querySelector(".dialog__label");
         if (labelToRemove) {
           this.dialogContent.removeChild(labelToRemove);
         }
+        ws.sendMessage(this.userHeaderName.textContent!, text);
         this.dialogContent.append(this.createMessageBlock());
       }
     });
@@ -88,6 +99,24 @@ class Content {
     messageBlock.append(messageContainer);
     messageText.textContent = this.inputMessage.value;
     return messageBlock;
+  }
+
+  chooseUserToSend(): void {
+    const liElements = this.userList.querySelectorAll("li");
+    if (liElements) {
+      liElements.forEach((li: HTMLLIElement) => {
+        li.addEventListener("click", () => {
+          this.userHeaderName.textContent = li.children[1].textContent;
+          if (li.children[0].classList.contains("active")) {
+            this.userHeaderStatus.textContent = "online";
+            this.userHeaderStatus.classList.toggle("off");
+          } else {
+            this.userHeaderStatus.textContent = "offline";
+            this.userHeaderStatus.classList.toggle("off");
+          }
+        });
+      });
+    }
   }
 }
 

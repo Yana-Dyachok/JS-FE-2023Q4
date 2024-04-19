@@ -2,6 +2,7 @@ import {
   IRequest,
   IRequestExternal,
   IRequestActiveUsers,
+  ISendMessage,
 } from "../types/interfaces";
 
 export const getRequest = (
@@ -34,8 +35,7 @@ export const getExternalRequest = (
     },
   },
 });
-{
-}
+
 export const getUsersRequest = (
   id: string,
   messageType: string,
@@ -43,4 +43,20 @@ export const getUsersRequest = (
   id,
   type: messageType,
   payload: null,
+});
+
+export const getRequestSendMessage = (
+  id: string,
+  messageType: string,
+  toUser: string,
+  text: string,
+): ISendMessage => ({
+  id,
+  type: messageType,
+  payload: {
+    message: {
+      to: toUser,
+      text,
+    },
+  },
 });

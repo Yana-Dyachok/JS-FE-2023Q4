@@ -7,8 +7,8 @@
 // class WebsocketRequest {
 //   private socket: WebSocket;
 
-//   constructor() {
-//     this.socket = SOCKET_URL;
+//   constructor(socket: WebSocket) {
+//     this.socket =socket;
 //   }
 
 //   logIn(login: string, password: string): void {

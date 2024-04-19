@@ -79,3 +79,33 @@ export interface IUserIsLogined {
   login: string;
   isLogined: boolean;
 }
+
+export interface ISendMessage {
+  id: string;
+  type: string;
+  payload: {
+    message: {
+      to: string;
+      text: string;
+    };
+  };
+}
+
+export interface IResponseMessage {
+  id: string;
+  type: string;
+  payload: {
+    message: {
+      id: string;
+      from: string;
+      to: string;
+      text: string;
+      datetime: number;
+      status: {
+        isDelivered: boolean;
+        isReaded: boolean;
+        isEdited: boolean;
+      };
+    };
+  };
+}
