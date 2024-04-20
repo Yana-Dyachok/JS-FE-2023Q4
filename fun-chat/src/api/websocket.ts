@@ -84,7 +84,8 @@ class Websocket {
       case MessageType.send_msg: {
         const { payload } = response;
         const { message } = payload;
-        const { id, from, to, text, datetime, status } = message;
+       state.setMessageContent(message);
+     // console.log(state.getMessageContent()) 
         break;
       }
       case MessageType.error: {

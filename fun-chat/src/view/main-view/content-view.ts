@@ -63,6 +63,10 @@ class ContentView {
     this.contentClass.createAllUsers();
   }
 
+  updateSubmit(): void {
+    this.contentClass.submitMessage();
+  }
+
   private createUserAsideElements(): void {
     this.contentClass.searchUser();
     this.userAside.append(this.userSearch, this.userList);

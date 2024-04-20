@@ -110,6 +110,19 @@ export interface IResponseSendMessage {
   };
 }
 
+export interface IMessageContent {
+  id: string,
+  from: string,
+  to: string,
+  text: string,
+  datetime: number,
+  status: {
+    isDelivered: boolean,
+    isReaded: boolean,
+    isEdited: boolean,
+  }
+}
+
 export interface IEditMessage {
   id: string;
   type: string;

@@ -1,9 +1,11 @@
-import { IUserIsLogined } from "../types/interfaces";
+import { IUserIsLogined, IMessageContent } from "../types/interfaces";
 
 class State {
   public user: IUserIsLogined = { login: "", isLogined: false };
 
   public users: IUserIsLogined[] = [];
+
+  messageContent:IMessageContent = {id:"", from: "",to: "",text: "", datetime: 0, status:{isDelivered:false, isEdited:  false, isReaded: false}};
 
   private messages = [];
 
@@ -43,6 +45,14 @@ class State {
 
   public getAllUsers(): IUserIsLogined[] {
     return this.users;
+  }
+
+  public setMessageContent(message:IMessageContent): void {
+    this.messageContent = JSON.parse(JSON.stringify(message));
+  }
+
+  public getMessageContent(): IMessageContent {
+   return  this.messageContent;
   }
 }
 export const state = new State();

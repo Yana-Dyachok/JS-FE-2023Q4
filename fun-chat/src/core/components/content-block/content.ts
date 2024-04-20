@@ -1,5 +1,5 @@
 import { state } from "../../../state/state";
-import { IUserIsLogined } from "../../../types/interfaces";
+import { IUserIsLogined, IMessageContent } from "../../../types/interfaces";
 import { createUserItem } from "../aside-content/create-aside";
 import {
   createDiv,
@@ -87,28 +87,38 @@ class Content {
           this.dialogContent.removeChild(labelToRemove);
         }
         ws.sendMessage(this.userHeaderName.textContent!, text);
-        this.dialogContent.append(this.createMessageBlock());
+        //console.log(state.getMessageContent())
+        this.dialogContent.append(this.createMessageBlock(state.getMessageContent()));
       }
     });
   }
 
-  createMessageBlock(): HTMLDivElement {
+  createMessageBlock(message: IMessageContent): HTMLDivElement {
+    const {id, from,to,text, datetime, status}=message;
     const messageBlock: HTMLDivElement = createDiv("message__block");
     const messageContainer: HTMLDivElement = createDiv("message__container");
     const messageHeader: HTMLDivElement = createDiv("message__header");
     const messageUser: HTMLElement = createLabel("message__user");
     const messageDate: HTMLElement = createLabel("message__date");
-    messageUser.textContent = "you";
-    messageDate.textContent = formatDate();
+    if(state.getUser().login===from) {
+      messageUser.textContent ="you";
+      messageContainer.classList.add("users-message");
+    } else {
+      messageUser.textContent =from;
+      messageContainer.classList.remove("users-message");
+    }
+    messageDate.textContent = formatDate(datetime);
     messageHeader.append(messageUser, messageDate);
     const messageText: HTMLDivElement = createDiv("message__text");
     const messageFooter: HTMLDivElement = createDiv("message__footer");
-    const footerLabel: HTMLElement = createLabel("message__footer-label");
+    const messageEdit: HTMLElement = createLabel("message__footer-label");
+    messageEdit.textContent=`${status.isEdited?"edit":""}`
     const messageStatus: HTMLElement = createLabel("message__status");
-    messageFooter.append(footerLabel, messageStatus);
+    messageStatus.textContent=`${status.isReaded?"readed":status.isDelivered?"delivered":"sent"}`
+    messageFooter.append(messageEdit, messageStatus);
     messageContainer.append(messageHeader, messageText, messageFooter);
     messageBlock.append(messageContainer);
-    messageText.textContent = this.inputMessage.value;
+    messageText.textContent = text;
     return messageBlock;
   }
 
