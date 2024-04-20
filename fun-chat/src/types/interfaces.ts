@@ -91,7 +91,7 @@ export interface ISendMessage {
   };
 }
 
-export interface IResponseMessage {
+export interface IResponseSendMessage {
   id: string;
   type: string;
   payload: {
@@ -108,4 +108,121 @@ export interface IResponseMessage {
       };
     };
   };
+}
+
+export  interface IEditMessage {
+  id: string,
+  type: string
+  payload: {
+    message: {
+      id: string,
+      text: string
+    }
+  }
+}
+
+export interface IResponseEditMessage {
+  id: string,
+  type: string,
+  payload: {
+    message: {
+      id: string,
+      text: string,
+      status: {
+        isEdited: boolean,
+      }
+    }
+  }
+}
+
+export  interface IEditUserMessage {
+  id: null,
+  type: string,
+  payload: {
+    message: {
+      id: string,
+      text: string,
+      status: {
+        isEdited: boolean,
+      }
+    }
+  }
+}
+
+export  interface IDeleteMessage {
+  id: string,
+  type:string,
+  payload: {
+    message: {
+      id: string,
+    }
+  }
+}
+
+export interface IResponseDeleteMessage {
+  id: string,
+  type: string,
+  payload: {
+    message: {
+      id: string,
+      status: {
+        isDeleted: boolean,
+      }
+    }
+  }
+}
+
+export interface IHistoryMessage {
+  id: string,
+  type: string,
+  payload: {
+    user: {
+      login: string,
+    }
+  }
+}
+
+
+export interface IResponseHistoryMessage {
+  id: string,
+  type: string,
+  payload: {
+    messages: [],
+  }
+}
+
+export interface IDeliverMessage {
+  id: null,
+  type: string,
+  payload: {
+    message: {
+      id: string,
+      status: {
+        isDelivered: boolean,
+      }
+    }
+  }
+}
+
+export interface IReadMessage {
+  id: string,
+  type: string,
+  payload: {
+    message: {
+      id: string,
+    }
+  }
+}
+
+export interface IResponseReadMessage {
+  id: string,
+  type: string,
+  payload: {
+    message: {
+      id: string,
+      status: {
+        isReaded: boolean,
+      }
+    }
+  }
 }

@@ -109,10 +109,10 @@ class Content {
           this.userHeaderName.textContent = li.children[1].textContent;
           if (li.children[0].classList.contains("active")) {
             this.userHeaderStatus.textContent = "online";
-            this.userHeaderStatus.classList.toggle("off");
+            this.userHeaderStatus.classList.remove("off");
           } else {
             this.userHeaderStatus.textContent = "offline";
-            this.userHeaderStatus.classList.toggle("off");
+            this.userHeaderStatus.classList.add("off");
           }
         });
       });

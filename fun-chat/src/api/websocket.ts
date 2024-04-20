@@ -75,9 +75,9 @@ class Websocket {
       case MessageType.error: {
         const { payload } = response;
         window.location.hash = "login";
-        if (payload.error === "incorrect password") {
+       // if (payload.error === "incorrect password") {
           popup.createPopupElements(payload.error);
-        }
+       // }
         break;
       }
       default:
