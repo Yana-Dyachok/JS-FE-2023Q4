@@ -62,6 +62,7 @@ class Content {
     const uniqueUsers: IUserIsLogined[] = [];
     state.getAllUsers().forEach((user) => {
       if (!uniqueUsers.some((u) => u.login === user.login)) {
+        if(user.login!==state.getUser().login)
         uniqueUsers.push(user);
       }
     });
