@@ -14,8 +14,15 @@
         display: flex;
         justify-content: space-around;
         padding: 0.5rem 1rem;
-        font-family: "tenpounds regular";
+        font-family: 'tenpounds regular';
         border-bottom: 0.2rem solid $c-green-cyan-500;
+    }
+
+    &__name{
+        max-width: 20rem;
+        white-space: wrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis;
     }
 
     &__content {
@@ -59,6 +66,7 @@
 
     &__input {
         padding: 0.5rem;
+        width: 100%;
         border: 0.2rem solid $c-green-cyan-500;
         border-radius: 1rem;
     }
@@ -72,32 +80,77 @@
 
     &__container {
         width: 50%;
-        display: grid;
-        grid-template-rows: 0.5fr 1fr 0.5fr;
         margin-left: auto;
         padding: 0.5rem;
-        background-color: $c-green-cyan-500;
+        background-color: $c-pink-100;
         border-radius: 1rem;
     }
 
     &__header,
     &__footer {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         padding: 0.1rem 0.5rem;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     &__text {
-        padding: 0  0.5rem;
-        background-color: $c-green-cyan-100;
+        word-wrap: break-word;
+        padding: 0.5rem;
+        background-color: $c-white;
     }
 }
 
-.users-mesaage{
+.users-mesaage {
     margin-right: auto;
 }
 
 .off {
     color: $c-pink-800;
+}
+
+@media (max-width: 630px) {
+    .dialog {
+        &__container {
+            font-size: 1.5rem;
+        }
+
+        &__content {
+            padding: 0 0.5rem;
+            &::-webkit-scrollbar {
+                padding: 0.5rem;
+                width: 0.5rem;
+            }
+        }
+        &__label {
+            top: 40%;
+            left: 20%;
+        }
+
+        &__name{
+            max-width: 15rem;
+        }
+    }
+
+    .message {   
+        &__header,
+        &__footer {
+            font-size: 0.9rem;
+        }
+    
+        &__text {
+            padding: 0 0.5rem;
+            background-color: $c-white;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .dialog {
+        &__label {
+            top: 40%;
+            left: 10%;
+        }
+    }
 }

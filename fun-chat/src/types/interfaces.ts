@@ -110,119 +110,118 @@ export interface IResponseSendMessage {
   };
 }
 
-export  interface IEditMessage {
-  id: string,
-  type: string
+export interface IEditMessage {
+  id: string;
+  type: string;
   payload: {
     message: {
-      id: string,
-      text: string
-    }
-  }
+      id: string;
+      text: string;
+    };
+  };
 }
 
 export interface IResponseEditMessage {
-  id: string,
-  type: string,
+  id: string;
+  type: string;
   payload: {
     message: {
-      id: string,
-      text: string,
+      id: string;
+      text: string;
       status: {
-        isEdited: boolean,
-      }
-    }
-  }
+        isEdited: boolean;
+      };
+    };
+  };
 }
 
-export  interface IEditUserMessage {
-  id: null,
-  type: string,
+export interface IEditUserMessage {
+  id: null;
+  type: string;
   payload: {
     message: {
-      id: string,
-      text: string,
+      id: string;
+      text: string;
       status: {
-        isEdited: boolean,
-      }
-    }
-  }
+        isEdited: boolean;
+      };
+    };
+  };
 }
 
-export  interface IDeleteMessage {
-  id: string,
-  type:string,
+export interface IDeleteMessage {
+  id: string;
+  type: string;
   payload: {
     message: {
-      id: string,
-    }
-  }
+      id: string;
+    };
+  };
 }
 
 export interface IResponseDeleteMessage {
-  id: string,
-  type: string,
+  id: string;
+  type: string;
   payload: {
     message: {
-      id: string,
+      id: string;
       status: {
-        isDeleted: boolean,
-      }
-    }
-  }
+        isDeleted: boolean;
+      };
+    };
+  };
 }
 
 export interface IHistoryMessage {
-  id: string,
-  type: string,
+  id: string;
+  type: string;
   payload: {
     user: {
-      login: string,
-    }
-  }
+      login: string;
+    };
+  };
 }
 
-
 export interface IResponseHistoryMessage {
-  id: string,
-  type: string,
+  id: string;
+  type: string;
   payload: {
-    messages: [],
-  }
+    messages: [];
+  };
 }
 
 export interface IDeliverMessage {
-  id: null,
-  type: string,
+  id: null;
+  type: string;
   payload: {
     message: {
-      id: string,
+      id: string;
       status: {
-        isDelivered: boolean,
-      }
-    }
-  }
+        isDelivered: boolean;
+      };
+    };
+  };
 }
 
 export interface IReadMessage {
-  id: string,
-  type: string,
+  id: string;
+  type: string;
   payload: {
     message: {
-      id: string,
-    }
-  }
+      id: string;
+    };
+  };
 }
 
 export interface IResponseReadMessage {
-  id: string,
-  type: string,
+  id: string;
+  type: string;
   payload: {
     message: {
-      id: string,
+      id: string;
       status: {
-        isReaded: boolean,
-      }
-    }
-  }
+        isReaded: boolean;
+      };
+    };
+  };
 }
