@@ -59,10 +59,16 @@ class Content {
   }
 
   createAllUsers(): void {
-    this.users.push(...state.getAllUsers());
-    for (let i = 0; i < this.users.length; i += 1) {
-      this.userList.append(createUserItem(this.users[i], 1));
-    }
+    const uniqueUsers: IUserIsLogined[] = [];
+    state.getAllUsers().forEach((user) => {
+      if (!uniqueUsers.some((u) => u.login === user.login)) {
+        uniqueUsers.push(user);
+      }
+    });
+
+    const userListItems = uniqueUsers.map((user) => createUserItem(user, 1));
+    this.userList.innerHTML = "";
+    this.userList.append(...userListItems);
   }
 
   submitMessage(): void {

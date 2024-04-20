@@ -9,6 +9,7 @@ import {
 } from "./request";
 import { st } from "../utils/session-storage";
 import { popup } from "../view/popup/popup";
+import { contentView } from "../view/main-view/content-view";
 
 class Websocket {
   private socket: WebSocket;
@@ -50,20 +51,34 @@ class Websocket {
       case MessageType.external_login: {
         const { payload } = response;
         const { user } = payload;
-        const { login, isLogined } = user;
-        this.externalLogin(login, isLogined);
+
+        state.externalLogin(user);
+
+        contentView.updateUsersList();
+        break;
+      }
+      case MessageType.external_logout: {
+        const { payload } = response;
+        const { user } = payload;
+        // this.externalLogOut(login, isLogined);
+        state.externalLogout(user);
+        contentView.updateUsersList();
         break;
       }
       case MessageType.inactive_user: {
         const { payload } = response;
         const { users } = payload;
         state.setInactiveUsers(users);
+
+        contentView.updateUsersList();
         break;
       }
       case MessageType.active_user: {
         const { payload } = response;
         const { users } = payload;
         state.setActiveUsers(users);
+
+        contentView.updateUsersList();
         break;
       }
       case MessageType.send_msg: {
@@ -75,9 +90,9 @@ class Websocket {
       case MessageType.error: {
         const { payload } = response;
         window.location.hash = "login";
-        // if (payload.error === "incorrect password") {
-        popup.createPopupElements(payload.error);
-        // }
+        if (payload.error === "incorrect password") {
+          popup.createPopupElements(payload.error);
+        }
         break;
       }
       default:
@@ -141,14 +156,6 @@ class Websocket {
       ),
     );
   }
-
-  //   externalLogOut(): void {
-  //     this.socket.send(
-  //         JSON.stringify(
-  //             getExternalRequest(login, isLogined, MessageType.external_logout)
-  //         )
-  //     );
-  // }
 }
 
 export const ws = new Websocket();

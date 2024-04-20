@@ -59,6 +59,10 @@ class ContentView {
     );
   }
 
+  updateUsersList(): void {
+    this.contentClass.createAllUsers();
+  }
+
   private createUserAsideElements(): void {
     this.contentClass.searchUser();
     this.userAside.append(this.userSearch, this.userList);
