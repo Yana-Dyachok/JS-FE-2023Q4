@@ -49,7 +49,7 @@ class Content {
     this.userSearch.addEventListener("input", () => {
       this.userList.innerHTML = "";
       const searchQuery: string = this.userSearch.value;
-      for (const user of this.users) {
+      for (const user of this.getUniqueUsers()) {
         const userName: string = user.login.toLowerCase();
         if (userName.includes(searchQuery.toLowerCase())) {
           this.userList.append(createUserItem(user, 1));
@@ -58,16 +58,20 @@ class Content {
     });
   }
 
-  createAllUsers(): void {
+  getUniqueUsers(): IUserIsLogined[] {
     const uniqueUsers: IUserIsLogined[] = [];
     state.getAllUsers().forEach((user) => {
       if (!uniqueUsers.some((u) => u.login === user.login)) {
-        if(user.login!==state.getUser().login)
-        uniqueUsers.push(user);
+        if (user.login !== state.getUser().login) uniqueUsers.push(user);
       }
     });
+    return uniqueUsers;
+  }
 
-    const userListItems = uniqueUsers.map((user) => createUserItem(user, 1));
+  createAllUsers(): void {
+    const userListItems = this.getUniqueUsers().map((user) =>
+      createUserItem(user, 1),
+    );
     this.userList.innerHTML = "";
     this.userList.append(...userListItems);
   }

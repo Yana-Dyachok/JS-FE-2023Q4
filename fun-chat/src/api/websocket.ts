@@ -89,9 +89,12 @@ class Websocket {
       }
       case MessageType.error: {
         const { payload } = response;
-        window.location.hash = "login";
-        if (payload.error === "incorrect password") {
+        if (
+          payload.error === "incorrect password" ||
+          payload.error === "a user with this login is already authorized"
+        ) {
           popup.createPopupElements(payload.error);
+          window.location.hash = "login";
         }
         break;
       }
