@@ -91,36 +91,27 @@ export interface ISendMessage {
   };
 }
 
-export interface IResponseSendMessage {
+export interface IMessageStatus {
+  isDelivered: boolean;
+  isReaded: boolean;
+  isEdited: boolean;
+}
+
+export interface IMessage {
+  id: string;
+  from: string;
+  to: string;
+  text: string;
+  datetime: number;
+  status: IMessageStatus;
+}
+
+export interface IResponseMessage {
   id: string;
   type: string;
   payload: {
-    message: {
-      id: string;
-      from: string;
-      to: string;
-      text: string;
-      datetime: number;
-      status: {
-        isDelivered: boolean;
-        isReaded: boolean;
-        isEdited: boolean;
-      };
-    };
+    message: IMessage;
   };
-}
-
-export interface IMessageContent {
-  id: string,
-  from: string,
-  to: string,
-  text: string,
-  datetime: number,
-  status: {
-    isDelivered: boolean,
-    isReaded: boolean,
-    isEdited: boolean,
-  }
 }
 
 export interface IEditMessage {

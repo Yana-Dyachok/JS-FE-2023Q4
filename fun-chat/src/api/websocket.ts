@@ -10,6 +10,7 @@ import {
 import { st } from "../utils/session-storage";
 import { popup } from "../view/popup/popup";
 import { contentView } from "../view/main-view/content-view";
+import { IMessage } from "../types/interfaces";
 
 class Websocket {
   private socket: WebSocket;
@@ -37,6 +38,7 @@ class Websocket {
         const { user } = payload;
         const { login, isLogined } = user;
         state.setUser(user);
+        state.removeAllData();
         if (!isLogined) window.location.hash = "login";
         break;
       }
@@ -84,19 +86,30 @@ class Websocket {
       case MessageType.send_msg: {
         const { payload } = response;
         const { message } = payload;
-       state.setMessageContent(message);
-     // console.log(state.getMessageContent()) 
+
+        // console.log('message', message);
+        // console.log('get', state.getAllUsers());
+        state.setMessage(message);
+
+        contentView.contentClass.updateMessageBlock();
+
+        break;
+      }
+      case MessageType.msg_from_user: {
+        const { payload } = response;
+        const { messages } = payload;
+
+        messages.forEach((message: IMessage) => {
+          state.setMessage(message);
+        });
+
         break;
       }
       case MessageType.error: {
         const { payload } = response;
-        if (
-          payload.error === "incorrect password" ||
-          payload.error === "a user with this login is already authorized"
-        ) {
-          popup.createPopupElements(payload.error);
-          window.location.hash = "login";
-        }
+        window.location.hash = "login";
+        // if( window.location.hash !== "main")
+        popup.createPopupElements(payload.error);
         break;
       }
       default:
@@ -130,14 +143,6 @@ class Websocket {
     st.removeUser();
   }
 
-  externalLogin(login: string, isLogined: boolean): void {
-    this.socket.send(
-      JSON.stringify(
-        getExternalRequest(login, isLogined, MessageType.external_login),
-      ),
-    );
-  }
-
   getActiveUsers(): void {
     const id = Date.now().toString();
     this.socket.send(
@@ -159,6 +164,21 @@ class Websocket {
         getRequestSendMessage(id, MessageType.send_msg, toUser, text),
       ),
     );
+  }
+
+  getMessages(login: string): void {
+    const id = Date.now().toString();
+    const request = {
+      id,
+      type: MessageType.msg_from_user,
+      payload: {
+        user: {
+          login,
+        },
+      },
+    };
+
+    this.socket.send(JSON.stringify(request));
   }
 }
 

@@ -1,13 +1,11 @@
-import { IUserIsLogined, IMessageContent } from "../types/interfaces";
+import { IUserIsLogined, IMessage } from "../types/interfaces";
 
 class State {
   public user: IUserIsLogined = { login: "", isLogined: false };
 
   public users: IUserIsLogined[] = [];
 
-  messageContent:IMessageContent = {id:"", from: "",to: "",text: "", datetime: 0, status:{isDelivered:false, isEdited:  false, isReaded: false}};
-
-  private messages = [];
+  private messages: IMessage[] = [];
 
   public setUser(user: IUserIsLogined): void {
     this.user = user;
@@ -35,6 +33,12 @@ class State {
     }
   }
 
+  public removeAllData(): void {
+    this.user.isLogined = false;
+    this.user.login = "";
+    this.users = [];
+  }
+
   public setActiveUsers(users: IUserIsLogined[]): void {
     this.users.push(...users);
   }
@@ -47,12 +51,14 @@ class State {
     return this.users;
   }
 
-  public setMessageContent(message:IMessageContent): void {
-    this.messageContent = JSON.parse(JSON.stringify(message));
+  public setMessage(message: IMessage): void {
+    // this.messageContent = JSON.parse(JSON.stringify(message));
+    this.messages.push(message);
   }
 
-  public getMessageContent(): IMessageContent {
-   return  this.messageContent;
+  public getMessages(): IMessage[] {
+    // return  this.messageContent;
+    return this.messages;
   }
 }
 export const state = new State();

@@ -1,12 +1,7 @@
 import { state } from "../../../state/state";
-import { IUserIsLogined, IMessageContent } from "../../../types/interfaces";
+import { IUserIsLogined, IMessage } from "../../../types/interfaces";
 import { createUserItem } from "../aside-content/create-aside";
-import {
-  createDiv,
-  createLabel,
-} from "../dialog-content/create-dialog-elements";
-import { formatDate } from "../../../utils/format-date";
-import { st } from "../../../utils/session-storage";
+import { createMessageBlock } from "./create-message-block";
 import { ws } from "../../../api/websocket";
 
 class Content {
@@ -26,6 +21,8 @@ class Content {
 
   private userHeaderStatus: HTMLElement;
 
+  userLogin: string | null | undefined = "";
+
   constructor(
     userSearch: HTMLInputElement,
     userList: HTMLElement,
@@ -42,6 +39,7 @@ class Content {
     this.dialogContent = dialogContent;
     this.userHeaderName = userHeaderName;
     this.userHeaderStatus = userHeaderStatus;
+    this.submitMessage();
   }
 
   searchUser(): void {
@@ -74,70 +72,71 @@ class Content {
     );
     this.userList.innerHTML = "";
     this.userList.append(...userListItems);
+    this.userList.addEventListener("click", (e) => this.onClickUserList(e));
   }
 
   submitMessage(): void {
     this.dialogForm.addEventListener("submit", (event) => {
       event.preventDefault();
       const text = this.inputMessage.value;
-      if (text.length > 0 && this.userHeaderName.textContent !== "") {
-        const labelToRemove: HTMLElement | null =
-          document.querySelector(".dialog__label");
-        if (labelToRemove) {
-          this.dialogContent.removeChild(labelToRemove);
-        }
-        ws.sendMessage(this.userHeaderName.textContent!, text);
-        //console.log(state.getMessageContent())
-        this.dialogContent.append(this.createMessageBlock(state.getMessageContent()));
+      if (this.userLogin) {
+        ws.sendMessage(this.userLogin, text);
+        this.dialogContent.scrollTop =
+          this.dialogContent.scrollHeight - this.dialogContent.clientHeight;
       }
     });
   }
 
-  createMessageBlock(message: IMessageContent): HTMLDivElement {
-    const {id, from,to,text, datetime, status}=message;
-    const messageBlock: HTMLDivElement = createDiv("message__block");
-    const messageContainer: HTMLDivElement = createDiv("message__container");
-    const messageHeader: HTMLDivElement = createDiv("message__header");
-    const messageUser: HTMLElement = createLabel("message__user");
-    const messageDate: HTMLElement = createLabel("message__date");
-    if(state.getUser().login===from) {
-      messageUser.textContent ="you";
-      messageContainer.classList.add("users-message");
-    } else {
-      messageUser.textContent =from;
-      messageContainer.classList.remove("users-message");
-    }
-    messageDate.textContent = formatDate(datetime);
-    messageHeader.append(messageUser, messageDate);
-    const messageText: HTMLDivElement = createDiv("message__text");
-    const messageFooter: HTMLDivElement = createDiv("message__footer");
-    const messageEdit: HTMLElement = createLabel("message__footer-label");
-    messageEdit.textContent=`${status.isEdited?"edit":""}`
-    const messageStatus: HTMLElement = createLabel("message__status");
-    messageStatus.textContent=`${status.isReaded?"readed":status.isDelivered?"delivered":"sent"}`
-    messageFooter.append(messageEdit, messageStatus);
-    messageContainer.append(messageHeader, messageText, messageFooter);
-    messageBlock.append(messageContainer);
-    messageText.textContent = text;
-    return messageBlock;
+  onClickUserList = (e: Event) => {
+    const elem = e.target as HTMLElement;
+    this.userLogin = elem.closest(".aside-user__name")?.textContent;
+    this.updateMessageBlock();
+    this.updateHeaderUserStatus();
+  };
+
+  getUserLogin() {
+    return this.userLogin;
   }
 
-  chooseUserToSend(): void {
-    const liElements = this.userList.querySelectorAll("li");
-    if (liElements) {
-      liElements.forEach((li: HTMLLIElement) => {
-        li.addEventListener("click", () => {
-          this.userHeaderName.textContent = li.children[1].textContent;
-          if (li.children[0].classList.contains("active")) {
-            this.userHeaderStatus.textContent = "online";
-            this.userHeaderStatus.classList.remove("off");
-          } else {
-            this.userHeaderStatus.textContent = "offline";
-            this.userHeaderStatus.classList.add("off");
-          }
-        });
-      });
+  updateHeaderUserStatus(): void {
+    if (this.userLogin) {
+      this.userHeaderName.textContent = this.userLogin;
     }
+    const user = state
+      .getAllUsers()
+      .find((user) => user.login === this.userLogin);
+    if (user?.isLogined) {
+      this.userHeaderStatus.textContent = "online";
+      this.userHeaderStatus.classList.remove("off");
+    } else {
+      this.userHeaderStatus.textContent = "offline";
+      this.userHeaderStatus.classList.add("off");
+    }
+    this.dialogContent.scrollTop =
+      this.dialogContent.scrollHeight - this.dialogContent.clientHeight;
+  }
+
+  updateMessageBlock() {
+    this.dialogContent.innerHTML = "";
+
+    const uniqueMessages = [];
+    const map = new Map();
+
+    for (const message of state.getMessages()) {
+      const key = JSON.stringify(message);
+      if (!map.has(key)) {
+        map.set(key, true);
+        uniqueMessages.push(message);
+      }
+    }
+    const messages = uniqueMessages
+      .filter(
+        (message) =>
+          message.from === this.userLogin || message.to === this.userLogin,
+      )
+      .map((message) => createMessageBlock(message));
+
+    this.dialogContent.append(...messages);
   }
 }
 

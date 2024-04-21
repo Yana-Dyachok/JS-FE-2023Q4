@@ -18,7 +18,7 @@ import "../../core/components/aside-content/aside-content.scss";
 import "../../core/components/dialog-content/dialog-container.scss";
 
 class ContentView {
-  private contentClass: Content;
+  contentClass: Content;
 
   private content: HTMLElement;
 
@@ -63,18 +63,12 @@ class ContentView {
     this.contentClass.createAllUsers();
   }
 
-  updateSubmit(): void {
-    this.contentClass.submitMessage();
-  }
-
   private createUserAsideElements(): void {
     this.contentClass.searchUser();
     this.userAside.append(this.userSearch, this.userList);
   }
 
   private createUserDialogElements(): void {
-    this.contentClass.chooseUserToSend();
-    this.contentClass.submitMessage();
     this.dialogHeader.append(this.userHeaderName, this.userHeaderStatus);
     this.dialogForm.append(this.inputMessage, this.sendButton.getRootElement());
     this.dialogContainer.append(

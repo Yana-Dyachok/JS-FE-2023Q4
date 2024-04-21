@@ -23,6 +23,8 @@ export const createDialogContent = (): HTMLElement => {
   const contentText: HTMLElement | null = createLabel("dialog__label");
   contentText.textContent = "Send your first message";
   dialogContent.append(contentText);
+  dialogContent.scrollTop =
+    dialogContent.scrollHeight - dialogContent.clientHeight;
   return dialogContent;
 };
 

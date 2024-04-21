@@ -14,7 +14,6 @@ class LoginData extends FormValidation {
         ws.logIn(login, password);
         ws.getActiveUsers();
         ws.getInActiveUsers();
-        // ws.externalLogin(login, password)
       });
     }
   }
