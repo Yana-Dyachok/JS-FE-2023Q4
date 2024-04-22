@@ -1,8 +1,9 @@
 import { state } from "../../../state/state";
-import { IUserIsLogined, IMessage } from "../../../types/interfaces";
+import { IUserIsLogined} from "../../../types/interfaces";
 import { createUserItem } from "../aside-content/create-aside";
 import { createMessageBlock } from "./create-message-block";
 import { ws } from "../../../api/websocket";
+import SendButton from "../send-btn/send-btn";
 
 class Content {
   private users: IUserIsLogined[] = [];
@@ -20,6 +21,7 @@ class Content {
   private userHeaderName: HTMLElement;
 
   private userHeaderStatus: HTMLElement;
+  private sendButton: SendButton;
 
   userLogin: string | null | undefined = "";
 
@@ -31,6 +33,7 @@ class Content {
     dialogContent: HTMLElement,
     userHeaderName: HTMLElement,
     userHeaderStatus: HTMLElement,
+    sendButton: SendButton,
   ) {
     this.userSearch = userSearch;
     this.userList = userList;
@@ -40,6 +43,7 @@ class Content {
     this.userHeaderName = userHeaderName;
     this.userHeaderStatus = userHeaderStatus;
     this.submitMessage();
+    this.sendButton=sendButton;
   }
 
   searchUser(): void {
@@ -89,7 +93,8 @@ class Content {
 
   onClickUserList = (e: Event) => {
     const elem = e.target as HTMLElement;
-    this.userLogin = elem.closest(".aside-user__name")?.textContent;
+    const userLoginElement = elem.closest(".aside-user__item");
+    this.userLogin = userLoginElement?.children[1].textContent;
     this.updateMessageBlock();
     this.updateHeaderUserStatus();
   };
@@ -101,6 +106,7 @@ class Content {
   updateHeaderUserStatus(): void {
     if (this.userLogin) {
       this.userHeaderName.textContent = this.userLogin;
+      this.sendButton.setDisabled(false)
     }
     const user = state
       .getAllUsers()
