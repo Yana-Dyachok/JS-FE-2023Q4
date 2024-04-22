@@ -5,6 +5,7 @@ import {
 import { formatDate } from "../../../utils/format-date";
 import { IMessage } from "../../../types/interfaces";
 import { state } from "../../../state/state";
+import "./message-block.scss";
 
 export const createMessageBlock = (message: IMessage): HTMLDivElement => {
   const { id, from, to, text, datetime, status } = message;
@@ -17,9 +18,11 @@ export const createMessageBlock = (message: IMessage): HTMLDivElement => {
   messageHeader.append(messageUser, messageDate);
   const messageText: HTMLDivElement = createDiv("message__text");
   const messageFooter: HTMLDivElement = createDiv("message__footer");
-  const messageEdit: HTMLElement = createLabel("message__footer-label");
-  messageEdit.textContent = `${status.isEdited ? "edit" : ""}`;
+  const messageEditStatus: HTMLElement = createLabel("message__edit-status");
+  messageEditStatus.textContent = `${status.isEdited ? "edit" : ""}`;
   const messageStatus: HTMLElement = createLabel("message__status");
+  const messageEdit: HTMLDivElement = createDiv("message__edit");
+  const messageDelete: HTMLDivElement = createDiv("message__delete");
   if (state.getUser().login === from) {
     messageUser.textContent = "you";
     messageContainer.classList.remove("users-message");
@@ -27,8 +30,14 @@ export const createMessageBlock = (message: IMessage): HTMLDivElement => {
   } else {
     messageUser.textContent = from;
     messageContainer.classList.add("users-message");
+    messageEdit.style.display = "none";
   }
-  messageFooter.append(messageEdit, messageStatus);
+  messageFooter.append(
+    messageDelete,
+    messageEdit,
+    messageEditStatus,
+    messageStatus,
+  );
   messageContainer.append(messageHeader, messageText, messageFooter);
   messageBlock.append(messageContainer);
   messageText.textContent = text;
