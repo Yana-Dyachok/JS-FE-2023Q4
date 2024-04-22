@@ -5,6 +5,7 @@ import {
 import { formatDate } from "../../../utils/format-date";
 import { IMessage } from "../../../types/interfaces";
 import { state } from "../../../state/state";
+import { ws } from "../../../api/websocket";
 import "./message-block.scss";
 
 export const createMessageBlock = (message: IMessage): HTMLDivElement => {
@@ -29,6 +30,7 @@ export const createMessageBlock = (message: IMessage): HTMLDivElement => {
     messageStatus.textContent = `${status.isReaded ? "readed" : status.isDelivered ? "delivered" : "sent"}`;
     messageFooter.append(messageDelete, messageEdit);
   } else {
+    // ws.getReadMessage(id);
     messageUser.textContent = from;
     messageContainer.classList.add("users-message");
   }

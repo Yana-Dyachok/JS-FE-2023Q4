@@ -3,6 +3,8 @@ import {
   IRequestExternal,
   IRequestActiveUsers,
   ISendMessage,
+  IHistoryMessage,
+  IReadMessage,
 } from "../types/interfaces";
 
 export const getRequest = (
@@ -57,6 +59,34 @@ export const getRequestSendMessage = (
     message: {
       to: toUser,
       text,
+    },
+  },
+});
+
+export const getRequestHistoryMessage = (
+  id: string,
+  messageType: string,
+  login: string,
+): IHistoryMessage => ({
+  id,
+  type: messageType,
+  payload: {
+    user: {
+      login,
+    },
+  },
+});
+
+export const getRequestReadMessage = (
+  id: string,
+  messageType: string,
+  idMs: string,
+): IReadMessage => ({
+  id,
+  type: messageType,
+  payload: {
+    message: {
+      id: idMs,
     },
   },
 });

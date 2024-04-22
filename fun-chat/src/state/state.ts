@@ -1,4 +1,4 @@
-import { IUserIsLogined, IMessage } from "../types/interfaces";
+import { IUserIsLogined, IMessage, IIsReaded } from "../types/interfaces";
 
 class State {
   public user: IUserIsLogined = { login: "", isLogined: false };
@@ -52,13 +52,19 @@ class State {
   }
 
   public setMessage(message: IMessage): void {
-    // this.messageContent = JSON.parse(JSON.stringify(message));
     this.messages.push(message);
   }
 
   public getMessages(): IMessage[] {
-    // return  this.messageContent;
     return this.messages;
   }
+
+  // public setReadMessage(message: IIsReaded[] ): void {
+  //   this.readMessages.push(message);
+  // }
+
+  // public getReadMessage(): IIsReaded[] {
+  //   return this.messages;
+  // }
 }
 export const state = new State();

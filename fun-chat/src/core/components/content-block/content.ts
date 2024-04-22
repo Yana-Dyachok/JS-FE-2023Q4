@@ -1,5 +1,5 @@
 import { state } from "../../../state/state";
-import { IUserIsLogined } from "../../../types/interfaces";
+import { IMessage, IUserIsLogined } from "../../../types/interfaces";
 import { createUserItem } from "../aside-content/create-aside";
 import { createMessageBlock } from "./create-message-block";
 import { ws } from "../../../api/websocket";
@@ -63,18 +63,31 @@ class Content {
   }
 
   getUniqueUsers(): IUserIsLogined[] {
+    const userItems = state
+      .getAllUsers()
+      .filter((user) => user.login !== state.getUser().login);
+    userItems.forEach((user) => ws.getAllMessages(user.login));
     const uniqueUsers: IUserIsLogined[] = [];
-    state.getAllUsers().forEach((user) => {
+    userItems.forEach((user) => {
       if (!uniqueUsers.some((u) => u.login === user.login)) {
-        if (user.login !== state.getUser().login) uniqueUsers.push(user);
+        uniqueUsers.push(user);
       }
     });
     return uniqueUsers;
   }
 
+  getFilterMessage(user: string): void {
+    const messages: IMessage[] = state.getMessages();
+    const sentMessages = messages.filter(
+      (message) =>
+        message.from === user && message.to === state.getUser().login,
+    );
+    console.log(sentMessages);
+  }
+
   createAllUsers(): void {
     const userListItems = this.getUniqueUsers().map((user) =>
-      createUserItem(user, 1),
+      createUserItem(user, 0),
     );
     this.userList.innerHTML = "";
     this.userList.append(...userListItems);
@@ -87,10 +100,10 @@ class Content {
       const text = this.inputMessage.value;
       if (this.userLogin && text.length > 0) {
         ws.sendMessage(this.userLogin, text);
-        this.dialogContent.scrollTop =
-          this.dialogContent.scrollHeight - this.dialogContent.clientHeight;
         this.inputMessage.value = "";
       }
+      this.dialogContent.scrollTop =
+        this.dialogContent.scrollHeight - this.dialogContent.clientHeight;
     });
   }
 
@@ -103,14 +116,12 @@ class Content {
     this.updateMessageBlock();
   };
 
-  getUserLogin() {
-    return this.userLogin;
-  }
-
   updateHeaderUserStatus(): void {
     if (this.userLogin && this.userLogin !== "") {
       this.userHeaderName.textContent = this.userLogin;
       this.sendButton.setDisabled(false);
+      // this.getFilterMessage(this.userLogin)
+      // console.log(state.getMessages())
     }
     const user = state
       .getAllUsers()

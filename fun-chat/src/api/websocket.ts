@@ -2,10 +2,11 @@ import { state } from "../state/state";
 import { SOCKET_URL } from "./const";
 import { MessageType } from "../types/enum";
 import {
-  getExternalRequest,
   getRequest,
   getRequestSendMessage,
   getUsersRequest,
+  getRequestHistoryMessage,
+  getRequestReadMessage,
 } from "./request";
 import { st } from "../utils/session-storage";
 import { popup } from "../view/popup/popup";
@@ -62,7 +63,6 @@ class Websocket {
       case MessageType.external_logout: {
         const { payload } = response;
         const { user } = payload;
-        // this.externalLogOut(login, isLogined);
         state.externalLogout(user);
         contentView.updateUsersList();
         break;
@@ -87,7 +87,6 @@ class Websocket {
         const { payload } = response;
         const { message } = payload;
         state.setMessage(message);
-
         contentView.contentClass.updateMessageBlock();
 
         break;
@@ -98,20 +97,15 @@ class Websocket {
 
         messages.forEach((message: IMessage) => {
           state.setMessage(message);
-          console.log(state.setMessage(message));
         });
-
         break;
       }
+
       case MessageType.msg_read: {
         const { payload } = response;
-        const { messages } = payload;
-
-        messages.forEach((message: IMessage) => {
-          state.setMessage(message);
-          console.log(state.setMessage(message));
-        });
-
+        const { message } = payload;
+        // contentView.contentClass.updateMessageBlock();
+        // state.setReadMessage(message);
         break;
       }
       case MessageType.delete_msg: {
@@ -125,23 +119,11 @@ class Websocket {
       case MessageType.msg_deliver: {
         const { payload } = response;
         const { messages } = payload;
-
-        messages.forEach((message: IMessage) => {
-          state.setMessage(message);
-          console.log(state.setMessage(message));
-        });
-
         break;
       }
       case MessageType.edit_msg: {
         const { payload } = response;
         const { messages } = payload;
-
-        messages.forEach((message: IMessage) => {
-          state.setMessage(message);
-          console.log(state.setMessage(message));
-        });
-
         break;
       }
       case MessageType.error: {
@@ -204,19 +186,20 @@ class Websocket {
     );
   }
 
-  getMessages(login: string): void {
+  getAllMessages(login: string): void {
     const id = Date.now().toString();
-    const request = {
-      id,
-      type: MessageType.msg_from_user,
-      payload: {
-        user: {
-          login,
-        },
-      },
-    };
+    this.socket.send(
+      JSON.stringify(
+        getRequestHistoryMessage(id, MessageType.msg_from_user, login),
+      ),
+    );
+  }
 
-    this.socket.send(JSON.stringify(request));
+  getReadMessage(idMs: string): void {
+    const id = Date.now().toString();
+    this.socket.send(
+      JSON.stringify(getRequestReadMessage(id, MessageType.msg_read, idMs)),
+    );
   }
 
   deleteMessage(): void {}

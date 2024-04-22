@@ -217,6 +217,15 @@ export interface IReadMessage {
   };
 }
 
+export interface IIsReaded {
+  message: {
+    id: string;
+    status: {
+      isReaded: boolean;
+    };
+  };
+}
+
 export interface IResponseReadMessage {
   id: string;
   type: string;
