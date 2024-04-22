@@ -56,7 +56,7 @@ class Content {
       for (const user of this.getUniqueUsers()) {
         const userName: string = user.login.toLowerCase();
         if (userName.includes(searchQuery.toLowerCase())) {
-          this.userList.append(createUserItem(user, 1));
+          this.userList.append(createUserItem(user, 0));
         }
       }
     });
