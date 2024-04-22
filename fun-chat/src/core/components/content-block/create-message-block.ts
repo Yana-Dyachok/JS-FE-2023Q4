@@ -27,17 +27,12 @@ export const createMessageBlock = (message: IMessage): HTMLDivElement => {
     messageUser.textContent = "you";
     messageContainer.classList.remove("users-message");
     messageStatus.textContent = `${status.isReaded ? "readed" : status.isDelivered ? "delivered" : "sent"}`;
+    messageFooter.append(messageDelete, messageEdit);
   } else {
     messageUser.textContent = from;
     messageContainer.classList.add("users-message");
-    messageEdit.style.display = "none";
   }
-  messageFooter.append(
-    messageDelete,
-    messageEdit,
-    messageEditStatus,
-    messageStatus,
-  );
+  messageFooter.append(messageEditStatus, messageStatus);
   messageContainer.append(messageHeader, messageText, messageFooter);
   messageBlock.append(messageContainer);
   messageText.textContent = text;

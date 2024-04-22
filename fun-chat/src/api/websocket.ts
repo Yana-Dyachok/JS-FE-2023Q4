@@ -86,9 +86,6 @@ class Websocket {
       case MessageType.send_msg: {
         const { payload } = response;
         const { message } = payload;
-
-        // console.log('message', message);
-        // console.log('get', state.getAllUsers());
         state.setMessage(message);
 
         contentView.contentClass.updateMessageBlock();
@@ -101,6 +98,48 @@ class Websocket {
 
         messages.forEach((message: IMessage) => {
           state.setMessage(message);
+          console.log(state.setMessage(message));
+        });
+
+        break;
+      }
+      case MessageType.msg_read: {
+        const { payload } = response;
+        const { messages } = payload;
+
+        messages.forEach((message: IMessage) => {
+          state.setMessage(message);
+          console.log(state.setMessage(message));
+        });
+
+        break;
+      }
+      case MessageType.delete_msg: {
+        const { payload } = response;
+        const { messages } = payload;
+        messages.status.isDeleted;
+        console.log();
+
+        break;
+      }
+      case MessageType.msg_deliver: {
+        const { payload } = response;
+        const { messages } = payload;
+
+        messages.forEach((message: IMessage) => {
+          state.setMessage(message);
+          console.log(state.setMessage(message));
+        });
+
+        break;
+      }
+      case MessageType.edit_msg: {
+        const { payload } = response;
+        const { messages } = payload;
+
+        messages.forEach((message: IMessage) => {
+          state.setMessage(message);
+          console.log(state.setMessage(message));
         });
 
         break;
@@ -108,7 +147,6 @@ class Websocket {
       case MessageType.error: {
         const { payload } = response;
         window.location.hash = "login";
-        // if( window.location.hash !== "main")
         popup.createPopupElements(payload.error);
         break;
       }
@@ -180,6 +218,8 @@ class Websocket {
 
     this.socket.send(JSON.stringify(request));
   }
+
+  deleteMessage(): void {}
 }
 
 export const ws = new Websocket();

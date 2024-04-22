@@ -4,7 +4,7 @@ class SendButton extends Button {
   constructor() {
     super("send__btn", "btn", "Send", "submit");
 
-   this.setDisabled(true)
+    this.setDisabled(true);
   }
 }
 

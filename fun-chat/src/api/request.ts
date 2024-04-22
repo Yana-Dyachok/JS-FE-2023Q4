@@ -60,3 +60,16 @@ export const getRequestSendMessage = (
     },
   },
 });
+
+// export const getDeleteMessage = (
+//   id: string,
+//   messageType: string,
+// ): ISendMessage => ({
+//   id,
+//   type: messageType,
+//   payload: {
+//     message: {
+//       id,
+//     }
+//   }
+// })

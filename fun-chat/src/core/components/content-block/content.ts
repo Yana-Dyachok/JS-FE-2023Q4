@@ -1,9 +1,10 @@
 import { state } from "../../../state/state";
-import { IUserIsLogined} from "../../../types/interfaces";
+import { IUserIsLogined } from "../../../types/interfaces";
 import { createUserItem } from "../aside-content/create-aside";
 import { createMessageBlock } from "./create-message-block";
 import { ws } from "../../../api/websocket";
 import SendButton from "../send-btn/send-btn";
+import { createContentText } from "../dialog-content/create-dialog-elements";
 
 class Content {
   private users: IUserIsLogined[] = [];
@@ -21,6 +22,7 @@ class Content {
   private userHeaderName: HTMLElement;
 
   private userHeaderStatus: HTMLElement;
+
   private sendButton: SendButton;
 
   userLogin: string | null | undefined = "";
@@ -43,7 +45,7 @@ class Content {
     this.userHeaderName = userHeaderName;
     this.userHeaderStatus = userHeaderStatus;
     this.submitMessage();
-    this.sendButton=sendButton;
+    this.sendButton = sendButton;
   }
 
   searchUser(): void {
@@ -83,10 +85,11 @@ class Content {
     this.dialogForm.addEventListener("submit", (event) => {
       event.preventDefault();
       const text = this.inputMessage.value;
-      if (this.userLogin) {
+      if (this.userLogin && text.length > 0) {
         ws.sendMessage(this.userLogin, text);
         this.dialogContent.scrollTop =
           this.dialogContent.scrollHeight - this.dialogContent.clientHeight;
+        this.inputMessage.value = "";
       }
     });
   }
@@ -94,9 +97,10 @@ class Content {
   onClickUserList = (e: Event) => {
     const elem = e.target as HTMLElement;
     const userLoginElement = elem.closest(".aside-user__item");
-    this.userLogin = userLoginElement?.children[1].textContent;
-    this.updateMessageBlock();
+    if (userLoginElement)
+      this.userLogin = userLoginElement.children[1].textContent;
     this.updateHeaderUserStatus();
+    this.updateMessageBlock();
   };
 
   getUserLogin() {
@@ -104,20 +108,23 @@ class Content {
   }
 
   updateHeaderUserStatus(): void {
-    if (this.userLogin) {
+    if (this.userLogin && this.userLogin !== "") {
       this.userHeaderName.textContent = this.userLogin;
-      this.sendButton.setDisabled(false)
+      this.sendButton.setDisabled(false);
     }
     const user = state
       .getAllUsers()
       .find((user) => user.login === this.userLogin);
-    if (user?.isLogined) {
-      this.userHeaderStatus.textContent = "online";
-      this.userHeaderStatus.classList.remove("off");
-    } else {
-      this.userHeaderStatus.textContent = "offline";
-      this.userHeaderStatus.classList.add("off");
+    if (this.userLogin !== "") {
+      if (user?.isLogined) {
+        this.userHeaderStatus.textContent = "online";
+        this.userHeaderStatus.classList.remove("off");
+      } else {
+        this.userHeaderStatus.textContent = "offline";
+        this.userHeaderStatus.classList.add("off");
+      }
     }
+
     this.dialogContent.scrollTop =
       this.dialogContent.scrollHeight - this.dialogContent.clientHeight;
   }
@@ -143,6 +150,9 @@ class Content {
       .map((message) => createMessageBlock(message));
 
     this.dialogContent.append(...messages);
+    if (this.dialogContent.children.length === 0) {
+      this.dialogContent.append(createContentText());
+    }
   }
 }
 

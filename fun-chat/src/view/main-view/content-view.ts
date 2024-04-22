@@ -56,7 +56,7 @@ class ContentView {
       this.dialogContent,
       this.userHeaderName,
       this.userHeaderStatus,
-      this.sendButton
+      this.sendButton,
     );
   }
 

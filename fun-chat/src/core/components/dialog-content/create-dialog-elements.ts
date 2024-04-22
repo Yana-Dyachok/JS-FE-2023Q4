@@ -28,6 +28,11 @@ export const createDialogContent = (): HTMLElement => {
   return dialogContent;
 };
 
+export const createContentText = (): HTMLElement => {
+  const contentText: HTMLElement | null = createLabel("dialog__label");
+  contentText.textContent = "Send your first message";
+  return contentText;
+};
 export const createDialogInputForm = (): HTMLFormElement => {
   const dialogForm: HTMLFormElement | null = document.createElement("form");
   dialogForm.classList.add("dialog__form");
