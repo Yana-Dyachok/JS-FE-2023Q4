@@ -100,10 +100,10 @@ class Content {
       const text = this.inputMessage.value;
       if (this.userLogin && text.length > 0) {
         ws.sendMessage(this.userLogin, text);
+        this.dialogContent.scrollTop =
+          this.dialogContent.scrollHeight - this.dialogContent.clientHeight;
         this.inputMessage.value = "";
       }
-      this.dialogContent.scrollTop =
-        this.dialogContent.scrollHeight - this.dialogContent.clientHeight;
     });
   }
 

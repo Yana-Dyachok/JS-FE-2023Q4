@@ -17,7 +17,10 @@ class CreatePopup {
     const popupText = document.createElement("h3");
     popupText.classList.add("popup__text");
     popupText.textContent = text[0].toUpperCase() + text.slice(1, text.length);
-    popupContent.append(popupText, (text!=='Сonnection to the server')?this.okBtn.getRootElement():'');
+    popupContent.append(
+      popupText,
+      text !== "Сonnection to the server" ? this.okBtn.getRootElement() : "",
+    );
     const popupBody = document.createElement("div");
     popupBody.classList.add("popup__body");
     popupBody.append(popupContent);
@@ -36,10 +39,10 @@ class CreatePopup {
   }
 
   deletePopup(): void {
-      const popup: HTMLDivElement | null = document.querySelector(".popup");
-      if (popup) {
-        document.body.removeChild(popup);
-      }
+    const popup: HTMLDivElement | null = document.querySelector(".popup");
+    if (popup) {
+      document.body.removeChild(popup);
+    }
   }
 }
 
