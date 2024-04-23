@@ -120,6 +120,7 @@ class Content {
     if (this.userLogin && this.userLogin !== "") {
       this.userHeaderName.textContent = this.userLogin;
       this.sendButton.setDisabled(false);
+      this.inputMessage.disabled = false;
       // this.getFilterMessage(this.userLogin)
       // console.log(state.getMessages())
     }

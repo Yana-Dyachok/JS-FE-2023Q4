@@ -2,6 +2,7 @@ export const createInputMessage = (): HTMLInputElement => {
   const inputMessage: HTMLInputElement | null = document.createElement("input");
   inputMessage.classList.add("dialog__input");
   inputMessage.placeholder = "Message";
+  inputMessage.disabled = true;
   return inputMessage;
 };
 
