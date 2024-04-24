@@ -27,6 +27,7 @@ class EditButton extends Button {
               newMessageText.setAttribute("data-message-block", `${dataset}`);
               newMessageText.classList.add("message__text")
               inputElement.replaceWith(newMessageText);
+              ws.editMessage(dataset, newText)
             }
           });
         }

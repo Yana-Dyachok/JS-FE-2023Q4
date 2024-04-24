@@ -114,44 +114,41 @@ export interface IResponseMessage {
   };
 }
 
-export interface IEditMessage {
-  id: string;
-  type: string;
-  payload: {
-    message: {
-      id: string;
-      text: string;
-    };
-  };
+export interface IEditedMessages {
+  message: {
+    id: string,
+    text: string,
+    status: {
+      isEdited: boolean,
+    }
+  }
+}
+
+export interface IEditContent {
+  message: {
+    id: string,
+    text: string
+  }
 }
 
 export interface IResponseEditMessage {
   id: string;
   type: string;
-  payload: {
-    message: {
-      id: string;
-      text: string;
-      status: {
-        isEdited: boolean;
-      };
-    };
-  };
+  payload: IEditedMessages
 }
+
 
 export interface IEditUserMessage {
   id: null;
   type: string;
-  payload: {
-    message: {
-      id: string;
-      text: string;
-      status: {
-        isEdited: boolean;
-      };
-    };
-  };
+  payload: IEditedMessages
 }
+
+export interface IRequestEditMessage {
+  id: string,
+  type: string,
+  payload: IEditContent
+} 
 
 export interface IDeleteMessage {
   id: string;

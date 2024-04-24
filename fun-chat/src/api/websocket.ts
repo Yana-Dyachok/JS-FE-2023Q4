@@ -8,6 +8,7 @@ import {
   getRequestHistoryMessage,
   getRequestOneMessage,
   getRequestServerOneMessage,
+  getRequestEditMessage
 } from "./request";
 import { st } from "../utils/session-storage";
 import { popup } from "../view/popup/popup";
@@ -213,6 +214,13 @@ class Websocket {
   deleteServerMessage(idMs: string): void {
     this.socket.send(
       JSON.stringify(getRequestServerOneMessage(MessageType.delete_msg, idMs)),
+    );
+  }
+
+  editMessage(idMs: string, text:string): void {
+    const id = Date.now().toString();
+    this.socket.send(
+      JSON.stringify(getRequestEditMessage(id, MessageType.edit_msg, idMs, text)),
     );
   }
 }

@@ -6,6 +6,7 @@ import {
   IHistoryMessage,
   IReadMessage,
   IServerMessage,
+  IRequestEditMessage
 } from "../types/interfaces";
 
 export const getRequest = (
@@ -101,6 +102,22 @@ export const getRequestServerOneMessage = (
   payload: {
     message: {
       id: idMs,
+    },
+  },
+});
+
+export const getRequestEditMessage = (
+  id: string,
+  messageType: string,
+  idMs: string,
+  textEdited: string
+): IRequestEditMessage => ({
+  id,
+  type: messageType,
+  payload: {
+    message: {
+      id: idMs,
+      text: textEdited,
     },
   },
 });

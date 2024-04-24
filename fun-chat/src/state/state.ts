@@ -69,6 +69,14 @@ class State {
     return this.deletedMessagesId;
   }
 
+  public setEditMessage(id: string): void {
+    this.deletedMessagesId.push(id);
+  }
+
+  public getEditMessage(): string[] {
+    return this.deletedMessagesId;
+  }
+
   // public setReadMessage(message: IIsReaded[] ): void {
   //   this.readMessages.push(message);
   // }
