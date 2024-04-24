@@ -1,7 +1,7 @@
 import { state } from "../../../state/state";
 import { IMessage, IUserIsLogined } from "../../../types/interfaces";
 import { createUserItem } from "../aside-content/create-aside";
-import { createMessageBlock } from "./create-message-block";
+import { messageBlock } from "./create-message-block";
 import { ws } from "../../../api/websocket";
 import SendButton from "../send-btn/send-btn";
 import { createContentText } from "../dialog-content/create-dialog-elements";
@@ -154,13 +154,15 @@ class Content {
         uniqueMessages.push(message);
       }
     }
+    const idArray:string[]=[];
+    idArray.push(...state.getDeletedMessage());
     const messages = uniqueMessages
-      .filter(
-        (message) =>
-          message.from === this.userLogin || message.to === this.userLogin,
-      )
-      .map((message) => createMessageBlock(message));
-
+    .filter(message =>
+      (message.from === this.userLogin || message.to === this.userLogin) &&
+      !idArray.includes(message.id)
+    )
+    .map(message => messageBlock.createMessageBlock(message));
+  
     this.dialogContent.append(...messages);
     if (this.dialogContent.children.length === 0) {
       this.dialogContent.append(createContentText());

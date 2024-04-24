@@ -217,6 +217,16 @@ export interface IReadMessage {
   };
 }
 
+export interface IServerMessage {
+  id: null;
+  type: string;
+  payload: {
+    message: {
+      id: string;
+    };
+  };
+}
+
 export interface IIsReaded {
   message: {
     id: string;

@@ -6,7 +6,8 @@ import {
   getRequestSendMessage,
   getUsersRequest,
   getRequestHistoryMessage,
-  getRequestReadMessage,
+  getRequestOneMessage,
+  getRequestServerOneMessage
 } from "./request";
 import { st } from "../utils/session-storage";
 import { popup } from "../view/popup/popup";
@@ -112,10 +113,9 @@ class Websocket {
       }
       case MessageType.delete_msg: {
         const { payload } = response;
-        const { messages } = payload;
-        messages.status.isDeleted;
-        console.log();
-
+        const { message } = payload;
+        console.log(message.id)
+        state.setDeletedMessage(message.id)
         break;
       }
       case MessageType.msg_deliver: {
@@ -200,11 +200,22 @@ class Websocket {
   getReadMessage(idMs: string): void {
     const id = Date.now().toString();
     this.socket.send(
-      JSON.stringify(getRequestReadMessage(id, MessageType.msg_read, idMs)),
+      JSON.stringify(getRequestOneMessage(id, MessageType.msg_read, idMs)),
     );
   }
 
-  deleteMessage(): void {}
+  deleteMessage(idMs: string): void {
+    const id = Date.now().toString();
+    this.socket.send(
+      JSON.stringify(getRequestOneMessage(id, MessageType.delete_msg, idMs)),
+    );
+  }
+
+  deleteServerMessage(idMs: string): void {
+    this.socket.send(
+      JSON.stringify(getRequestServerOneMessage(MessageType.delete_msg, idMs)),
+    );
+  }
 }
 
 export const ws = new Websocket();

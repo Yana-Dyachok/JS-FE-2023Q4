@@ -45,3 +45,9 @@ export const createDiv = (className: string): HTMLDivElement => {
   div.classList.add(className);
   return div;
 };
+
+export const createButton = (className: string): HTMLButtonElement => {
+  const btn: HTMLButtonElement | null = document.createElement("button");
+  btn.classList.add(className);
+  return btn;
+};

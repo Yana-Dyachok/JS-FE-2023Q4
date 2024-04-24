@@ -12,7 +12,6 @@ import {
   createDialogInputForm,
   createDialogContent,
 } from "../../core/components/dialog-content/create-dialog-elements";
-
 import "./content.scss";
 import "../../core/components/aside-content/aside-content.scss";
 import "../../core/components/dialog-content/dialog-container.scss";

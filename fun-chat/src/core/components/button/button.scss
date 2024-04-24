@@ -1,6 +1,6 @@
 @import '../../../styles/colors.scss';
 
-button {
+button:not(.message__delete):not(.message__edit) {
     border-radius: 1rem;
     cursor: pointer;
 

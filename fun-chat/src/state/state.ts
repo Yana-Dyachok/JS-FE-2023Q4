@@ -7,6 +7,8 @@ class State {
 
   private messages: IMessage[] = [];
 
+  private deletedMessagesId: string[] = [];
+
   public setUser(user: IUserIsLogined): void {
     this.user = user;
   }
@@ -57,6 +59,14 @@ class State {
 
   public getMessages(): IMessage[] {
     return this.messages;
+  }
+
+  public setDeletedMessage(id: string): void {
+    this.deletedMessagesId.push(id);
+  }
+
+  public getDeletedMessage(): string[] {
+    return this.deletedMessagesId;
   }
 
   // public setReadMessage(message: IIsReaded[] ): void {

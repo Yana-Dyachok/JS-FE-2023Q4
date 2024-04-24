@@ -5,6 +5,7 @@ import {
   ISendMessage,
   IHistoryMessage,
   IReadMessage,
+  IServerMessage
 } from "../types/interfaces";
 
 export const getRequest = (
@@ -77,7 +78,7 @@ export const getRequestHistoryMessage = (
   },
 });
 
-export const getRequestReadMessage = (
+export const getRequestOneMessage = (
   id: string,
   messageType: string,
   idMs: string,
@@ -91,15 +92,17 @@ export const getRequestReadMessage = (
   },
 });
 
-// export const getDeleteMessage = (
-//   id: string,
-//   messageType: string,
-// ): ISendMessage => ({
-//   id,
-//   type: messageType,
-//   payload: {
-//     message: {
-//       id,
-//     }
-//   }
-// })
+export const getRequestServerOneMessage = (
+  messageType: string,
+  idMs: string,
+): IServerMessage => ({
+  id: null,
+  type: messageType,
+  payload: {
+    message: {
+      id: idMs,
+    },
+  },
+});
+
+
