@@ -5,7 +5,7 @@ import {
   ISendMessage,
   IHistoryMessage,
   IReadMessage,
-  IServerMessage
+  IServerMessage,
 } from "../types/interfaces";
 
 export const getRequest = (
@@ -104,5 +104,3 @@ export const getRequestServerOneMessage = (
     },
   },
 });
-
-

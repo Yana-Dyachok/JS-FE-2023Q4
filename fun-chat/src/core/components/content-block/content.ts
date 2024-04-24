@@ -154,15 +154,16 @@ class Content {
         uniqueMessages.push(message);
       }
     }
-    const idArray:string[]=[];
+    const idArray: string[] = [];
     idArray.push(...state.getDeletedMessage());
     const messages = uniqueMessages
-    .filter(message =>
-      (message.from === this.userLogin || message.to === this.userLogin) &&
-      !idArray.includes(message.id)
-    )
-    .map(message => messageBlock.createMessageBlock(message));
-  
+      .filter(
+        (message) =>
+          (message.from === this.userLogin || message.to === this.userLogin) &&
+          !idArray.includes(message.id),
+      )
+      .map((message) => messageBlock.createMessageBlock(message));
+
     this.dialogContent.append(...messages);
     if (this.dialogContent.children.length === 0) {
       this.dialogContent.append(createContentText());

@@ -28,6 +28,13 @@
         background-color: $c-white;
     }
 
+    &__edit-text {
+        width: 100%;
+        word-wrap: break-word;
+        padding: 0.5rem;
+        background-color: $c-green-cyan-100;
+    }
+
     &__edit {
         width: 2rem;
         height: 2rem;

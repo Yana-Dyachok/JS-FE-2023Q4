@@ -7,7 +7,7 @@ import {
   getUsersRequest,
   getRequestHistoryMessage,
   getRequestOneMessage,
-  getRequestServerOneMessage
+  getRequestServerOneMessage,
 } from "./request";
 import { st } from "../utils/session-storage";
 import { popup } from "../view/popup/popup";
@@ -114,8 +114,7 @@ class Websocket {
       case MessageType.delete_msg: {
         const { payload } = response;
         const { message } = payload;
-        console.log(message.id)
-        state.setDeletedMessage(message.id)
+        state.setDeletedMessage(message.id);
         break;
       }
       case MessageType.msg_deliver: {

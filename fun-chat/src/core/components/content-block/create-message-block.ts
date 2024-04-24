@@ -8,12 +8,15 @@ import { state } from "../../../state/state";
 import DeleteButton from "../delete-btn/delete-btn";
 import EditButton from "../edit-button/edit-btn";
 import "./message-block.scss";
+
 class MessageBlock {
   private deleteButton: DeleteButton;
+
   private editButton: EditButton;
-  constructor () {
-    this.deleteButton=new DeleteButton();
-    this.editButton=new EditButton();
+
+  constructor() {
+    this.deleteButton = new DeleteButton();
+    this.editButton = new EditButton();
   }
 
   createMessageBlock = (message: IMessage): HTMLDivElement => {
@@ -36,11 +39,14 @@ class MessageBlock {
       messageUser.textContent = "you";
       messageContainer.classList.remove("users-message");
       messageStatus.textContent = `${status.isReaded ? "readed" : status.isDelivered ? "delivered" : "sent"}`;
-      this.deleteButton=new DeleteButton();
-      this.deleteButton.deleteMessage(id)
-      this.editButton=new EditButton();
-      this.editButton.editMessage(id)
-      messageFooter.append( this.deleteButton.getRootElement(), this.editButton.getRootElement());
+      this.deleteButton = new DeleteButton();
+      this.deleteButton.deleteMessage(id);
+      this.editButton = new EditButton();
+      this.editButton.editMessage(id);
+      messageFooter.append(
+        this.deleteButton.getRootElement(),
+        this.editButton.getRootElement(),
+      );
     } else {
       messageUser.textContent = from;
       messageContainer.classList.add("users-message");
@@ -51,7 +57,5 @@ class MessageBlock {
     messageText.textContent = text;
     return messageBlock;
   };
-  
-
 }
-export const messageBlock=new MessageBlock();
+export const messageBlock = new MessageBlock();
