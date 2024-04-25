@@ -6,7 +6,7 @@ import {
   IHistoryMessage,
   IReadMessage,
   IServerMessage,
-  IRequestEditMessage
+  IRequestEditMessage,
 } from "../types/interfaces";
 
 export const getRequest = (
@@ -110,7 +110,7 @@ export const getRequestEditMessage = (
   id: string,
   messageType: string,
   idMs: string,
-  textEdited: string
+  textEdited: string,
 ): IRequestEditMessage => ({
   id,
   type: messageType,

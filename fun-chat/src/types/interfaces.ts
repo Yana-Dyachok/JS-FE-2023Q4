@@ -116,39 +116,38 @@ export interface IResponseMessage {
 
 export interface IEditedMessages {
   message: {
-    id: string,
-    text: string,
+    id: string;
+    text: string;
     status: {
-      isEdited: boolean,
-    }
-  }
+      isEdited: boolean;
+    };
+  };
 }
 
 export interface IEditContent {
   message: {
-    id: string,
-    text: string
-  }
+    id: string;
+    text: string;
+  };
 }
 
 export interface IResponseEditMessage {
   id: string;
   type: string;
-  payload: IEditedMessages
+  payload: IEditedMessages;
 }
-
 
 export interface IEditUserMessage {
   id: null;
   type: string;
-  payload: IEditedMessages
+  payload: IEditedMessages;
 }
 
 export interface IRequestEditMessage {
-  id: string,
-  type: string,
-  payload: IEditContent
-} 
+  id: string;
+  type: string;
+  payload: IEditContent;
+}
 
 export interface IDeleteMessage {
   id: string;

@@ -34,6 +34,7 @@ class MessageBlock {
     const messageFooter: HTMLDivElement = createDiv("message__footer");
     const messageEditStatus: HTMLElement = createLabel("message__edit-status");
     messageEditStatus.textContent = `${status.isEdited ? "edit" : ""}`;
+    messageEditStatus.setAttribute("data-message-edit", `${id}`);
     const messageStatus: HTMLElement = createLabel("message__status");
     if (state.getUser().login === from) {
       messageUser.textContent = "you";

@@ -8,7 +8,7 @@ import {
   getRequestHistoryMessage,
   getRequestOneMessage,
   getRequestServerOneMessage,
-  getRequestEditMessage
+  getRequestEditMessage,
 } from "./request";
 import { st } from "../utils/session-storage";
 import { popup } from "../view/popup/popup";
@@ -217,10 +217,12 @@ class Websocket {
     );
   }
 
-  editMessage(idMs: string, text:string): void {
+  editMessage(idMs: string, text: string): void {
     const id = Date.now().toString();
     this.socket.send(
-      JSON.stringify(getRequestEditMessage(id, MessageType.edit_msg, idMs, text)),
+      JSON.stringify(
+        getRequestEditMessage(id, MessageType.edit_msg, idMs, text),
+      ),
     );
   }
 }
