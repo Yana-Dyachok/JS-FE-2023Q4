@@ -1,4 +1,3 @@
-import { state } from "../state/state";
 import { SOCKET_URL } from "./const";
 import { MessageType } from "../types/enum";
 import {
@@ -12,8 +11,7 @@ import {
 } from "./request";
 import { st } from "../utils/session-storage";
 import { popup } from "../view/popup/popup";
-import { contentView } from "../view/main-view/content-view";
-import { IMessage } from "../types/interfaces";
+import { resp } from "./response";
 
 class Websocket {
   private socket: WebSocket;
@@ -26,10 +24,10 @@ class Websocket {
 
   private initListeners(): void {
     this.socket.addEventListener("message", this.onMessage);
-    this.socket.addEventListener("open", (error: Event) => {
+    this.socket.addEventListener("open", () => {
       popup.deletePopup();
     });
-    this.socket.addEventListener("close", (error: Event) => {
+    this.socket.addEventListener("close", () => {
       popup.createPopupElements("Сonnection to the server");
     });
   }
@@ -39,99 +37,56 @@ class Websocket {
 
     switch (response.type) {
       case MessageType.logout: {
-        const { payload } = response;
-        const { user } = payload;
-        const { login, isLogined } = user;
-        state.setUser(user);
-        state.removeAllData();
-        if (!isLogined) window.location.hash = "login";
+        resp.logoutResponse(response);
         break;
       }
       case MessageType.login: {
-        const { payload } = response;
-        const { user } = payload;
-        const { login, isLogined } = user;
-        state.setUser(user);
-        if (isLogined) window.location.hash = "main";
+        resp.loginResponse(response);
         break;
       }
       case MessageType.external_login: {
-        const { payload } = response;
-        const { user } = payload;
-
-        state.externalLogin(user);
-
-        contentView.updateUsersList();
+        resp.loginExternal(response);
         break;
       }
       case MessageType.external_logout: {
-        const { payload } = response;
-        const { user } = payload;
-        state.externalLogout(user);
-        contentView.updateUsersList();
+        resp.logoutExternal(response);
         break;
       }
       case MessageType.inactive_user: {
-        const { payload } = response;
-        const { users } = payload;
-        state.setInactiveUsers(users);
-
-        contentView.updateUsersList();
+        resp.inactiveUsersResponse(response);
         break;
       }
       case MessageType.active_user: {
-        const { payload } = response;
-        const { users } = payload;
-        state.setActiveUsers(users);
-
-        contentView.updateUsersList();
+        resp.activeUsersResponse(response);
         break;
       }
       case MessageType.send_msg: {
-        const { payload } = response;
-        const { message } = payload;
-        state.setMessage(message);
-        contentView.contentClass.updateMessageBlock();
-
+        resp.sendMsgResponse(response);
         break;
       }
       case MessageType.msg_from_user: {
-        const { payload } = response;
-        const { messages } = payload;
-
-        messages.forEach((message: IMessage) => {
-          state.setMessage(message);
-        });
+        resp.fromMessageResponse(response);
         break;
       }
 
       case MessageType.msg_read: {
-        const { payload } = response;
-        const { message } = payload;
-        // contentView.contentClass.updateMessageBlock();
-        // state.setReadMessage(message);
+        resp.readMsgResponse(response);
         break;
       }
       case MessageType.delete_msg: {
-        const { payload } = response;
-        const { message } = payload;
-        state.setDeletedMessage(message.id);
+        resp.deleteMsgResponse(response);
         break;
       }
       case MessageType.msg_deliver: {
-        const { payload } = response;
-        const { messages } = payload;
+        resp.deliverMsgResponse(response);
         break;
       }
       case MessageType.edit_msg: {
-        const { payload } = response;
-        const { messages } = payload;
+        resp.editMsgResponse(response);
         break;
       }
       case MessageType.error: {
-        const { payload } = response;
-        window.location.hash = "login";
-        popup.createPopupElements(payload.error);
+        resp.errorResponse(response);
         break;
       }
       default:

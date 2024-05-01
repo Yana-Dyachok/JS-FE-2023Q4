@@ -7,7 +7,7 @@ import {
   IReadMessage,
   IServerMessage,
   IRequestEditMessage,
-  IDeliverMessage
+  IDeliverMessage,
 } from "../types/interfaces";
 
 export const getRequest = (
@@ -126,7 +126,7 @@ export const getRequestEditMessage = (
 export const getRequestDeliverMessage = (
   messageType: string,
   idMs: string,
-  status: boolean
+  status: boolean,
 ): IDeliverMessage => ({
   id: null,
   type: messageType,
@@ -135,7 +135,7 @@ export const getRequestDeliverMessage = (
       id: idMs,
       status: {
         isDelivered: status,
-      }
-    }
-  }
-})
+      },
+    },
+  },
+});

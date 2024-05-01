@@ -1,95 +1,109 @@
-// import { state } from "../state/state";
-// import { MessageType } from "../types/enum";
-// import {
-//   getExternalRequest,
-//   getRequest,
-//   getRequestSendMessage,
-//   getUsersRequest,
-// } from "./request";
-// import { st } from "../utils/session-storage";
-// import { popup } from "../view/popup/popup";
-// import { contentView } from "../view/main-view/content-view";
-// import { IMessage, IResponseMessage, IErrorLogin } from "../types/interfaces";
+import { state } from "../state/state";
+import { popup } from "../view/popup/popup";
+import { contentView } from "../view/main-view/content-view";
+import {
+  IMessage,
+  IResponseHistoryMessage,
+  IResponseMessage,
+  IErrorLogin,
+  IResponseLogin,
+  IRequestExternal,
+  IResponseInactiveUser,
+  IResponseActiveUser,
+  IDeliverMessage,
+  IResponseDeleteMessage,
+  IResponseEditMessage,
+  IResponseReadMessage,
+} from "../types/interfaces";
 
-// class ResponseMethods {
+class ResponseMethods {
+  loginResponse(response: IResponseLogin) {
+    const { payload } = response;
+    const { user } = payload;
+    state.setUser(user);
+    if (user.isLogined) window.location.hash = "main";
+  }
 
-//     // switch (response.type) {
-//     //   case MessageType.logout: {
-//     //     const { payload } = response;
-//     //     const { user } = payload;
-//     //     const { login, isLogined } = user;
-//     //     state.setUser(user);
-//     //     state.removeAllData();
-//     //     if (!isLogined) window.location.hash = "login";
-//     //     break;
-//     //   }
-//     //   case MessageType.login: {
-//     //     const { payload } = response;
-//     //     const { user } = payload;
-//     //     const { login, isLogined } = user;
-//     //     state.setUser(user);
-//     //     if (isLogined) window.location.hash = "main";
-//     //     break;
-//     //   }
-//     //   case MessageType.external_login: {
-//     //     const { payload } = response;
-//     //     const { user } = payload;
+  loginExternal(response: IRequestExternal) {
+    const { payload } = response;
+    const { user } = payload;
+    state.externalLogin(user);
+    contentView.updateUsersList();
+  }
 
-//     //     state.externalLogin(user);
+  logoutResponse(response: IResponseLogin) {
+    const { payload } = response;
+    const { user } = payload;
+    state.setUser(user);
+    state.removeAllData();
+    if (!user.isLogined) window.location.hash = "login";
+  }
 
-//     //     contentView.updateUsersList();
-//     //     break;
-//     //   }
-//     //   case MessageType.external_logout: {
-//     //     const { payload } = response;
-//     //     const { user } = payload;
-//     //     // this.externalLogOut(login, isLogined);
-//     //     state.externalLogout(user);
-//     //     contentView.updateUsersList();
-//     //     break;
-//     //   }
-//     //   case MessageType.inactive_user: {
-//     //     const { payload } = response;
-//     //     const { users } = payload;
-//     //     state.setInactiveUsers(users);
+  logoutExternal(response: IRequestExternal) {
+    const { payload } = response;
+    const { user } = payload;
+    state.externalLogout(user);
+    contentView.updateUsersList();
+  }
 
-//     //     contentView.updateUsersList();
-//     //     break;
-//     //   }
-//     //   case MessageType.active_user: {
-//     //     const { payload } = response;
-//     //     const { users } = payload;
-//     //     state.setActiveUsers(users);
+  inactiveUsersResponse(response: IResponseInactiveUser) {
+    const { payload } = response;
+    const { users } = payload;
+    state.setInactiveUsers(users);
+    contentView.updateUsersList();
+  }
 
-//     //     contentView.updateUsersList();
-//     //     break;
-//     //   }
-//     //   case MessageType.send_msg: {
-//     //     const { payload } = response;
-//     //     const { message } = payload;
-//     //     state.setMessage(message);
+  activeUsersResponse(response: IResponseActiveUser) {
+    const { payload } = response;
+    const { users } = payload;
+    state.setActiveUsers(users);
 
-//     //     contentView.contentClass.updateMessageBlock();
+    contentView.updateUsersList();
+  }
 
-//     //     break;
-//     //   }
-//     //   case MessageType.msg_from_user: {
+  sendMsgResponse(response: IResponseMessage) {
+    const { payload } = response;
+    const { message } = payload;
+    state.setMessage(message);
+    contentView.contentClass.updateMessageBlock();
+  }
 
-//     FromMessageResponse(response:IResponseMessage):void {
-//         const { payload } = response;
-//         const { messages} = payload;
+  fromMessageResponse(response: IResponseHistoryMessage): void {
+    const { payload } = response;
+    const { messages } = payload;
 
-//         messages.forEach((message: IMessage) => {
-//           state.setMessage(message);
-//           console.log(state.setMessage(message))
-//         });
-//       }
+    messages.forEach((message: IMessage) => {
+      state.setMessage(message);
+      console.log(state.setMessage(message));
+    });
+  }
 
-//     ErrorResponse(response:IErrorLogin):void {
-//         const { payload } = response;
-//         window.location.hash = "login";
-//         popup.createPopupElements(payload.error);
-//       }
-// }
+  readMsgResponse(response: IResponseReadMessage) {
+    const { payload } = response;
+    const { message } = payload;
+  }
 
-// export const response = new ResponseMethods();
+  deliverMsgResponse(response: IDeliverMessage) {
+    const { payload } = response;
+    const { message } = payload;
+  }
+
+  deleteMsgResponse(response: IResponseDeleteMessage) {
+    const { payload } = response;
+    const { message } = payload;
+    state.setDeletedMessage(message.id);
+  }
+
+  editMsgResponse(response: IResponseEditMessage) {
+    const { payload } = response;
+    const { message } = payload;
+  }
+
+  errorResponse(response: IErrorLogin): void {
+    const { payload } = response;
+    window.location.hash = "login";
+    popup.createPopupElements(payload.error);
+  }
+}
+
+export const resp = new ResponseMethods();

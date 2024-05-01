@@ -31,7 +31,7 @@ class EditButton extends Button {
               newMessageText.classList.add("message__text");
               inputElement.replaceWith(newMessageText);
               ws.editMessage(dataset, newText);
-              if(edit)edit.textContent="edit";
+              if (edit) edit.textContent = "edit";
             }
           });
         }
