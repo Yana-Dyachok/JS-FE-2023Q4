@@ -8,7 +8,7 @@
 -   Eslint
 -   Local storage
 -   SCSS
-
+![nono](https://github.com/user-attachments/assets/0d317129-e29f-41ad-bed9-b67fc91b05d1)
 ## Task
 
 You are to implement a classic game — [Nonograms](https://en.wikipedia.org/wiki/Nonogram)  
