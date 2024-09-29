@@ -3,8 +3,8 @@
 @import '../card_animations.scss';
 
 .play-field_source {
-    min-width: 100%;
-    width: fit-content;
+    min-width: 80rem;
+    width: 100%;
     min-height: 7rem;
     display: flex;
     gap: 0.05rem;
@@ -15,6 +15,9 @@
     border-radius: 1rem;
 
     &-card {
+        min-width: fit-content;
+        width: 100%;
+        max-width: 40%;
         padding: 1rem 1.5rem 2rem;
         margin: 0 -0.5rem -1rem;
         display: inline-block;
@@ -42,7 +45,6 @@
     &-card[data-source='last'] {
         margin-right: 0.5rem;
         @include puzzle-background-last($c-brown-100);
-
         &:hover,
         &:focus {
             @include puzzle-background-last($c-brown-600);
@@ -52,6 +54,8 @@
 
 @media (max-width: 1000px) {
     .play-field_source {
+        min-width: 60rem;
+        max-width: 70rem;
         min-height: 6rem;
         font-size: 2rem;
         padding: 0.5rem  0.5rem 0;
@@ -72,4 +76,24 @@
             @include puzzle-background-last($c-brown-100);
         }
     }
+}
+
+
+@media (max-width: 800px) {
+    .play-field_source {
+        max-width: 70rem;
+        min-width: 40rem;
+        min-height: 5rem;
+        font-size: 1.5rem;
+        padding: 0.1rem  0.1rem 0;
+}
+}
+
+@media (max-width: 500px) {
+    .play-field_source {
+        max-width: 40rem;
+        min-width: 30rem;
+        min-height: 4rem;
+        font-size: 1.2rem;
+}
 }
