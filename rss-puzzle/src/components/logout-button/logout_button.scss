@@ -4,9 +4,15 @@
     position: absolute;
     top: 0;
     right: 2%;
-    padding: 1rem;
-    font-size: 2rem;
+    padding: 0.5rem;
+    font-size: 1.7rem;
     color: $c-white;
     background-color: $c-blue-500;
     border: 0.2rem solid $c-white;
+}
+
+@media (max-width: 620px) {
+    .logout_btn {
+       font-size: 1.5rem;
+    }
 }

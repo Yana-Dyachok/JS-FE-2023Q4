@@ -3,94 +3,42 @@
 
 .play-field_buttons {
     display: flex;
-    padding-top: 5rem;
+    padding-top: 4rem;
     gap: 2rem;
 }
 
 .continue_btn {
+    display: none;
     @include btn-styles;
     font-size: 1.7rem;
-    width: 14rem;
-    padding: 1rem;
+    width: 13rem;
     &:focus {
-    background-color: $c-green;
+        background-color: $c-green;
     }
-    
-    // &:not([disabled]) {
-    //     content: '';
-    //     position: absolute;
-    //     top: 155%;
-    //     left: 10%;
-    //     width: 12rem;
-    //     height: 4rem;
-    //     background-image: url('../../../assets/img/svg/start_arrow.svg');
-    //     background-size: contain;
-    //     background-repeat: no-repeat;
-    //     opacity: 0;
-    //     transition:
-    //         opacity 0.5s ease-in-out,
-    //         transform 0.5s ease-in-out;
-    //     transform: rotate(90deg);
-    //     &:hover::after,
-    //     &:focus::after {
-    //         opacity: 1;
-    //     }
-    // }
 }
-
 
 .check_btn {
     @include btn-styles;
     font-size: 1.7rem;
-    width: 14rem;
+    width: 13rem;
     padding: 1rem;
     &:focus {
-    background-color: $c-green;
+        background-color: $c-green;
     }
-    // @include btn-styles;
-    // // position: absolute;
-    // // right: 47%;
-    // // display: block;
-    // // &:not([disabled]) {
-    //     // content: '';
-    //     // position: absolute;
-    //     // bottom: 165%;
-    //     // right: 3%;
-    //     // width: 10rem;
-    //     // height: 3rem;
-    //     background-image: url('../../../assets/img/svg/start_arrow.svg');
-    //     background-size: contain;
-    //     background-repeat: no-repeat;
-    //     // opacity: 0;
-    //     transition:
-    //         opacity 0.5s ease-in-out,
-    //         transform 0.5s ease-in-out;
-    //     transform: rotate(-90deg);
-    }
-
-    // &:hover::after,
-    // &:focus::after {
-    //     opacity: 1;
-    // }
+}
 
 .auto-complete_btn {
     @include btn-styles;
     font-size: 1.7rem;
-    width: 14rem;
-    padding: 1rem;
+    width: 13rem;
     &:focus {
-    background-color: $c-green;
-    } 
+        background-color: $c-green;
+    }
 }
 
 @media (max-width: 1000px) {
-    .play-field_buttons {
-        padding-top: 3rem;
-        font-size: 2rem;
-    }
-
-    .auto-complete_btn {
-        font-size: 1.7rem;
-        width: 10rem;
+    .play-field_buttons > button{
+            font-size: 1.5rem;
+            width: 9rem;
     }
 }

@@ -1,4 +1,9 @@
 @import '../../styles/colors.scss';
+.play-field_block {
+ max-width: 100%;
+ overflow-y: hidden;
+}
+
 .play-field_translation-block {
     position: relative;
 
@@ -6,8 +11,9 @@
         content: '';
         position: absolute;
         left: 0;
-        width: 5rem;
-        height: 5rem;
+        right: 1%;
+        width: 4rem;
+        height: 4rem;
         background-image: url('../../assets/img/svg/hint.svg');
         background-size: contain;
         background-repeat: no-repeat;
@@ -17,14 +23,29 @@
     &::after {
         content: '';
         display: inline-block;
-        width: 5rem;
+        width: 4rem;
     }
 }
 
 .play-field_translation-hint {
-    padding-left: 6rem;
+    padding-left: 3rem;
     font-size: 3rem;
     color: $c-blue-500;
  }
 
 
+ @media (max-width: 920px) {
+    .play-field_block {
+        width: 100%;
+       }
+       
+    .play-field_translation-hint {
+        font-size: 2rem;
+}
+}
+
+@media (max-width: 520px) {
+    .play-field_translation-hint {
+        font-size: 1.5rem;
+}
+}

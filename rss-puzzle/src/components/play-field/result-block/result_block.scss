@@ -86,7 +86,7 @@
 
 @media (max-width: 1000px) {
     .play-field_result {
-        font-size: 2rem;
+        font-size: 1.6rem;
         padding: 0.5rem;
 
         &-card {
@@ -109,7 +109,7 @@
 @media (max-width: 800px) {
         .play-field_result {
         min-height: 5rem;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         padding: 0.1rem  0.1rem 0;
 }
 }
@@ -117,6 +117,6 @@
 @media (max-width: 500px) {
         .play-field_result {
         min-height: 4rem;
-        font-size: 1.2rem;
+        font-size: 1rem;
 }
 }
